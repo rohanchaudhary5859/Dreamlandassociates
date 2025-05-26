@@ -55,9 +55,7 @@
     transition: transform 0.3s ease;
   }
 
-  .logo:hover img {
-    transform: rotate(10deg) scale(1.05);
-  }
+ 
 
   .nav-links {
     list-style: none;
@@ -231,7 +229,7 @@
 
  
 
-  @media (max-width: 992px) {
+   @media (max-width: 992px) {
     .nav-links,
     .cta-button {
       display: none;
@@ -241,6 +239,17 @@
       display: flex;
     }
   }
+  @media (max-width: 490px) {
+  nav {
+    padding: 2.0rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
+  }
+
+  .logo img {
+    height: 50px; /* Logo image ka height bada kiya */
+    margin-right: 16px; /* Margin thoda bada kiya for balance */
+  }
+}
+
 </style>
 
 <nav>
