@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Signup - Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  <title>Real Estate Home</title>
+ </head>
+<body>
+
+  <!-- Navbar -->
+ <style>
+  * {
+    font-family: "Roboto Condensed", sans-serif;
+  }
+
+  nav {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #111;
+    user-select: none;
+  }
+
+  .logo img {
+    height: 36px;
+    margin-right: 12px;
+    transition: transform 0.3s ease;
+  }
+
+  .logo:hover img {
+    transform: rotate(10deg) scale(1.05);
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .nav-links li a {
+    position: relative;
+    text-decoration: none;
+    color: #444;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 6px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    user-select: none;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    color: #000;
+    transform: scale(1.05);
+  }
+
+  /* Changed underline color here */
+  .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff5722; /* Changed underline color to orange */
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links li a:hover::after,
+  .nav-links li a:focus::after {
+    width: 100%;
+  }
+
+  .cta-button {
+    background-color: #000;
+    color: #fff;
+    padding: 0.75rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    user-select: none;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus {
+    background-color: #222;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Hamburger styling */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    width: 28px;
+    height: 24px;
+    user-select: none;
+    z-index: 10001;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger div {
+    width: 100%;
+    height: 3.5px;
+    background: #222;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Corrected Hamburger to X animation */
+  .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Backdrop overlay */
+  .backdrop {
+    position: fixed;
+    top: 70px; /* nav height */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 999;
+  }
+
+  .backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Mobile menu - reduced width */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2rem 3rem;
+    background: #fff;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+    position: fixed;
+    top: 70px;
+    right: 0;
+    width: 240px; /* Reduced width */
+    height: calc(100vh - 70px);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.35s ease;
+    border-left: 1px solid #eee;
+    user-select: none;
+    z-index: 1000;
+    overflow-y: auto;
+    will-change: transform, opacity;
+    border-radius: 0 0 0 10px;
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a:focus {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+
+  .mobile-menu .cta-button {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+    box-shadow: none;
+    border-radius: 50px;
+  }
+
+ 
+
+  @media (max-width: 992px) {
+    .nav-links,
+    .cta-button {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <img src="logo.svg" alt="Logo" />
+    </a>
+
+<ul class="nav-links">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="projects.html">Projects</a></li>
+  <li><a href="contact.html" class="active">Contact</a></li>
+  <li><a href="login.html">Login</a></li>
+  <li><a href="signup.html">Signup</a></li>
+</ul>
+
+<a href="contact.html" class="cta-button">Request A Visit →</a>
+
+<div
+  class="hamburger"
+  id="hamburger"
+  aria-label="Toggle menu"
+  role="button"
+  tabindex="0"
+>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div
+  class="mobile-menu"
+  id="mobileMenu"
+  aria-hidden="true"
+  role="menu"
+>
+  <a href="index.html" role="menuitem">Home</a>
+  <a href="about.html" role="menuitem">About</a>
+  <a href="projects.html" role="menuitem">Projects</a>
+  <a href="contact.html" class="active" role="menuitem">Contact</a>
+  <a href="login.html" role="menuitem">Login</a>
+  <a href="signup.html" role="menuitem">Signup</a>
+  <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
+</div>
+
+
+    
+</nav>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const backdrop = document.getElementById("backdrop");
+
+  function toggleMenu() {
+    const isActive = hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("active", isActive);
+    backdrop.classList.toggle("active", isActive);
+
+    // Set aria-expanded for accessibility
+    hamburger.setAttribute("aria-expanded", isActive);
+    mobileMenu.setAttribute("aria-hidden", !isActive);
+  }
+
+  hamburger.addEventListener("click", toggleMenu);
+  hamburger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  // Close menu when clicking backdrop
+  backdrop.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    backdrop.classList.remove("active");
+
+    hamburger.setAttribute("aria-expanded", false);
+    mobileMenu.setAttribute("aria-hidden", true);
+  });
+
+  // Close menu when clicking a link inside mobile menu
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      backdrop.classList.remove("active");
+
+      hamburger.setAttribute("aria-expanded", false);
+      mobileMenu.setAttribute("aria-hidden", true);
+    });
+  });
+
+  // Close menu on tapping outside hamburger or menu (for mobile)
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !hamburger.contains(e.target) &&
+      mobileMenu.classList.contains("active")
+    ) {
+      hamburger.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      backdrop.classList.remove("active");
+
+      hamburger.setAttribute("aria-expanded", false);
+      mobileMenu.setAttribute("aria-hidden", true);
+    }
+  });
+</script>
+
+  <!-- Signup Form -->
+ <section class="auth container">
+  <h1>Create Account</h1>
+  <form id="signupForm">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required />
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required />
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="Enter your phone number" required />
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Create a password" required />
+    </div>
+
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" placeholder="Confirm your password" required />
+    </div>
+
+    <button type="submit" class="btn-primary">Signup</button>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+  </form>
+</section>
+
+<style>
+  :root {
+    --clr-primary: #000;
+    --clr-secondary: #fff;
+    --radius: 0.5rem;
+    --transition: 0.3s;
+  }
+
+  * {
+    box-sizing: border-box;
+
+  }
+
+  body {
+    margin: 0;
+    font-family: "Roboto Condensed", sans-serif;
+    background: #f5f5f5;
+  }
+
+  .container {
+    width: 90%;
+    max-width: 400px;
+    margin: 3rem auto;
+  }
+
+  .auth {
+    background: var(--clr-secondary);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  .auth h1 {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+    color: var(--clr-primary);
+  }
+
+  .form-group {
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radius);
+    transition: border-color var(--transition);
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--clr-primary);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-primary {
+    width: 100%;
+    padding: 0.9rem;
+    font-size: 1rem;
+    border-radius: var(--radius);
+    border: 2px solid var(--clr-primary);
+    cursor: pointer;
+    transition: background var(--transition), color var(--transition);
+    background: var(--clr-primary);
+    color: var(--clr-secondary);
+  }
+
+  .btn-primary:hover {
+    background: var(--clr-secondary);
+    color: var(--clr-primary);
+  }
+
+  .auth p {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 1rem;
+  }
+
+  .auth p a {
+    color: var(--clr-primary);
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .auth p a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 480px) {
+    .auth {
+      padding: 2rem;
+    }
+
+    .auth h1 {
+      font-size: 1.6rem;
+    }
+
+    .btn-primary {
+      font-size: 0.95rem;
+      padding: 0.8rem;
+    }
+
+    .auth p {
+      font-size: 0.85rem;
+    }
+  }
+</style>
+
+<footer class="footer">
+  <div class="footer-wrapper">
+    <div class="footer-section about">
+      <h3>Real Estate Website</h3>
+      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
+    </div>
+    <div class="footer-section links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Properties</a></li>
+        <li><a href="#">Agents</a></li>
+        <li><a href="#">Contact Us</a></li>
+        <li><a href="#">About Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-section contact">
+      <h3>Contact Us</h3>
+      <p>123 Main Street, Cityville, Country</p>
+      <p>Phone: +1 234 567 890</p>
+      <p>Email: info@realestate.com</p>
+      <div class="social-icons">
+        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+  .footer {
+    background-color: #000;
+    color: #fff;
+    font-family: "Roboto Condensed", sans-serif;
+    padding: 50px 20px 30px;
+    border-top: 1px solid #222;
+  }
+  .footer-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: space-between;
+  }
+  .footer-section {
+    flex: 1 1 280px;
+    padding: 25px 30px;
+  }
+  .footer-section h3 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #fff, #bbb);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 0.1em;
+    margin-bottom: 22px;
+  }
+  .footer-section p {
+    color: #ddd;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 320px;
+  }
+  .footer-section.links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-section.links ul li {
+    margin-bottom: 16px;
+  }
+  .footer-section.links ul li a {
+    font-weight: 300;
+    font-size: 1rem;
+    color: #ccc;
+    text-decoration: none;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+  }
+  .footer-section.links ul li a::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, #fff, #bbb);
+    transform-origin: left;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+  .footer-section.links ul li a:hover,
+  .footer-section.links ul li a:focus {
+    color: #fff;
+  }
+  .footer-section.links ul li a:hover::after,
+  .footer-section.links ul li a:focus::after {
+    transform: scaleX(1);
+  }
+  .footer-section.contact p {
+    margin: 10px 0;
+    color: #ccc;
+    font-weight: 300;
+  }
+  .social-icons {
+    margin-top: 20px;
+    display: flex;
+    gap: 18px;
+  }
+  .social-icons a {
+    width: 44px;
+    height: 44px;
+    background: #111;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    box-shadow:
+      0 0 6px rgba(255 255 255, 0.3),
+      inset 0 0 5px rgba(255 255 255, 0.6);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .social-icons a:hover {
+    transform: scale(1.15);
+    box-shadow:
+      0 0 16px rgba(255 255 255, 0.8),
+      inset 0 0 12px rgba(255 255 255, 1);
+    color: #fff;
+    background: #222;
+  }
+  .footer-bottom {
+    margin-top: 45px;
+    border-top: 1px solid #222;
+    padding-top: 18px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 300;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .footer-wrapper {
+      flex-direction: column;
+      gap: 35px;
+    }
+    .footer-section {
+      padding: 15px 0;
+      max-width: 100%;
+    }
+    .footer-section p,
+    .footer-section.links ul li a {
+      max-width: 100%;
+      font-size: 0.95rem;
+    }
+  }
+  @media (max-width: 480px) {
+    .footer-section h3 {
+      font-size: 1.6rem;
+    }
+    .social-icons a {
+      width: 38px;
+      height: 38px;
+    }
+  }
+</style>
+
+  <script src="js/signup.js"></script>
+</body>
+</html>
