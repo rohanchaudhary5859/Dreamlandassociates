@@ -413,156 +413,206 @@
 </section>
 
 <style>
-  .realty-about {
-    max-width: 1150px;
-    margin: 4rem auto;
-    padding: 3rem 2rem;
-    background: #fff;
-    border-radius: 20px;
-    font-family: 'Segoe UI', sans-serif;
-    color: #000;
-    border: 1px solid #000;
-    animation: fadeIn 1s ease forwards;
-    opacity: 0;
+  /* Container */
+.realty-about {
+  max-width: 1150px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  background: #fff;
+  border-radius: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #000;
+  border: 1px solid #000;
+  animation: fadeIn 1s ease forwards;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+/* Title */
+.realty-title {
+  font-size: 2.8rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #000;
+  animation: slideDown 0.8s ease forwards;
+  opacity: 0;
+}
+
+/* Intro and text */
+.realty-intro,
+.realty-text {
+  font-size: 1.1rem;
+  line-height: 1.75;
+  margin: 1.2rem auto;
+  text-align: center;
+  max-width: 900px;
+  color: #000;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* Heading */
+.realty-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 3rem 0 1.2rem;
+  position: relative;
+  color: #000;
+  animation: fadeIn 1s ease forwards;
+}
+
+.realty-heading::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #000;
+  margin: 10px auto 0;
+}
+
+/* Team container */
+.realty-team {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  animation: fadeInUp 1s ease forwards;
+  opacity: 0;
+}
+
+/* Team member card */
+.realty-member {
+  background-color: #fff;
+  border: 1px solid #000;
+  flex: 1 1 280px;
+  max-width: 300px;
+  transition: all 0.4s ease;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  overflow: visible; /* Important to show full content */
+}
+
+.realty-member:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Member image */
+.member-image img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3; /* maintain aspect ratio */
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.realty-member:hover .member-image img {
+  transform: scale(1.05);
+}
+
+/* Member info */
+.member-info {
+  padding: 1.2rem 1rem;
+  text-align: center;
+  flex-grow: 1; /* makes sure info takes space */
+  color: #000;
+}
+
+/* Member name */
+.member-name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: #000;
+}
+
+/* Member role */
+.member-role {
+  font-size: 1rem;
+  color: #444;
+}
+
+/* Responsive for tablets and below */
+@media (max-width: 768px) {
+  .realty-title {
+    font-size: 2.2rem;
   }
 
-  .realty-title {
-    font-size: 2.8rem;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #000;
-    animation: slideDown 0.8s ease forwards;
-    opacity: 0;
+  .realty-heading {
+    font-size: 1.3rem;
   }
 
   .realty-intro,
   .realty-text {
-    font-size: 1.1rem;
-    line-height: 1.75;
-    margin: 1.2rem auto;
-    text-align: center;
-    max-width: 900px;
-    color: #000;
-    animation: fadeIn 1s ease forwards;
-  }
-
-  .realty-heading {
-    font-size: 1.6rem;
-    font-weight: 700;
-    text-align: center;
-    margin: 3rem 0 1.2rem;
-    position: relative;
-    color: #000;
-    animation: fadeIn 1s ease forwards;
-  }
-
-  .realty-heading::after {
-    content: "";
-    display: block;
-    width: 60px;
-    height: 2px;
-    background-color: #000;
-    margin: 10px auto 0;
-  }
-
-  .realty-team {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-top: 2.5rem;
-    animation: fadeInUp 1s ease forwards;
-    opacity: 0;
+    font-size: 1rem;
   }
 
   .realty-member {
-    background-color: #fff;
-    border: 1px solid #000;
-    flex: 1 1 280px;
-    max-width: 300px;
-    transition: all 0.4s ease;
-    overflow: hidden;
-  }
-
-  .realty-member:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+    max-width: 95%;
   }
 
   .member-image img {
+    aspect-ratio: 16 / 10;
+  }
+}
+
+/* Responsive for mobile (490px and below) */
+@media (max-width: 490px) {
+  .realty-about {
+    padding: 2rem 1rem;
+  }
+
+  .realty-title {
+    font-size: 1.9rem;
+  }
+
+  .realty-heading {
+    font-size: 1.1rem;
+  }
+
+  .realty-team {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .realty-member {
     width: 100%;
-    height: 260px;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.3s ease;
+    max-width: 100%;
   }
 
-  .realty-member:hover .member-image img {
-    transform: scale(1.05);
-  }
-
-  .member-info {
-    padding: 1.2rem 1rem;
-    text-align: center;
+  .member-image img {
+    aspect-ratio: 4 / 3;
   }
 
   .member-name {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    color: #000;
+    font-size: 1.1rem;
   }
 
   .member-role {
-    font-size: 1rem;
-    color: #444;
+    font-size: 0.95rem;
   }
+}
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .realty-team {
-      flex-direction: column;
-      align-items: center;
-    }
+/* Animations */
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    .realty-title {
-      font-size: 2.2rem;
-    }
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    .realty-heading {
-      font-size: 1.3rem;
-    }
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    .realty-intro,
-    .realty-text {
-      font-size: 1rem;
-    }
-
-    .realty-member {
-      max-width: 95%;
-    }
-
-    .member-image img {
-      height: 220px;
-    }
-  }
-
-  /* Animations */
-  @keyframes fadeIn {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(40px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes slideDown {
-    0% { opacity: 0; transform: translateY(-30px); }
-    100% { opacity: 1; transform: translateY(0); }
-  }
 </style>
 
 

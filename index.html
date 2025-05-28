@@ -192,9 +192,9 @@
     background: #fff;
     box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
     position: fixed;
-    top: 70px;
+    top: 112px;
     right: 0;
-    width: 240px; /* Reduced width */
+    width: 270px; /* Reduced width */
     height: calc(100vh - 70px);
     transform: translateX(100%);
     opacity: 0;
@@ -251,20 +251,11 @@
       display: flex;
     }
   }
-  @media (max-width: 490px) {
-  nav {
-    padding: 2.0rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
-  }
-
-  .logo img {
-    height: 50px; /* Logo image ka height bada kiya */
-    margin-right: 16px; /* Margin thoda bada kiya for balance */
-  }
-}
+ 
 
   @media (max-width: 490px) {
   nav {
-    padding: 2.0rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
+    padding: 1.90rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
   }
 
   .logo img {
@@ -327,65 +318,74 @@
 
 
 <script>
-  const hamburger = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const backdrop = document.getElementById("backdrop");
+ const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+const backdrop = document.getElementById("backdrop");
 
-  function toggleMenu() {
-    const isActive = hamburger.classList.toggle("active");
-    mobileMenu.classList.toggle("active", isActive);
-    backdrop.classList.toggle("active", isActive);
+function openMenu() {
+  hamburger.classList.add("active");
+  mobileMenu.classList.add("active");
+  backdrop.classList.add("active");
 
-    // Set aria-expanded for accessibility
-    hamburger.setAttribute("aria-expanded", isActive);
-    mobileMenu.setAttribute("aria-hidden", !isActive);
+  hamburger.setAttribute("aria-expanded", true);
+  mobileMenu.setAttribute("aria-hidden", false);
+}
+
+function closeMenu() {
+  hamburger.classList.remove("active");
+  mobileMenu.classList.remove("active");
+  backdrop.classList.remove("active");
+
+  hamburger.setAttribute("aria-expanded", false);
+  mobileMenu.setAttribute("aria-hidden", true);
+}
+
+function toggleMenu() {
+  if (hamburger.classList.contains("active")) {
+    closeMenu();
+  } else {
+    openMenu();
   }
+}
 
-  hamburger.addEventListener("click", toggleMenu);
-  hamburger.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleMenu();
-    }
-  });
+// Toggle on click
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation();
+  toggleMenu();
+});
 
-  // Close menu when clicking backdrop
-  backdrop.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-    backdrop.classList.remove("active");
+// Toggle on Enter or Space
+hamburger.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    toggleMenu();
+  }
+});
 
-    hamburger.setAttribute("aria-expanded", false);
-    mobileMenu.setAttribute("aria-hidden", true);
-  });
+// Prevent closing when clicking inside menu
+mobileMenu.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
 
-  // Close menu when clicking a link inside mobile menu
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
+// Close on backdrop click
+backdrop.addEventListener("click", closeMenu);
 
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
-    });
-  });
+// Close on any link click
+mobileMenu.querySelectorAll("a").forEach((link) => {
+  link.addEventListener("click", closeMenu);
+});
 
-  // Close menu on tapping outside hamburger or menu (for mobile)
-  document.addEventListener("click", (e) => {
-    if (
-      !mobileMenu.contains(e.target) &&
-      !hamburger.contains(e.target) &&
-      mobileMenu.classList.contains("active")
-    ) {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
+// Close when clicking outside
+document.addEventListener("click", (e) => {
+  if (
+    !hamburger.contains(e.target) &&
+    !mobileMenu.contains(e.target) &&
+    mobileMenu.classList.contains("active")
+  ) {
+    closeMenu();
+  }
+});
 
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
-    }
-  });
 </script>
 
 <style>
@@ -1723,21 +1723,21 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   @import url('https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css');
 
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
-.body{
-    font-family: "Roboto Condensed", sans-serif;
-
+.body {
+  font-family: "Roboto Condensed", sans-serif;
 }
+
 /* Container for the whole project section */
 .project-section {
   max-width: 1300px;
   margin: 0 auto 60px;
   padding: 40px 20px;
-    font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
   box-sizing: border-box;
   text-align: center;
-  background-color: #fff; /* white background */
+  background-color: #fff;
   border-radius: 12px;
-  color: #000; /* black text */
+  color: #000;
 }
 
 /* Titles area */
@@ -1750,8 +1750,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   font-weight: 600;
   font-size: 13px;
   letter-spacing: 2px;
-      font-family: "Roboto Condensed", sans-serif;
-
+  font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;
   display: inline-block;
   margin-bottom: 10px;
@@ -1760,8 +1759,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 .sec-title {
   font-size: 2.6rem;
   font-weight: 700;
-      font-family: "Roboto Condensed", sans-serif;
-
+  font-family: "Roboto Condensed", sans-serif;
   color: #000000;
   margin: 0 auto 16px;
   max-width: 700px;
@@ -1769,11 +1767,10 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 }
 
 .description {
-  color: #000000; /* medium gray */
+  color: #000000;
   font-size: 1rem;
   max-width: 640px;
-      font-family: "Roboto Condensed", sans-serif;
-
+  font-family: "Roboto Condensed", sans-serif;
   margin: 0 auto;
   line-height: 1.7;
   font-weight: 400;
@@ -1788,11 +1785,11 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 /* Hide scrollbar for all browsers */
 .project-slider::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 .project-slider {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 /* Swiper wrapper & slides */
@@ -1802,33 +1799,37 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 .swiper-slide {
   flex-shrink: 0;
-  width: auto; /* let Swiper handle width */
+  width: auto;
 }
 
-/* Project cards */
+/* Modernized Project cards */
 .project-card {
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease;
-    font-family: "Roboto Condensed", sans-serif;
-  color: #000000; /* dark slate */
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #000000;
+  border: 1px solid #e0e0e0;
 }
 
 .project-card:hover {
-  transform: translateY(-12px);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.3);
+  transform: translateY(-10px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.2);
 }
 
 .project-img img {
   width: 100%;
-  height: 230px;
+  height: 220px;
   object-fit: cover;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom: 1px solid #e0e0e0;
   transition: transform 0.4s ease;
 }
 
@@ -1837,22 +1838,22 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 }
 
 .project-content {
-  padding: 28px 32px;
+  padding: 24px;
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   border-top: 4px solid transparent;
   transition: border-color 0.4s ease;
 }
 
 .project-card:hover .project-content {
-  border-top-color: #000000; /* primary accent */
+  border-top-color: #000000;
 }
 
 .project-content h3 {
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 700;
+  font-size: 1.25rem;
   margin: 0;
   letter-spacing: -0.02em;
   color: #111827;
@@ -1880,7 +1881,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 .project-content .meta {
   font-size: 0.9rem;
-  color: #000000;
+  color: #444;
   display: flex;
   gap: 24px;
   font-weight: 500;
@@ -1896,12 +1897,12 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 .project-content .text {
   flex-grow: 1;
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.6;
-  color: #000000;
+  color: #333;
   user-select: text;
   margin-top: auto;
-  opacity: 0.9;
+  opacity: 0.85;
   transition: opacity 0.3s ease;
 }
 
@@ -1910,7 +1911,6 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 }
 
 /* Optional meta icons inline SVG example */
-
 .project-content .meta-item {
   display: flex;
   align-items: center;
@@ -1926,7 +1926,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 .swiper-pagination-bullet {
   width: 9px;
   height: 9px;
-  background: #000; /* black dots */
+  background: #000;
   opacity: 0.6;
   margin: 0 6px !important;
   transition: opacity 0.3s;
@@ -1936,7 +1936,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 .swiper-pagination-bullet-active {
   opacity: 1;
-  background: #000000; /* electric blue active dot */
+  background: #000000;
 }
 
 /* Responsive tweaks */
@@ -1967,19 +1967,19 @@ document.querySelectorAll('.image-slider').forEach(slider => {
     font-size: 0.95rem;
   }
 }
-
 @media (max-width: 490px) {
-  .swiper-slide {
-    width: 90vw !important;  /* almost full width */
-    margin: 0 auto;
-  }
-
   .swiper-wrapper {
     justify-content: center; /* center slides */
-    gap: 16px;
+    gap: 16px; /* spacing between slides */
+    padding-left: 0; /* remove left padding to avoid clipping */
+  }
+
+  .swiper-slide {
+    width: 90vw !important; /* slide takes almost full viewport width */
+    max-width: 90vw;
+    margin: 0 auto; /* center the slide */
   }
 }
-
 
 </style>
 
@@ -1990,7 +1990,9 @@ var swiper = new Swiper(".project-slider", {
   slidesPerView: 3,
   spaceBetween: 24,
   loop: true,
+  loopedSlides: 4,         // match your slide count here
   grabCursor: true,
+  slideToClickedSlide: true,
   autoplay: {
     delay: 2500,
     disableOnInteraction: false,
@@ -2000,7 +2002,10 @@ var swiper = new Swiper(".project-slider", {
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
+    type: 'bullets',
   },
+  watchSlidesProgress: true,
+  initialSlide: 0,
   breakpoints: {
     1024: {
       slidesPerView: 3,
@@ -2016,8 +2021,6 @@ var swiper = new Swiper(".project-slider", {
     },
   },
 });
-
-
 
 </script>
 
