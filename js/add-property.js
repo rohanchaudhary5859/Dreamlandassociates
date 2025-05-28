@@ -1,16 +1,17 @@
 document.getElementById('addPropertyForm').addEventListener('submit', async function (e) {
   e.preventDefault();
 
-  // Get form data
+  // Get form data with trimming and number conversion for price
   const title = document.getElementById('title').value.trim();
   const description = document.getElementById('description').value.trim();
-  const price = document.getElementById('price').value;
+  const priceStr = document.getElementById('price').value.trim();
+  const price = Number(priceStr);
   const location = document.getElementById('location').value.trim();
   const imageUrl = document.getElementById('imageUrl').value.trim();
 
   // Validate inputs (basic)
-  if (!title || !description || !price || !location || !imageUrl) {
-    alert('Please fill out all fields.');
+  if (!title || !description || !priceStr || isNaN(price) || price <= 0 || !location || !imageUrl) {
+    alert('Please fill out all fields correctly.');
     return;
   }
 

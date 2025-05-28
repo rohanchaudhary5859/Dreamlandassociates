@@ -16,432 +16,543 @@
 <body>
 
   <!-- Navbar -->
-   <style>
-    .admin-panel {
-      padding: 2rem 0;
-    }
+ <style>
+  /* Navbar */
+  .navbar {
+    background: #fff;
+    padding: 1rem 0;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-    .admin-panel h1 {
-      color: #004d99;
-      margin-bottom: 1rem;
-    }
+  .navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-    .admin-table table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
+  /* Logo image */
+  .navbar .logo img {
+    height: 40px; /* adjust as needed */
+    width: auto;
+    display: block;
+  }
 
-    .admin-table th, .admin-table td {
-      padding: 1rem;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.3rem;
+  }
 
-    .admin-table th {
-      background: #f0f0f0;
-    }
+  .nav-links li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
 
-    .status.pending {
-      color: #d9534f;
-      font-weight: bold;
-    }
+  .nav-links li a.active,
+  .nav-links li a:hover {
+    background-color: #000;
+    color: #fff;
+  }
 
-    .status.approved {
-      color: #28a745;
-      font-weight: bold;
-    }
+  /* Admin Panel Section */
+  .admin-panel {
+    padding: 3rem 1rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
 
-    .btn-success {
-      background: #28a745;
-      color: white;
-      border: none;
-      padding: 0.5rem 0.8rem;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-right: 0.3rem;
-    }
+  .admin-panel h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.3rem;
+  }
 
-    .btn-success:hover {
-      background: #218838;
-    }
+  .admin-panel p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
 
-    .btn-danger {
-      background: #e74c3c;
-      color: white;
-      border: none;
-      padding: 0.5rem 0.8rem;
-      border-radius: 5px;
-      cursor: pointer;
-    }
+  /* Table Styling */
+  .admin-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    font-size: 1rem;
+    color: #000;
+  }
 
-    .btn-danger:hover {
-      background: #c0392b;
-    }
+  .admin-table th {
+    background: #f8f8f8;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 700;
+    color: #000;
+    border-radius: 10px 10px 0 0;
+  }
 
-    .navbar {
-      background-color: #004d99;
-      padding: 1rem 0;
-      color: white;
-    }
+  .admin-table td {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    vertical-align: middle;
+    color: #000;
+    border: 1px solid #ddd;
+  }
 
+  .admin-table tbody tr:hover td {
+    background: #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Status classes */
+  .status.pending {
+    color: #a00;
+    font-weight: 700;
+  }
+
+  .status.approved {
+    color: #080;
+    font-weight: 700;
+  }
+
+  /* Buttons */
+  .btn-success, .btn-danger {
+    border: 1.5px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .btn-success {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .btn-success:hover {
+    background-color: #444;
+    border-color: #444;
+  }
+
+  .btn-danger {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .btn-danger:hover {
+    background-color: #444;
+    border-color: #444;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
     .navbar .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1rem;
-    }
-
-    .navbar .logo {
-      font-weight: bold;
-      font-size: 1.5rem;
-      color: white;
-      text-decoration: none;
+      flex-direction: column;
+      gap: 0.75rem;
     }
 
     .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    .nav-links li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
+    .admin-panel {
+      padding: 2rem 1rem;
     }
 
-    .nav-links li a.active,
-    .nav-links li a:hover {
-      background-color: #003366;
+    .admin-panel h1 {
+      font-size: 2rem;
     }
 
-    .footer {
-      text-align: center;
-      padding: 1rem 0;
-      background-color: #f0f0f0;
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #555;
+    .admin-table th, .admin-table td {
+      padding: 0.75rem 1rem;
     }
-  </style>
-</head>
-<body>
+  }
+</style>
 
-  <!-- Navbar -->
-  <nav class="navbar">
-    <div class="container">
-      <a href="index.html" class="logo">RealEstate</a>
-      <ul class="nav-links">
-        <li><a href="admin.html" class="active">Admin Panel</a></li>
-        <li><a href="#" onclick="logout()">Logout</a></li>
-      </ul>
-    </div>
-  </nav>
+<!-- Navbar HTML with logo image -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="logo.svg" alt="RealEstate Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="admin.html" class="active">Admin Panel</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
 
   <!-- Admin Panel Section -->
-  <section class="admin-panel container">
-    <h1>Admin Panel</h1>
-    <p>Manage all property listings below:</p>
+<section class="admin-panel container">
+  <h1>Admin Panel</h1>
+  <p>Manage all property listings below:</p>
 
-    <div class="admin-table">
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Owner</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Status</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody id="propertyTable">
-          <!-- Dynamic rows will load here -->
-        </tbody>
-      </table>
-    </div>
-  </section>
+  <div class="admin-table">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Owner</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="propertyTable">
+        <!-- Dynamic rows will load here -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .admin-panel.container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+    background: #fff;
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+  }
+
+  .admin-panel h1 {
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 0.3rem;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.4rem;
+    color: #000; /* Explicit black color */
+  }
+
+  .admin-panel p {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+    color: #222;
+  }
+
+  .admin-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.8rem;
+    font-size: 1rem;
+    color: #111;
+  }
+
+  .admin-table thead th {
+    text-align: left;
+    padding: 0.7rem 1.2rem;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    background-color: transparent;
+    color: #000;
+  }
+
+  .admin-table tbody tr {
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+    transition: background-color 0.3s ease;
+  }
+
+  .admin-table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+
+  .admin-table tbody td {
+    padding: 1rem 1.2rem;
+    vertical-align: middle;
+    color: #000;
+  }
+
+  .admin-table tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .admin-table tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .admin-table tbody td.actions button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+  }
+
+  .admin-table tbody td.actions button:hover {
+    background-color: #444;
+  }
+
+  @media (max-width: 700px) {
+    .admin-panel.container {
+      padding: 1rem;
+      margin: 2rem auto;
+    }
+
+    .admin-panel h1 {
+      font-size: 1.75rem;
+    }
+
+    .admin-table thead {
+      display: none;
+    }
+
+    .admin-table tbody tr {
+      display: block;
+      margin-bottom: 1rem;
+      background-color: #fafafa;
+      box-shadow: 0 1px 8px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .admin-table tbody td {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border: none;
+    }
+
+    .admin-table tbody td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      color: #222;
+      flex-basis: 40%;
+      text-align: left;
+    }
+
+    .admin-table tbody td.actions {
+      text-align: right;
+    }
+  }
+</style>
+
+
   <!-- Footer -->
-  <footer class="footer">
-  <div class="footer-wrapper">
-    <div class="footer-section about">
-      <h3>Real Estate Website</h3>
+ <footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section company-info">
+      <h3>Real Estate</h3>
       <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
     </div>
-    <div class="footer-section links">
+
+    <div class="footer-section quick-links">
       <h3>Quick Links</h3>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Properties</a></li>
         <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
         <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="footer-section contact">
+
+    <div class="footer-section contact-info">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
+      <p>123 Main Street, Cityville</p>
+      <p>Phone: +1 (234) 567-890</p>
       <p>Email: info@realestate.com</p>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
+      <div class="social-media">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </div>
+
   <div class="footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+    <p>&copy; 2025 Real Estate. All rights reserved.</p>
   </div>
 </footer>
 
+<!-- Styles -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
 
-  .footer {
-    background-color: #000;
-    color: #fff;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 50px 20px 30px;
-    border-top: 1px solid #222;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  .footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
+
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  .site-footer {
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 60px 0 20px;
+  }
+
+  .footer-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px;
   }
+
   .footer-section {
-    flex: 1 1 280px;
-    padding: 25px 30px;
+    flex: 1 1 250px;
+    min-width: 200px;
   }
+
   .footer-section h3 {
     font-weight: 600;
-    font-size: 1.8rem;
-    background: linear-gradient(90deg, #fff, #bbb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.1em;
-    margin-bottom: 22px;
-  }
-  .footer-section p {
-    color: #ddd;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 320px;
-  }
-  .footer-section.links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-section.links ul li {
+    font-size: 1.75rem;
     margin-bottom: 16px;
-  }
-  .footer-section.links ul li a {
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ccc;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-  }
-  .footer-section.links ul li a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #fff, #bbb);
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-  .footer-section.links ul li a:hover,
-  .footer-section.links ul li a:focus {
     color: #fff;
-  }
-  .footer-section.links ul li a:hover::after,
-  .footer-section.links ul li a:focus::after {
-    transform: scaleX(1);
-  }
-  .footer-section.contact p {
-    margin: 10px 0;
-    color: #ccc;
-    font-weight: 300;
-  }
-  .social-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 18px;
-  }
-  .social-icons a {
-    width: 44px;
-    height: 44px;
-    background: #111;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    box-shadow:
-      0 0 6px rgba(255 255 255, 0.3),
-      inset 0 0 5px rgba(255 255 255, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .social-icons a:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 0 16px rgba(255 255 255, 0.8),
-      inset 0 0 12px rgba(255 255 255, 1);
-    color: #fff;
-    background: #222;
-  }
-  .footer-bottom {
-    margin-top: 45px;
-    border-top: 1px solid #222;
-    padding-top: 18px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    font-weight: 300;
-  }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .footer-wrapper {
-      flex-direction: column;
-      gap: 35px;
-    }
-    .footer-section {
-      padding: 15px 0;
-      max-width: 100%;
-    }
-    .footer-section p,
-    .footer-section.links ul li a {
-      max-width: 100%;
-      font-size: 0.95rem;
-    }
-  }
-  @media (max-width: 480px) {
-  .footer-wrapper {
-    flex-direction: column;
-    gap: 16px; /* balanced spacing */
-    padding: 0 10px; /* some side padding */
-  }
-
-  .footer-section {
-    padding: 12px 0;
-    max-width: 100%;
-    flex: none; /* avoid flex growing */
-  }
-
-  .footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
-    line-height: 1.2;
   }
 
   .footer-section p,
-  .footer-section.links ul li a {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    max-width: 100%;
-    margin: 0;
+  .footer-section a {
+    font-weight: 300;
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    text-decoration: none;
   }
 
-  .footer-section.links ul li {
-    margin-bottom: 10px;
+  .quick-links ul {
+    list-style: none;
   }
 
-  .social-icons {
-    margin-top: 15px;
-    gap: 14px;
-    justify-content: flex-start; /* align left for better flow */
+  .quick-links li {
+    margin-bottom: 12px;
   }
 
-  .social-icons a {
-    width: 38px;
-    height: 38px;
+  .quick-links a {
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-block;
+  }
+
+  .quick-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .quick-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .social-media {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .social-media a {
+    width: 40px;
+    height: 40px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .social-media a:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
   }
 
   .footer-bottom {
-    margin-top: 28px;
-    padding-top: 14px;
-    font-size: 0.85rem;
+    border-top: 1px solid #222;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 16px;
+    font-size: 0.9rem;
     color: #777;
   }
-}
 
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .site-footer {
+      padding: 40px 0 10px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-size: 0.9rem;
+    }
+
+    .social-media a {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      margin-top: 30px;
+    }
+  }
 </style>
-  <style>
-    .admin-panel {
-  padding: 2rem 0;
-}
-
-.admin-panel h1 {
-  color: #004d99;
-  margin-bottom: 1rem;
-}
-
-.admin-table table {
-  width: 100%;
-  border-collapse: collapse;
-  background: white;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.admin-table th, .admin-table td {
-  padding: 1rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-.admin-table th {
-  background: #f0f0f0;
-}
-
-.status.pending {
-  color: #d9534f;
-  font-weight: bold;
-}
-
-.status.approved {
-  color: #28a745;
-  font-weight: bold;
-}
-
-.btn-success {
-  background: #28a745;
-  color: white;
-  border: none;
-  padding: 0.5rem 0.8rem;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.btn-success:hover {
-  background: #218838;
-}
-
-  </style>
 
   <script>
     function logout() {

@@ -11,13 +11,12 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
 />
 
-<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  <title>Real Estate Home</title>
  </head>
 <body>
 
   <!-- Navbar -->
-<style>
+ <style>
   * {
     font-family: "Roboto Condensed", sans-serif;
   }
@@ -263,6 +262,7 @@
   <li><a href="about.html">About</a></li>
   <li><a href="projects.html">Projects</a></li>
   <li><a href="contact.html" class="active">Contact</a></li>
+  <li><a href="add-property.html" class="active">Add Property</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="signup.html">Signup</a></li>
 </ul>
@@ -291,6 +291,7 @@
   <a href="about.html" role="menuitem">About</a>
   <a href="projects.html" role="menuitem">Projects</a>
   <a href="contact.html" class="active" role="menuitem">Contact</a>
+  <a href="add-property.html" class="active">Add Property</a>
   <a href="login.html" role="menuitem">Login</a>
   <a href="signup.html" role="menuitem">Signup</a>
   <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
@@ -363,364 +364,398 @@
 </script>
 
 
-  <!-- About Section -->
-  <section class="company-info wrapper">
-  <h1>About Us</h1>
-  <p class="company-description">
-    Welcome to DreamNest Realty! Our mission is to simplify your property search and help you discover your perfect home. We offer an extensive range of listings and a smooth experience for buyers, sellers, and real estate agents alike.
+<section class="realty-about">
+  <h1 class="realty-title">About DreamNest Realty</h1>
+  <p class="realty-intro">
+    At <strong>DreamNest Realty</strong>, we are committed to revolutionizing the Indian real estate experience. Whether you're looking to <strong>buy property</strong>, <strong>sell a home</strong>, or explore <strong>residential and commercial properties</strong>, our platform ensures a seamless, trusted, and transparent journey.
   </p>
 
-  <h2>Our Mission</h2>
-  <p class="mission-statement">
-    To deliver a trustworthy, transparent, and easy-to-use real estate platform that connects people with their ideal homes.
+  <h2 class="realty-heading">Our Mission</h2>
+  <p class="realty-text">
+    We simplify real estate for homebuyers, investors, and sellers—through innovation, technology, and human connection. Discover your perfect space through our trusted <strong>property listings in India</strong>.
   </p>
 
-  <h2>Meet Our Team</h2>
-  <div class="team-wrapper">
-    <div class="team-profile">
-      <img src="images/team1.jpg" alt="Rohan Kumar Chaudhry" />
-      <h3>Rohan Kumar Chaudhry</h3>
-      <p>Founder & CEO</p>
+  <h2 class="realty-heading">Why Choose Us?</h2>
+  <p class="realty-text">
+    With curated listings, verified agents, intelligent filters, and local insights, DreamNest Realty brings you closer to your dream home—from <strong>affordable apartments</strong> to <strong>luxury villas</strong>—with end-to-end support.
+  </p>
+
+  <h2 class="realty-heading">Meet Our Core Team</h2>
+  <div class="realty-team">
+    <div class="realty-member">
+      <div class="member-image">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/005/346/410/small_2x/close-up-portrait-of-smiling-handsome-young-caucasian-man-face-looking-at-camera-on-isolated-light-gray-studio-background-photo.jpg" alt="Rohan Kumar Chaudhry" />
+      </div>
+      <div class="member-info">
+        <h3 class="member-name">Rohan Kumar Chaudhry</h3>
+        <p class="member-role">Founder & CEO</p>
+      </div>
     </div>
-    <div class="team-profile">
-      <img src="images/team2.jpg" alt="Priya Singh" />
-      <h3>Priya Singh</h3>
-      <p>Chief Marketing Officer</p>
+    <div class="realty-member">
+      <div class="member-image">
+        <img src="https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg" alt="Priya Singh" />
+      </div>
+      <div class="member-info">
+        <h3 class="member-name">Priya Singh</h3>
+        <p class="member-role">Chief Marketing Officer</p>
+      </div>
     </div>
-    <div class="team-profile">
-      <img src="images/team3.jpg" alt="Sanjay Mehta" />
-      <h3>Sanjay Mehta</h3>
-      <p>Operations Manager</p>
+    <div class="realty-member">
+      <div class="member-image">
+        <img src="https://cdn.pixabay.com/photo/2022/03/11/06/14/indian-man-7061278_640.jpg" alt="Sanjay Mehta" />
+      </div>
+      <div class="member-info">
+        <h3 class="member-name">Sanjay Mehta</h3>
+        <p class="member-role">Operations Manager</p>
+      </div>
     </div>
   </div>
 </section>
+
 <style>
-  .wrapper {
-  max-width: 900px;
-  margin: 3rem auto;
-  padding: 2rem 1.5rem;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-}
-
-.wrapper h1,
-.wrapper h2 {
-  color: #004d99;
-  margin-bottom: 1rem;
-  font-weight: 700;
-}
-
-.company-description,
-.mission-statement {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin-bottom: 2rem;
-  color: #444;
-}
-
-.team-wrapper {
-  display: flex;
-  gap: 2rem;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.team-profile {
-  flex: 1 1 250px;
-  background: #f9f9f9;
-  border-radius: 10px;
-  padding: 1.5rem 1rem;
-  box-shadow: 0 4px 12px rgba(0, 77, 153, 0.15);
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.team-profile:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 20px rgba(0, 77, 153, 0.25);
-}
-
-.team-profile img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-  border: 3px solid #004d99;
-}
-
-.team-profile h3 {
-  margin-bottom: 0.4rem;
-  font-size: 1.2rem;
-  color: #002f66;
-}
-
-.team-profile p {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Responsive */
-@media (max-width: 720px) {
-  .team-wrapper {
-    flex-direction: column;
-    gap: 1.5rem;
+  .realty-about {
+    max-width: 1150px;
+    margin: 4rem auto;
+    padding: 3rem 2rem;
+    background: #fff;
+    border-radius: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    color: #000;
+    border: 1px solid #000;
+    animation: fadeIn 1s ease forwards;
+    opacity: 0;
   }
 
-  .team-profile {
-    max-width: 320px;
-    margin: 0 auto;
+  .realty-title {
+    font-size: 2.8rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #000;
+    animation: slideDown 0.8s ease forwards;
+    opacity: 0;
   }
-}
 
+  .realty-intro,
+  .realty-text {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    margin: 1.2rem auto;
+    text-align: center;
+    max-width: 900px;
+    color: #000;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .realty-heading {
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-align: center;
+    margin: 3rem 0 1.2rem;
+    position: relative;
+    color: #000;
+    animation: fadeIn 1s ease forwards;
+  }
+
+  .realty-heading::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 2px;
+    background-color: #000;
+    margin: 10px auto 0;
+  }
+
+  .realty-team {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    animation: fadeInUp 1s ease forwards;
+    opacity: 0;
+  }
+
+  .realty-member {
+    background-color: #fff;
+    border: 1px solid #000;
+    flex: 1 1 280px;
+    max-width: 300px;
+    transition: all 0.4s ease;
+    overflow: hidden;
+  }
+
+  .realty-member:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  }
+
+  .member-image img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .realty-member:hover .member-image img {
+    transform: scale(1.05);
+  }
+
+  .member-info {
+    padding: 1.2rem 1rem;
+    text-align: center;
+  }
+
+  .member-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: #000;
+  }
+
+  .member-role {
+    font-size: 1rem;
+    color: #444;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .realty-team {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .realty-title {
+      font-size: 2.2rem;
+    }
+
+    .realty-heading {
+      font-size: 1.3rem;
+    }
+
+    .realty-intro,
+    .realty-text {
+      font-size: 1rem;
+    }
+
+    .realty-member {
+      max-width: 95%;
+    }
+
+    .member-image img {
+      height: 220px;
+    }
+  }
+
+  /* Animations */
+  @keyframes fadeIn {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    0% { opacity: 0; transform: translateY(-30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
 </style>
 
-  <!-- Footer -->
- <footer class="site-footer">
-  <div class="site-footer-wrapper">
-    <div class="site-footer-section site-about">
-      <h3>Real Estate Website</h3>
+
+<!-- Footer Section -->
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section company-info">
+      <h3>Real Estate</h3>
       <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
     </div>
-    <div class="site-footer-section site-links">
+
+    <div class="footer-section quick-links">
       <h3>Quick Links</h3>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Properties</a></li>
         <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
         <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="site-footer-section site-contact">
+
+    <div class="footer-section contact-info">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
+      <p>123 Main Street, Cityville</p>
+      <p>Phone: +1 (234) 567-890</p>
       <p>Email: info@realestate.com</p>
-      <div class="site-social-icons">
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
+      <div class="social-media">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </div>
-  <div class="site-footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Real Estate. All rights reserved.</p>
   </div>
 </footer>
 
+<!-- Styles -->
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
 
   .site-footer {
-    background-color: #000;
+    background: #000;
     color: #fff;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 50px 20px 30px;
-    border-top: 1px solid #222;
+    width: 100%;
+    padding: 60px 0 20px;
   }
-  .site-footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
+
+  .footer-content {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
     justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px;
   }
-  .site-footer-section {
-    flex: 1 1 280px;
-    padding: 25px 30px;
+
+  .footer-section {
+    flex: 1 1 250px;
+    min-width: 200px;
   }
-  .site-footer-section h3 {
+
+  .footer-section h3 {
     font-weight: 600;
-    font-size: 1.8rem;
-    background: linear-gradient(90deg, #fff, #bbb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.1em;
-    margin-bottom: 22px;
-  }
-  .site-footer-section p {
-    color: #ddd;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 320px;
-  }
-  .site-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .site-links ul li {
+    font-size: 1.75rem;
     margin-bottom: 16px;
+    color: #fff;
   }
-  .site-links ul li a {
+
+  .footer-section p,
+  .footer-section a {
     font-weight: 300;
     font-size: 1rem;
     color: #ccc;
+    line-height: 1.6;
     text-decoration: none;
+  }
+
+  .quick-links ul {
+    list-style: none;
+  }
+
+  .quick-links li {
+    margin-bottom: 12px;
+  }
+
+  .quick-links a {
     position: relative;
     padding-bottom: 4px;
-    transition: color 0.3s ease;
+    display: inline-block;
   }
-  .site-links ul li a::after {
-    content: "";
+
+  .quick-links a::after {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
     left: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #fff, #bbb);
-    transform-origin: left;
+    width: 100%;
+    height: 2px;
+    background: #fff;
     transform: scaleX(0);
+    transform-origin: left;
     transition: transform 0.3s ease;
   }
-  .site-links ul li a:hover,
-  .site-links ul li a:focus {
-    color: #fff;
-  }
-  .site-links ul li a:hover::after,
-  .site-links ul li a:focus::after {
+
+  .quick-links a:hover::after {
     transform: scaleX(1);
   }
-  .site-contact p {
-    margin: 10px 0;
-    color: #ccc;
-    font-weight: 300;
-  }
-  .site-social-icons {
+
+  .social-media {
+    display: flex;
+    gap: 16px;
     margin-top: 20px;
-    display: flex;
-    gap: 18px;
   }
-  .site-social-icons a {
-    width: 44px;
-    height: 44px;
+
+  .social-media a {
+    width: 40px;
+    height: 40px;
     background: #111;
+    color: #fff;
     border-radius: 50%;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    color: #fff;
-    box-shadow:
-      0 0 6px rgba(255 255 255, 0.3),
-      inset 0 0 5px rgba(255 255 255, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
   }
-  .site-social-icons a:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 0 16px rgba(255 255 255, 0.8),
-      inset 0 0 12px rgba(255 255 255, 1);
-    color: #fff;
-    background: #222;
+
+  .social-media a:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
   }
-  .site-footer-bottom {
-    margin-top: 45px;
+
+  .footer-bottom {
     border-top: 1px solid #222;
-    padding-top: 18px;
     text-align: center;
+    margin-top: 40px;
+    padding-top: 16px;
     font-size: 0.9rem;
-    color: #666;
-    font-weight: 300;
+    color: #777;
   }
 
   /* Responsive */
-  @media (max-width: 900px) {
-    .site-footer-wrapper {
-      flex-direction: column;
-      gap: 35px;
-    }
-    .site-footer-section {
-      padding: 15px 0;
-      max-width: 100%;
-    }
-    .site-footer-section p,
-    .site-links ul li a {
-      max-width: 100%;
-      font-size: 0.95rem;
+  @media (max-width: 768px) {
+    .footer-content {
+      gap: 20px;
     }
   }
+
   @media (max-width: 480px) {
-    .site-footer-section h3 {
-      font-size: 1.6rem;
+    .site-footer {
+      padding: 40px 0 10px;
     }
-    .site-social-icons a {
-      width: 38px;
-      height: 38px;
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-size: 0.9rem;
+    }
+
+    .social-media a {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      margin-top: 30px;
     }
   }
 </style>
 
-<style>
-  .site-about {
-    padding: 3rem 0;
-    line-height: 1.6;
-    color: #444;
-  }
 
-  .site-about h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-align: center;
-  }
-
-  .site-about h2 {
-    font-size: 2rem;
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    color: #004d99;
-  }
-
-  .site-team {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .site-team-member {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    width: 250px;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    transition: transform 0.3s ease;
-  }
-
-  .site-team-member:hover {
-    transform: translateY(-5px);
-  }
-
-  .site-team-member img {
-    width: 100%;
-    border-radius: 10px;
-  }
-
-  .site-team-member h4 {
-    margin-top: 1rem;
-    font-size: 1.25rem;
-    color: #222;
-  }
-
-  .site-team-member p {
-    margin-top: 0.5rem;
-    font-size: 1rem;
-    color: #555;
-  }
-</style>
-
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
 </body>
 </html>

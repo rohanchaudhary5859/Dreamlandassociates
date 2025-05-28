@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel - Settings</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+  <style>
+    /* Root colors for black and white theme */
+    :root {
+      --bg-color: #fff;
+      --text-color: #111;
+      --form-bg: #fff;
+      --input-bg: #f7f7f7;
+      --input-border: #ccc;
+      --shadow: rgba(0, 0, 0, 0.08);
+
+      --bg-color-dark: #121212;
+      --text-color-dark: #eee;
+      --form-bg-dark: #1a1a1a;
+      --input-bg-dark: #222;
+      --input-border-dark: #444;
+      --shadow-dark: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Reset & base */
+    * {
+      font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    body {
+      margin: 0;
+      padding: 30px 20px 40px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.4s, color 0.4s;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    body.dark-theme {
+      background-color: var(--bg-color-dark);
+      color: var(--text-color-dark);
+    }
+
+    /* Back button container */
+    .back-container {
+      width: 100%;
+      max-width: 800px;
+      margin-bottom: 30px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-color);
+      text-decoration: none;
+      border: 2px solid var(--text-color);
+      padding: 6px 14px;
+      border-radius: 30px;
+      transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+      cursor: pointer;
+      user-select: none;
+      background: transparent;
+    }
+
+    .back-button:hover {
+      background-color: var(--text-color);
+      color: var(--bg-color);
+      border-color: var(--text-color);
+    }
+
+    /* Arrow icon */
+    .back-button svg {
+      width: 16px;
+      height: 16px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      transition: stroke 0.3s;
+    }
+
+    /* Container */
+    .settings-container {
+      width: 100%;
+      max-width: 800px;
+      background: var(--form-bg);
+      padding: 40px 50px;
+      border-radius: 12px;
+      box-shadow: 0 6px 15px var(--shadow);
+      transition: background-color 0.4s, box-shadow 0.4s;
+    }
+
+    body.dark-theme .settings-container {
+      background: var(--form-bg-dark);
+      box-shadow: 0 6px 15px var(--shadow-dark);
+    }
+
+    /* Heading */
+    h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+      margin-bottom: 30px;
+      letter-spacing: 0.04em;
+    }
+
+    /* Form */
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 22px;
+    }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 14px 16px;
+      font-size: 1rem;
+      border: 1.8px solid var(--input-border);
+      border-radius: 8px;
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+      font-weight: 500;
+      font-family: inherit;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    select:focus {
+      border-color: var(--text-color);
+      outline: none;
+      background-color: var(--bg-color);
+    }
+
+    body.dark-theme input[type="text"],
+    body.dark-theme input[type="email"],
+    body.dark-theme input[type="password"],
+    body.dark-theme select {
+      background-color: var(--input-bg-dark);
+      border-color: var(--input-border-dark);
+      color: var(--text-color-dark);
+    }
+
+    body.dark-theme input[type="text"]:focus,
+    body.dark-theme input[type="email"]:focus,
+    body.dark-theme input[type="password"]:focus,
+    body.dark-theme select:focus {
+      background-color: var(--form-bg-dark);
+      border-color: var(--text-color-dark);
+    }
+
+    /* Toggle switches - modern style */
+    .toggle-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .toggle-switch {
+      position: relative;
+      width: 50px;
+      height: 28px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #bbb;
+      border-radius: 28px;
+      transition: background-color 0.3s ease;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .slider:before {
+      content: "";
+      position: absolute;
+      height: 22px;
+      width: 22px;
+      left: 3px;
+      top: 3px;
+      background-color: white;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+
+    input:checked + .slider {
+      background-color: #111;
+    }
+
+    input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    /* Theme toggle buttons */
+    .theme-toggle {
+      display: inline-flex;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .theme-option {
+      cursor: pointer;
+      background-color: var(--input-bg);
+      border: 1.8px solid var(--input-border);
+      padding: 10px 18px;
+      font-weight: 600;
+      border-radius: 8px;
+      color: var(--text-color);
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+      font-family: inherit;
+      user-select: none;
+    }
+
+    .theme-option:hover {
+      border-color: var(--text-color);
+    }
+
+    .theme-option[aria-pressed="true"] {
+      background-color: #111;
+      color: #fff;
+      border-color: #111;
+    }
+
+    body.dark-theme .theme-option {
+      background-color: var(--input-bg-dark);
+      border-color: var(--input-border-dark);
+      color: var(--text-color-dark);
+    }
+
+    body.dark-theme .theme-option:hover {
+      border-color: var(--text-color-dark);
+    }
+
+    body.dark-theme .theme-option[aria-pressed="true"] {
+      background-color: #eee;
+      color: #111;
+      border-color: #eee;
+    }
+
+    /* Button */
+    button {
+      margin-top: 25px;
+      background-color: #111;
+      border: none;
+      color: #fff;
+      padding: 14px 30px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      body {
+        padding: 20px 15px 30px;
+      }
+      .settings-container {
+        padding: 30px 25px;
+      }
+      h1 {
+        font-size: 2rem;
+      }
+      button {
+        width: 100%;
+        padding: 14px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="back-container">
+    <a href="#" class="back-button" onclick="history.back(); return false;">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" focusable="false">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+      Back
+    </a>
+  </div>
+
+  <div class="settings-container">
+    <h1>Settings</h1>
+
+    <form id="settings-form">
+      <!-- Profile Info -->
+      <label for="username">Username</label>
+      <input type="text" id="username" name="username" value="admin_user" />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" value="admin@example.com" />
+
+      <!-- Change Password -->
+      <label for="current-password">Current Password</label>
+      <input type="password" id="current-password" name="current-password" />
+
+      <label for="new-password">New Password</label>
+      <input type="password" id="new-password" name="new-password" />
+
+      <label for="confirm-password">Confirm New Password</label>
+      <input type="password" id="confirm-password" name="confirm-password" />
+
+      <!-- Notification Preferences -->
+      <div class="toggle-label">
+        Enable Email Notifications
+        <label class="toggle-switch" aria-label="Enable Email Notifications">
+          <input type="checkbox" checked />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="toggle-label">
+        Enable SMS Notifications
+        <label class="toggle-switch" aria-label="Enable SMS Notifications">
+          <input type="checkbox" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <!-- Theme Preference -->
+      <label>Theme</label>
+      <div class="theme-toggle" role="group" aria-label="Theme selection">
+        <button type="button" class="theme-option" data-theme="light" aria-pressed="false">Light</button>
+        <button type="button" class="theme-option" data-theme="dark" aria-pressed="false">Dark</button>
+        <button type="button" class="theme-option" data-theme="system" aria-pressed="false">System</button>
+      </div>
+
+      <button type="submit">Save Changes</button>
+    </form>
+  </div>
+
+  <script>
+    // Theme applying function
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.body.classList.add('dark-theme');
+      } else if (theme === 'light') {
+        document.body.classList.remove('dark-theme');
+      } else if (theme === 'system') {
+        // Match system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          document.body.classList.add('dark-theme');
+        } else {
+          document.body.classList.remove('dark-theme');
+        }
+      }
+    }
+
+    // Theme toggle buttons
+    const themeButtons = document.querySelectorAll('.theme-option');
+
+    function updateThemeButtons(selectedTheme) {
+      themeButtons.forEach(btn => {
+        btn.setAttribute('aria-pressed', btn.dataset.theme === selectedTheme ? 'true' : 'false');
+      });
+    }
+
+    // Load saved theme or default
+    let savedTheme = localStorage.getItem('admin-theme') || 'light';
+    applyTheme(savedTheme);
+    updateThemeButtons(savedTheme);
+
+    themeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const selectedTheme = button.dataset.theme;
+        applyTheme(selectedTheme);
+        updateThemeButtons(selectedTheme);
+        localStorage.setItem('admin-theme', selectedTheme);
+      });
+    });
+
+    // Optional: Save form changes or handle toggles here as needed.
+    // For now, prevent default submission
+    document.getElementById('settings-form').addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Settings saved (not really, demo only).');
+    });
+  </script>
+
+</body>
+</html>
