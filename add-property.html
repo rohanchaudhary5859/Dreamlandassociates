@@ -48,9 +48,8 @@
     color: #111;
     user-select: none;
   }
-
-  .logo img {
-    height: 36px;
+ .logo img {
+    height: 70px;
     margin-right: 12px;
     transition: transform 0.3s ease;
   }
@@ -255,7 +254,7 @@
 <nav>
   <div class="nav-container">
     <a href="index.html" class="logo">
-      <img src="logo.svg" alt="Logo" />
+      <img src="DL logo.png" alt="Logo" />
     </a>
 
 <ul class="nav-links">
@@ -466,20 +465,34 @@
   }
 
   .upload-box {
-    border: 2px dashed var(--black);
-    padding: 2rem;
-    border-radius: 12px;
-    text-align: center;
-    cursor: pointer;
-    position: relative;
-  }
+  position: relative;
+  border: 2px dashed #000;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #fff;
+}
 
-  .upload-box input {
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    cursor: pointer;
-  }
+.upload-box input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.upload-box p {
+  position: relative;
+  z-index: 1;
+  font-size: 1rem;
+  color: #333;
+  pointer-events: none;
+}
+
 
   .preview-grid {
     display: flex;
@@ -618,6 +631,17 @@
       opacity: 1;
     }
   }
+ @media (max-width: 490px) {
+  .upload-box {
+    padding: 1.5rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .upload-box p {
+    font-size: 0.95rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -683,12 +707,15 @@
 <script>
   const input = document.getElementById('images');
   const previewContainer = document.getElementById('previewContainer');
+  const dropZone = document.getElementById('dropZone');
+  const form = document.getElementById('propertyForm');
+  const successModal = document.getElementById('successModal');
+  const doneButton = document.getElementById('doneButton');
 
-  input.addEventListener('change', () => {
+  // Handle file selection and preview
+  function handleFiles(files) {
     previewContainer.innerHTML = '';
-    const files = Array.from(input.files);
-
-    files.forEach(file => {
+    [...files].forEach(file => {
       if (!file.type.startsWith('image/')) return;
 
       const reader = new FileReader();
@@ -708,12 +735,16 @@
         wrapper.appendChild(removeBtn);
         previewContainer.appendChild(wrapper);
       };
-
       reader.readAsDataURL(file);
     });
+  }
+
+  // When user selects files
+  input.addEventListener('change', () => {
+    handleFiles(input.files);
   });
 
-  const dropZone = document.getElementById('dropZone');
+  // Drag & Drop support
   dropZone.addEventListener('dragover', e => {
     e.preventDefault();
     dropZone.style.borderColor = '#00d5ff';
@@ -725,28 +756,34 @@
 
   dropZone.addEventListener('drop', e => {
     e.preventDefault();
-    input.files = e.dataTransfer.files;
-    const event = new Event('change');
+    dropZone.style.borderColor = '#000';
+    const files = e.dataTransfer.files;
+    input.files = files;
+
+    // Dispatch a change event manually
+    const event = new Event('change', { bubbles: true });
     input.dispatchEvent(event);
   });
 
-  const form = document.getElementById('propertyForm');
-  const successModal = document.getElementById('successModal');
-  const doneButton = document.getElementById('doneButton');
-
+  // Form submission
   form.addEventListener('submit', e => {
     e.preventDefault();
+
+    // Show modal
     successModal.style.display = 'flex';
     successModal.querySelector('.modal-box').focus();
+
+    // Reset form and image preview
     form.reset();
     previewContainer.innerHTML = '';
   });
 
+  // Close modal on Done click
   doneButton.addEventListener('click', () => {
     successModal.style.display = 'none';
   });
 
-  // Optional: Close modal on ESC key press
+  // ESC key to close modal
   document.addEventListener('keydown', e => {
     if (e.key === "Escape" && successModal.style.display === 'flex') {
       successModal.style.display = 'none';
