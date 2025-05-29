@@ -368,316 +368,390 @@
 
 
   <!-- Projects Section -->
-  <section class="projects container">
-    <h1>Our Latest Projects</h1>
-    <div class="project-grid">
-      <div class="project-card">
-        <img src="images/house1.jpg" alt="House 1" />
-        <h3>Luxury Villa in Gurgaon</h3>
-        <p>₹1.5 Cr • 4 BHK • 3500 sq.ft</p>
-        <a href="#" class="btn-secondary">View Details</a>
-      </div>
-      <div class="project-card">
-        <img src="images/house2.jpg" alt="House 2" />
-        <h3>2 BHK Apartment in Noida</h3>
-        <p>₹70 Lakh • 2 BHK • 1200 sq.ft</p>
-        <a href="#" class="btn-secondary">View Details</a>
-      </div>
-      <div class="project-card">
-        <img src="images/house3.jpg" alt="House 3" />
-        <h3>Independent House in Delhi</h3>
-        <p>₹95 Lakh • 3 BHK • 1800 sq.ft</p>
-        <a href="#" class="btn-secondary">View Details</a>
+<section class="property-section container">
+  <h1 class="section-title">Our Latest Projects</h1>
+  <div class="property-grid">
+    <div class="property-card">
+      <img src="https://images.barrons.com/im-589066?width=1280&size=1" alt="Luxury Villa in Gurgaon" />
+      <div class="property-content">
+        <h3 class="property-title">Luxury Villa in Gurgaon</h3>
+        <p class="property-info">₹1.5 Cr • 4 BHK • 3500 sq.ft</p>
+        <a href="#" class="property-btn">View Details <span>→</span></a>
       </div>
     </div>
-  </section>
+    <div class="property-card">
+      <img src="https://website-data-pluckwalk.s3-ap-south-1.amazonaws.com/test/4B4WshG9orbS35RzhFZveB.jpeg" alt="2 BHK Apartment in Noida" />
+      <div class="property-content">
+        <h3 class="property-title">2 BHK Apartment in Noida</h3>
+        <p class="property-info">₹70 Lakh • 2 BHK • 1200 sq.ft</p>
+        <a href="#" class="property-btn">View Details <span>→</span></a>
+      </div>
+    </div>
+    <div class="property-card">
+      <img src="https://www.chennaiproperties.in/projectsgallery/6147/salepageimages/Bethel_1.jpeg" alt="Independent House in Delhi" />
+      <div class="property-content">
+        <h3 class="property-title">Independent House in Delhi</h3>
+        <p class="property-info">₹95 Lakh • 3 BHK • 1800 sq.ft</p>
+        <a href="#" class="property-btn">View Details <span>→</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+
+/* Section Container */
+.property-section {
+  background: linear-gradient(to right, #f9f9f9, #ffffff);
+  padding: 80px 20px;
+  font-family: "Roboto Condensed", sans-serif;
+  color: #111;
+  text-align: center;
+}
+
+/* Heading */
+.section-title {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 70px;
+  font-size: 4.0rem;
+  padding: 12px 0; /* upline aur underline ke liye thoda padding */
+}
+
+.section-title::before,
+.section-title::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  background-color: #111;
+  width: 100%;
+  left: 0;
+}
+
+.section-title::before {
+  top: 0;  /* heading ke upar line */
+}
+
+.section-title::after {
+  bottom: 0; /* heading ke niche line */
+}
+
+
+/* Grid */
+.property-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 0 10px;
+}
+
+/* Card */
+.property-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.8s ease forwards;
+  backdrop-filter: blur(10px);
+}
+
+.property-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Image */
+.property-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.property-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Content */
+.property-content {
+  padding: 24px 20px 30px;
+}
+
+.property-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+    font-family: "Roboto Condensed", sans-serif;
+  color: #000000;
+  margin-bottom: 10px;
+}
+
+.property-info {
+  font-size: 1rem;
+  color: #000000;
+    font-family: "Roboto Condensed", sans-serif;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.property-btn {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.property-btn span {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.property-btn:hover {
+  background: #222;
+}
+
+.property-btn:hover span {
+  transform: translateX(4px);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 490px) {
+  .section-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+
+  .property-card img {
+    height: 180px;
+  }
+
+  .property-title {
+    font-size: 1.1rem;
+  }
+
+  .property-info {
+    font-size: 0.95rem;
+  }
+}
+</style>
+
 
   <!-- Footer -->
-  <footer class="footer">
-  <div class="footer-wrapper">
-    <div class="footer-section about">
-      <h3>Real Estate Website</h3>
+  <footer class="custom-footer">
+  <div class="custom-footer-wrapper">
+    <div class="custom-footer-about">
+      <h3>Real Estate</h3>
       <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
     </div>
-    <div class="footer-section links">
+
+    <div class="custom-footer-links">
       <h3>Quick Links</h3>
       <ul>
         <li><a href="#">Home</a></li>
         <li><a href="#">Properties</a></li>
         <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
         <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
       </ul>
     </div>
-    <div class="footer-section contact">
+
+    <div class="custom-footer-contact">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
+      <p>123 Main Street, Cityville</p>
+      <p>Phone: +1 (234) 567-890</p>
       <p>Email: info@realestate.com</p>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
+      <div class="custom-social-icons">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
   </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+
+  <div class="custom-footer-bottom">
+    <p>&copy; 2025 Real Estate. All rights reserved.</p>
   </div>
 </footer>
-
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
 
-  .footer {
-    background-color: #000;
-    color: #fff;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 50px 20px 30px;
-    border-top: 1px solid #222;
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  .footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
+
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .custom-footer {
+    width: 100%;
+    background: #000;
+    color: #fff;
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 60px 20px 20px;
+  }
+
+  .custom-footer-wrapper {
     display: flex;
     flex-wrap: wrap;
-    gap: 50px;
+    gap: 40px;
+    max-width: 1300px;
+    margin: 0 auto;
     justify-content: space-between;
   }
-  .footer-section {
-    flex: 1 1 280px;
-    padding: 25px 30px;
+
+  .custom-footer-about,
+  .custom-footer-links,
+  .custom-footer-contact {
+    flex: 1 1 250px;
+    min-width: 200px;
   }
-  .footer-section h3 {
+
+  .custom-footer-about h3,
+  .custom-footer-links h3,
+  .custom-footer-contact h3 {
     font-weight: 600;
-    font-size: 1.8rem;
-    background: linear-gradient(90deg, #fff, #bbb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.1em;
-    margin-bottom: 22px;
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+    color: #fff;
   }
-  .footer-section p {
-    color: #ddd;
+
+  .custom-footer-about p,
+  .custom-footer-links a,
+  .custom-footer-contact p {
     font-weight: 300;
     font-size: 1rem;
-    line-height: 1.7;
-    max-width: 320px;
+    color: #ccc;
+    line-height: 1.6;
+    text-decoration: none;
   }
-  .footer-section.links ul {
+
+  .custom-footer-links ul {
     list-style: none;
     padding: 0;
     margin: 0;
   }
-  .footer-section.links ul li {
-    margin-bottom: 16px;
+
+  .custom-footer-links li {
+    margin-bottom: 12px;
   }
-  .footer-section.links ul li a {
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ccc;
-    text-decoration: none;
+
+  .custom-footer-links li a {
     position: relative;
     padding-bottom: 4px;
-    transition: color 0.3s ease;
   }
-  .footer-section.links ul li a::after {
-    content: "";
+
+  .custom-footer-links li a::after {
+    content: '';
     position: absolute;
-    width: 100%;
-    height: 2px;
     left: 0;
     bottom: 0;
-    background: linear-gradient(90deg, #fff, #bbb);
-    transform-origin: left;
+    width: 100%;
+    height: 2px;
+    background: #fff;
     transform: scaleX(0);
+    transform-origin: left;
     transition: transform 0.3s ease;
   }
-  .footer-section.links ul li a:hover,
-  .footer-section.links ul li a:focus {
-    color: #fff;
-  }
-  .footer-section.links ul li a:hover::after,
-  .footer-section.links ul li a:focus::after {
+
+  .custom-footer-links li a:hover::after {
     transform: scaleX(1);
   }
-  .footer-section.contact p {
-    margin: 10px 0;
-    color: #ccc;
-    font-weight: 300;
-  }
-  .social-icons {
+
+  .custom-social-icons {
     margin-top: 20px;
     display: flex;
-    gap: 18px;
+    gap: 16px;
   }
-  .social-icons a {
-    width: 44px;
-    height: 44px;
-    background: #111;
-    border-radius: 50%;
-    display: flex;
+
+  .custom-social-icons a {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #111;
+    border-radius: 50%;
     color: #fff;
-    box-shadow:
-      0 0 6px rgba(255 255 255, 0.3),
-      inset 0 0 5px rgba(255 255 255, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    font-size: 1.1rem;
+    transition: transform 0.3s ease, background 0.3s ease;
   }
-  .social-icons a:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 0 16px rgba(255 255 255, 0.8),
-      inset 0 0 12px rgba(255 255 255, 1);
-    color: #fff;
-    background: #222;
+
+  .custom-social-icons a:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
   }
-  .footer-bottom {
-    margin-top: 45px;
-    border-top: 1px solid #222;
-    padding-top: 18px;
+
+  .custom-footer-bottom {
     text-align: center;
+    border-top: 1px solid #222;
+    padding-top: 16px;
+    margin-top: 40px;
     font-size: 0.9rem;
-    color: #666;
-    font-weight: 300;
+    color: #777;
   }
 
   /* Responsive */
-  @media (max-width: 900px) {
-    .footer-wrapper {
-      flex-direction: column;
-      gap: 35px;
-    }
-    .footer-section {
-      padding: 15px 0;
-      max-width: 100%;
-    }
-    .footer-section p,
-    .footer-section.links ul li a {
-      max-width: 100%;
-      font-size: 0.95rem;
+  @media (max-width: 768px) {
+    .custom-footer-wrapper {
+      gap: 20px;
     }
   }
+
   @media (max-width: 480px) {
-  .footer-wrapper {
-    flex-direction: column;
-    gap: 16px; /* balanced spacing */
-    padding: 0 10px; /* some side padding */
-  }
+    .custom-footer {
+      padding: 40px 10px 10px;
+    }
 
-  .footer-section {
-    padding: 12px 0;
-    max-width: 100%;
-    flex: none; /* avoid flex growing */
-  }
+    .custom-footer-about h3,
+    .custom-footer-links h3,
+    .custom-footer-contact h3 {
+      font-size: 1.5rem;
+    }
 
-  .footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
-    line-height: 1.2;
-  }
+    .custom-footer-about p,
+    .custom-footer-links a,
+    .custom-footer-contact p {
+      font-size: 0.9rem;
+    }
 
-  .footer-section p,
-  .footer-section.links ul li a {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    max-width: 100%;
-    margin: 0;
-  }
+    .custom-social-icons a {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
 
-  .footer-section.links ul li {
-    margin-bottom: 10px;
+    .custom-footer-bottom {
+      font-size: 0.8rem;
+      margin-top: 30px;
+    }
   }
-
-  .social-icons {
-    margin-top: 15px;
-    gap: 14px;
-    justify-content: flex-start; /* align left for better flow */
-  }
-
-  .social-icons a {
-    width: 38px;
-    height: 38px;
-  }
-
-  .footer-bottom {
-    margin-top: 28px;
-    padding-top: 14px;
-    font-size: 0.85rem;
-    color: #777;
-  }
-}
-
 </style>
-<style>
-    .projects {
-  padding: 3rem 0;
-}
-
-.projects h1 {
-  text-align: center;
-  font-size: 2.5rem;
-  color: #004d99;
-  margin-bottom: 2rem;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-}
-
-.project-card {
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-align: center;
-  padding: 1rem;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-}
-
-.project-card img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 8px;
-}
-
-.project-card h3 {
-  font-size: 1.3rem;
-  margin: 0.8rem 0 0.3rem;
-}
-
-.project-card p {
-  color: #666;
-  margin-bottom: 1rem;
-}
-
-.btn-secondary {
-  display: inline-block;
-  background-color: #004d99;
-  color: #fff;
-  padding: 0.6rem 1.2rem;
-  border-radius: 5px;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-}
-
-.btn-secondary:hover {
-  background-color: #003366;
-}
 
 </style>
 </body>
