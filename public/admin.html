@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin Panel - Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  <title>Real Estate Home</title>
+ </head>
+<body>
+
+  <!-- Navbar -->
+ <style>
+  /* Navbar */
+  .navbar {
+    background: #fff;
+    padding: 1rem 0;
+    color: #000;
+    border-bottom: 1px solid #ddd;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* Logo image */
+  .navbar .logo img {
+    height: 40px; /* adjust as needed */
+    width: auto;
+    display: block;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.3rem;
+  }
+
+  .nav-links li a {
+    color: #000;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .nav-links li a.active,
+  .nav-links li a:hover {
+    background-color: #000;
+    color: #fff;
+  }
+
+  /* Admin Panel Section */
+  .admin-panel {
+    padding: 3rem 1rem;
+    max-width: 1100px;
+    margin: 2rem auto;
+    background: #fff;
+    border-radius: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #000;
+    box-shadow: none;
+    border: 1px solid #ddd;
+  }
+
+  .admin-panel h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #000;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.3rem;
+  }
+
+  .admin-panel p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: #333;
+  }
+
+  /* Table Styling */
+  .admin-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 1rem;
+    font-size: 1rem;
+    color: #000;
+  }
+
+  .admin-table th {
+    background: #f8f8f8;
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-weight: 700;
+    color: #000;
+    border-radius: 10px 10px 0 0;
+  }
+
+  .admin-table td {
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    vertical-align: middle;
+    color: #000;
+    border: 1px solid #ddd;
+  }
+
+  .admin-table tbody tr:hover td {
+    background: #f0f0f0;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Status classes */
+  .status.pending {
+    color: #a00;
+    font-weight: 700;
+  }
+
+  .status.approved {
+    color: #080;
+    font-weight: 700;
+  }
+
+  /* Buttons */
+  .btn-success, .btn-danger {
+    border: 1.5px solid transparent;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .btn-success {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .btn-success:hover {
+    background-color: #444;
+    border-color: #444;
+  }
+
+  .btn-danger {
+    background-color: #000;
+    color: #fff;
+    border-color: #000;
+  }
+
+  .btn-danger:hover {
+    background-color: #444;
+    border-color: #444;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .navbar .container {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .nav-links {
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .admin-panel {
+      padding: 2rem 1rem;
+    }
+
+    .admin-panel h1 {
+      font-size: 2rem;
+    }
+
+    .admin-table th, .admin-table td {
+      padding: 0.75rem 1rem;
+    }
+  }
+</style>
+
+<!-- Navbar HTML with logo image -->
+<nav class="navbar">
+  <div class="container">
+    <a href="index.html" class="logo">
+      <img src="DL logo.png" alt="RealEstate Logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="admin.html" class="active">Admin Panel</a></li>
+      <li><a href="#" onclick="logout()">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <!-- Admin Panel Section -->
+<section class="admin-panel container">
+  <h1>Admin Panel</h1>
+  <p>Manage all property listings below:</p>
+
+  <div class="admin-table">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Owner</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="propertyTable">
+        <!-- Dynamic rows will load here -->
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .admin-panel.container {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 1rem 2rem;
+    background: #fff;
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgb(0 0 0 / 0.1);
+  }
+
+  .admin-panel h1 {
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 0.3rem;
+    border-bottom: 3px solid #000;
+    padding-bottom: 0.4rem;
+    color: #000; /* Explicit black color */
+  }
+
+  .admin-panel p {
+    font-size: 1rem;
+    margin-bottom: 1.8rem;
+    color: #222;
+  }
+
+  .admin-table table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 0.8rem;
+    font-size: 1rem;
+    color: #111;
+  }
+
+  .admin-table thead th {
+    text-align: left;
+    padding: 0.7rem 1.2rem;
+    font-weight: 700;
+    border-bottom: 2px solid #000;
+    background-color: transparent;
+    color: #000;
+  }
+
+  .admin-table tbody tr {
+    background-color: #fafafa;
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.05);
+    transition: background-color 0.3s ease;
+  }
+
+  .admin-table tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+
+  .admin-table tbody td {
+    padding: 1rem 1.2rem;
+    vertical-align: middle;
+    color: #000;
+  }
+
+  .admin-table tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+
+  .admin-table tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .admin-table tbody td.actions button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 0.5rem;
+  }
+
+  .admin-table tbody td.actions button:hover {
+    background-color: #444;
+  }
+
+  @media (max-width: 700px) {
+    .admin-panel.container {
+      padding: 1rem;
+      margin: 2rem auto;
+    }
+
+    .admin-panel h1 {
+      font-size: 1.75rem;
+    }
+
+    .admin-table thead {
+      display: none;
+    }
+
+    .admin-table tbody tr {
+      display: block;
+      margin-bottom: 1rem;
+      background-color: #fafafa;
+      box-shadow: 0 1px 8px rgb(0 0 0 / 0.1);
+      border-radius: 10px;
+      padding: 1rem;
+    }
+
+    .admin-table tbody td {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.4rem 0;
+      border: none;
+    }
+
+    .admin-table tbody td::before {
+      content: attr(data-label);
+      font-weight: 700;
+      color: #222;
+      flex-basis: 40%;
+      text-align: left;
+    }
+
+    .admin-table tbody td.actions {
+      text-align: right;
+    }
+  }
+</style>
+
+
+  <!-- Footer -->
+ <footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section company-info">
+      <h3>Real Estate</h3>
+      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
+    </div>
+
+    <div class="footer-section quick-links">
+      <h3>Quick Links</h3>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Properties</a></li>
+        <li><a href="#">Agents</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section contact-info">
+      <h3>Contact Us</h3>
+      <p>123 Main Street, Cityville</p>
+      <p>Phone: +1 (234) 567-890</p>
+      <p>Email: info@realestate.com</p>
+      <div class="social-media">
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2025 Real Estate. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Styles -->
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  .site-footer {
+    background: #000;
+    color: #fff;
+    width: 100%;
+    padding: 60px 0 20px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    gap: 40px;
+  }
+
+  .footer-section {
+    flex: 1 1 250px;
+    min-width: 200px;
+  }
+
+  .footer-section h3 {
+    font-weight: 600;
+    font-size: 1.75rem;
+    margin-bottom: 16px;
+    color: #fff;
+  }
+
+  .footer-section p,
+  .footer-section a {
+    font-weight: 300;
+    font-size: 1rem;
+    color: #ccc;
+    line-height: 1.6;
+    text-decoration: none;
+  }
+
+  .quick-links ul {
+    list-style: none;
+  }
+
+  .quick-links li {
+    margin-bottom: 12px;
+  }
+
+  .quick-links a {
+    position: relative;
+    padding-bottom: 4px;
+    display: inline-block;
+  }
+
+  .quick-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .quick-links a:hover::after {
+    transform: scaleX(1);
+  }
+
+  .social-media {
+    display: flex;
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .social-media a {
+    width: 40px;
+    height: 40px;
+    background: #111;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+  }
+
+  .social-media a:hover {
+    background: #fff;
+    color: #000;
+    transform: scale(1.1);
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #222;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 16px;
+    font-size: 0.9rem;
+    color: #777;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-content {
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .site-footer {
+      padding: 40px 0 10px;
+    }
+
+    .footer-section h3 {
+      font-size: 1.5rem;
+    }
+
+    .footer-section p,
+    .footer-section a {
+      font-size: 0.9rem;
+    }
+
+    .social-media a {
+      width: 36px;
+      height: 36px;
+      font-size: 1rem;
+    }
+
+    .footer-bottom {
+      font-size: 0.8rem;
+      margin-top: 30px;
+    }
+  }
+</style>
+
+  <script>
+    function logout() {
+      alert("Admin logged out!");
+      window.location.href = "login.html";
+    }
+
+    function approve(id) {
+      alert("Property ID " + id + " approved!");
+      // TODO: Add backend call here
+    }
+
+    function remove(id) {
+      alert("Property ID " + id + " deleted!");
+      // TODO: Add backend call here
+    }
+  </script>
+ <script>
+    function logout() {
+  // If you use token/session storage, clear it here
+  localStorage.removeItem('token');  // example if you store JWT token
+  alert('Logged out successfully!');
+  window.location.href = 'admin-login.html'; // redirect to admin login page
+}
+ </script>
+    <script src="js/adminPanel.js"></script>
+
+</body>
+</html>

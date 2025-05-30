@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  
+  <title>Admin Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  <title>Real Estate Home</title>
+
+ <style>
+  /* Basic reset and font */
+  * {
+ 
+    font-family: 'Roboto Condensed', sans-serif;
+  }
+
+  nav {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: #111;
+    text-decoration: none;
+  }
+
+  ul.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+  }
+
+  ul.nav-links li a {
+    text-decoration: none;
+    color: #444;
+    font-weight: 600;
+    transition: color 0.3s ease;
+  }
+
+  ul.nav-links li a:hover {
+    color: #000;
+  }
+
+  /* Hamburger */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 5px;
+  }
+
+  .hamburger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 60px;
+    right: 2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 5px;
+    overflow: hidden;
+  }
+
+  .mobile-menu a {
+    padding: 12px 20px;
+    border-bottom: 1px solid #eee;
+    color: #444;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .mobile-menu a:hover {
+    background-color: #f5f5f5;
+    color: #000;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    ul.nav-links {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+</style>
+
+<nav>
+ <div class="nav-container">
+  <!-- Logo with image -->
+  <a href="index.html" class="logo">
+    <img src="DL logo.png" alt="Admin Panel Logo" style="height:40px; width:auto;" />
+  </a>
+
+  <!-- More navigation links -->
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#">Profile</a></li>
+    <li><a href="adminsetting.html">Settings</a></li>
+  </ul>
+
+  <div class="hamburger" id="hamburger" aria-label="Toggle menu" tabindex="0" role="button">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+</div>
+
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+   <a href="index.html">Home</a>
+    <a href="#">Profile</a>
+    <a href="adminsetting.html">Settings</a>
+    </div>
+</nav>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    const isVisible = mobileMenu.style.display === 'flex';
+    if (isVisible) {
+      mobileMenu.style.display = 'none';
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    } else {
+      mobileMenu.style.display = 'flex';
+      hamburger.setAttribute('aria-expanded', 'true');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+      mobileMenu.style.display = 'none';
+      hamburger.setAttribute('aria-expanded', 'false');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+    }
+  });
+</script>
+
+  
+  <style>
+    body {
+       font-family: "Roboto Condensed", sans-serif;
+      
+    }
+    .login-container {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+    }
+    h2 {
+      margin-bottom: 1rem;
+      color: #004d99;
+      text-align: center;
+    }
+    label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="password"] {
+      width: 100%;
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    button {
+      margin-top: 1.5rem;
+      width: 100%;
+      padding: 0.6rem;
+      background-color: #004d99;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #003366;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+  <h2>Admin Login</h2>
+  <form id="adminLoginForm">
+    <label for="adminId">Admin ID</label>
+    <input type="text" id="adminId" placeholder="Enter admin ID" required />
+
+    <label for="adminPassword">Password</label>
+    <input type="password" id="adminPassword" placeholder="Enter password" required />
+
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<style>
+  .login-container {
+    max-width: 400px;
+    margin: 4rem auto;
+    padding: 2.5rem;
+    background-color: #fff;
+    color: #000;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+
+  .login-container h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #000; /* black */
+  }
+
+  .login-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .login-container input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    background-color: #fff;
+    color: #000;
+  }
+
+  .login-container input:focus {
+    border-color: #000;
+    outline: none;
+  }
+
+  .login-container button {
+    width: 100%;
+    padding: 0.9rem;
+    background-color: #000; /* black bg */
+    color: #fff; /* white text */
+    border: 2px solid #000;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .login-container button:hover {
+    background-color: #fff; /* white bg */
+    color: #000; /* black text */
+  }
+</style>
+
+
+  <script>
+   document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const adminId = document.getElementById('adminId').value.trim();
+    const adminPassword = document.getElementById('adminPassword').value;
+
+    // Simple hardcoded admin credentials
+    const validAdminId = 'admin123';
+    const validAdminPassword = 'password123';
+
+    if(adminId === validAdminId && adminPassword === validAdminPassword){
+      alert('Login successful!');
+      localStorage.setItem('token', 'adminToken123');  // <-- Add this line
+      window.location.href = 'admin.html';
+    } else {
+      alert('Invalid Admin ID or Password');
+    }
+  });
+  </script>
+
+</body>
+</html>
