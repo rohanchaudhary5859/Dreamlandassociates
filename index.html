@@ -819,77 +819,74 @@ document.addEventListener("click", (e) => {
 
 
   <!-- Drag tooltip -->
-  <div id="drag-tooltip">Drag</div>
+  <div id="drag-tooltip"> Drag</div>
 </section>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
-
-  body {
-  font-family: "Roboto Condensed", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
-    color: black;
-  }
-
-  .featured-section {
-    padding: 60px 20px 80px;
-    max-width: 1250px;
-    margin: auto;
-  }
-
-  .header-wrapper {
-    text-align: right;
-    max-width: 450px;
-    margin-left: auto;
-    position: relative;
-    margin-bottom: 40px;
-  }
-
-  .line {
-    border: none;
-    border-top: 1.5px solid #ccc;
-    margin: 16px 0;
-    width: 100%;
-  }
-
-  .featured-heading {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
-  }
-
-  .featured-subtext {
-    font-size: 1.25rem;
-    color: #000000;
-    margin-top: 10px;
-    margin-bottom: 0;
-  }
-
-  :root {
-  --card-bg: #ffffff;
-  --card-border: #ddd;
-  --text-primary: #000000;
-  --text-secondary: #1a1a1a;
-  --border-radius: 20px;
-  --transition-speed: 0.3s;
-}
+ @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
 
 body {
-  background-color: #f9f9f9;
-  color: var(--text-primary);
+  font-family: "Roboto Condensed", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f6f6f6;
+  color: black;
+}
+
+.featured-section {
+  padding: 60px 20px 80px;
+  max-width: 1250px;
+  margin: auto;
+}
+
+.header-wrapper {
+  text-align: right;
+  max-width: 450px;
+  margin-left: auto;
+  margin-bottom: 40px;
+}
+
+.line {
+  border: none;
+  border-top: 1.5px solid #ccc;
+  margin: 16px 0;
+  width: 100%;
+}
+
+.featured-heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.featured-subtext {
+  font-size: 1.25rem;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 0;
+  opacity: 0.85;
+}
+
+:root {
+  --card-bg: #fff;
+  --card-border: #e0e0e0;
+  --text-primary: black;
+  --text-secondary: #333;
+  --border-radius: 18px;
+  --transition-speed: 0.3s;
+  --shadow-default: rgba(0, 0, 0, 0.08);
+  --shadow-hover: rgba(0, 0, 0, 0.12);
 }
 
 .card-grid {
   display: flex;
-  gap: 30px;   /* moderate gap */
+  gap: 28px;
   overflow-x: auto;
   padding: 24px 20px 28px;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
   cursor: grab;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -900,33 +897,29 @@ body {
 
 .property-card {
   flex: 0 0 auto;
-  width: 320px;   /* narrower */
+  width: 320px;
   background: var(--card-bg);
   border-radius: var(--border-radius);
   border: 1px solid var(--card-border);
-  box-shadow: 0 6px 15px var(--shadow-default);
+  box-shadow: 0 6px 12px var(--shadow-default);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  cursor: grab;
   transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
 }
 
-.property-card:hover,
-.property-card:focus {
-  transform: translateY(-8px) scale(1.04);
-  box-shadow: 0 18px 38px var(--shadow-hover);
+.property-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px var(--shadow-hover);
 }
 
 .image-slider {
   position: relative;
   width: 100%;
-  height: 180px;   /* shorter height */
+  height: 190px;
   overflow: hidden;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  background-color: #eaeaea;
-  box-shadow: inset 0 -6px 12px rgba(0, 0, 0, 0.04);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
+  background-color: #f0f0f0;
 }
 
 .image-slider img {
@@ -934,13 +927,10 @@ body {
   top: 0;
   left: 0;
   width: 100%;
-  height: 180px;
+  height: 190px;
   object-fit: cover;
   opacity: 0;
   transition: opacity 0.7s ease-in-out;
-  border-top-left-radius: var(--border-radius);
-  border-top-right-radius: var(--border-radius);
-  will-change: opacity;
 }
 
 .image-slider img.active {
@@ -950,7 +940,7 @@ body {
 }
 
 .card-content {
-  padding: 20px 24px 28px;
+  padding: 20px 24px 26px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -959,7 +949,7 @@ body {
 
 .card-content h3 {
   margin: 0;
-  font-size: 1.3rem;  /* smaller font */
+  font-size: 1.25rem;
   font-weight: 700;
   color: var(--text-primary);
   line-height: 1.3;
@@ -974,15 +964,14 @@ body {
 .details {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #444;
+  color: #000000;
 }
 
 .extra-details {
   font-size: 0.8rem;
-  color: #666;
+  color: #000000;
   line-height: 1.4;
   flex-grow: 1;
-  letter-spacing: 0.02em;
 }
 
 .summary {
@@ -992,20 +981,16 @@ body {
   margin-top: auto;
 }
 
-.property-card:focus-visible {
-  outline: 3px solid #999;
-  outline-offset: 4px;
-}
-
-  #drag-tooltip { 
+/* Drag Tooltip */
+#drag-tooltip {
   position: fixed;
   pointer-events: none;
-  background: black;
-  color: white;
+  background: #404040;
+  color: #fff;
   padding: 16px;
-  border-radius: 50%;
-  font-weight: 700;
-  font-size: 22px;
+  border-radius: 70%;
+  font-weight: 400;
+  font-size: 14px;
   opacity: 0;
   transform: translate(-50%, -50%);
   transition: opacity 0.15s ease;
@@ -1017,73 +1002,76 @@ body {
   justify-content: center;
 }
 
-/* Show tooltip on hover */
 .property-card:hover ~ #drag-tooltip,
 .property-card:focus ~ #drag-tooltip {
   opacity: 1;
 }
 
-  /* Responsive */
-  @media (max-width: 1024px) {
-    .card-grid {
-      gap: 30px;
-    }
-    .property-card {
-      width: 300px;
-    }
-  }
-
-  @media (max-width: 768px) {
-    .card-grid {
-      gap: 20px;
-    }
-    .property-card {
-      width: 280px;
-    }
-    .header-wrapper {
-      max-width: 100%;
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .featured-heading {
-      font-size: 2.5rem;
-    }
-    .featured-subtext {
-      font-size: 1rem;
-    }
-  }
-
-  @media (max-width: 480px) {
-  .card-grid {
-    gap: 20px;               /* slightly reduced gap */
-    padding-left: 16px;      /* add some left padding */
-    padding-bottom: 12px;
-    padding-right: 16px;     /* add right padding for symmetry */
-  }
+/* Responsive Enhancements */
+@media (max-width: 1024px) {
   .property-card {
-    width: 280px;            /* increase width more for better presence */
-    min-height: 320px;       /* ensure consistent height */
+    width: 300px;
   }
-  .image-slider {
-    height: 150px;           /* moderate height */
+}
+
+@media (max-width: 768px) {
+  .property-card {
+    width: 280px;
   }
-  .image-slider img {
-    height: 150px;           /* match slider height */
+
+  .header-wrapper {
+    max-width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
   }
-  .card-content {
-    padding: 16px 20px 20px; /* slightly reduce padding inside card */
-  }
+
   .featured-heading {
-    font-size: 1.8rem;       /* slightly smaller heading */
+    font-size: 2.2rem;
   }
+
   .featured-subtext {
-    font-size: 0.85rem;      /* slightly smaller subtext */
+    font-size: 1rem;
   }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    gap: 20px;
+    padding: 16px;
+  }
+
+  .property-card {
+    width: 280px;
+    min-height: 320px;
+  }
+
+  .image-slider {
+    height: 150px;
+  }
+
+  .image-slider img {
+    height: 150px;
+  }
+
+  .card-content {
+    padding: 16px 20px 20px;
+  }
+
+  .featured-heading {
+    font-size: 1.8rem;
+  }
+
+  .featured-subtext {
+    font-size: 0.85rem;
+  }
+
   #drag-tooltip {
     right: 16px;
     bottom: 12px;
     font-size: 14px;
-    padding: 8px 12px;
+    padding: 10px;
+    width: 60px;
+    height: 60px;
   }
 }
 
@@ -2023,6 +2011,366 @@ var swiper = new Swiper(".project-slider", {
 });
 
 </script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+  /* Chat button with chat bubble icon */
+ /* Floating Chatbot Button */
+#chatbot-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: #3b3b3b;
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  transition: background 0.3s ease;
+  z-index: 9999;
+}
+#chatbot-btn:hover {
+  background: #000;
+}
+#chatbot-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+/* Chatbot Box */
+#chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 360px;
+  max-height: 520px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 18px;
+  display: none;
+  flex-direction: column;
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  animation: fadeInUp 0.4s ease forwards;
+  font-family: 'Segoe UI', sans-serif;
+  z-index: 10000;
+  transform: translateY(20px);
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Header */
+#chatbot-header {
+  background: #000;
+  color: white;
+  padding: 16px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#chatbot-close {
+  cursor: pointer;
+  font-size: 22px;
+  color: #ccc;
+  transition: color 0.2s ease;
+}
+#chatbot-close:hover {
+  color: #fff;
+}
+
+/* Chat Area */
+#chatbot-messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  background: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Message Bubbles */
+.message {
+  max-width: 80%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  font-size: 15px;
+  line-height: 1.5;
+  position: relative;
+  animation: slideIn 0.3s ease;
+  word-break: break-word;
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.user-msg {
+  align-self: flex-end;
+  background: #000;
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+.bot-msg {
+  align-self: flex-start;
+  background: #eaeaea;
+  color: #111;
+  border-bottom-left-radius: 4px;
+}
+
+/* Input Area */
+#chatbot-input-area {
+  display: flex;
+  padding: 14px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+#chatbot-input {
+  flex: 1;
+  padding: 12px 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 20px;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.3s;
+}
+#chatbot-input:focus {
+  border-color: #000;
+}
+#chatbot-send {
+  background: #000;
+  color: white;
+  border: none;
+  margin-left: 10px;
+  padding: 12px 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+#chatbot-send:hover {
+  background: #222;
+  transform: scale(1.05);
+}
+
+/* Scrollbar */
+#chatbot-messages::-webkit-scrollbar {
+  width: 6px;
+}
+#chatbot-messages::-webkit-scrollbar-thumb {
+  background-color: #bbb;
+  border-radius: 10px;
+}
+#chatbot-messages::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  #chatbot-container {
+    width: 90vw;
+    right: 5vw;
+    max-height: 65vh;
+    bottom: 80px;
+    border-radius: 14px;
+  }
+}
+
+</style>
+
+<!-- Chat button with icon -->
+<button id="chatbot-btn" aria-label="Open chatbox">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+    <path d="M20 2H4a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/>
+  </svg>
+  Chat Us
+</button>
+
+<!-- Chatbox -->
+<div id="chatbot-container" role="region" aria-label="Chatbox">
+  <div id="chatbot-header">
+    Chat with us
+    <span id="chatbot-close" aria-label="Close chatbox" role="button" tabindex="0">&times;</span>
+  </div>
+  <div id="chatbot-messages" aria-live="polite" aria-atomic="false"></div>
+  <div id="chatbot-input-area">
+    <input type="text" id="chatbot-input" placeholder="Type your message..." autocomplete="off" aria-label="Type your message here" />
+    <button id="chatbot-send" aria-label="Send message">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatBtn = document.getElementById('chatbot-btn');
+  const chatContainer = document.getElementById('chatbot-container');
+  const chatClose = document.getElementById('chatbot-close');
+  const chatMessages = document.getElementById('chatbot-messages');
+  const chatInput = document.getElementById('chatbot-input');
+  const chatSend = document.getElementById('chatbot-send');
+
+ const botReplies = {
+  // Greetings
+  hello: "Hi there! Welcome to RealEstatePro. How can I assist you today?",
+  hi: "Hello! Looking for a property or need help with something else?",
+  hey: "Hey! How can I help you find your dream home today?",
+
+  // General help
+  help: "I can assist you with property search, buying, selling, renting, financing, and more. What do you want to know?",
+
+  // Pricing & Fees
+  pricing: "Our commission fees depend on the property type and value. Would you like details for buying, selling, or renting?",
+  commission: "Our commission rates vary by service type. Please specify if you want info on buying, selling, or rentals.",
+  
+  // Services
+  services: "We offer property buying, selling, renting, property management, mortgage assistance, and legal advice.",
+  property_management: "Our property management service helps landlords manage their rentals hassle-free.",
+  
+  // Contact info
+  contact: "You can reach us at contact@realestatepro.com or call +123456789. We are here Mon-Fri, 9am-6pm.",
+  phone: "Call us anytime at +123456789 or email contact@realestatepro.com",
+  email: "Please email us at contact@realestatepro.com with your queries.",
+  
+  // Buying queries
+  buy: "Looking to buy? Please specify property type (apartment, house, land) and location.",
+  buying: "I can help you find the perfect property to buy. Which city or neighborhood interests you?",
+  purchase: "Great! What’s your budget and preferred property type?",
+
+  // Selling queries
+  sell: "Want to sell your property? I can guide you on listing, pricing, and marketing.",
+  selling: "We provide free property valuations to help you price your home correctly. Interested?",
+  listing: "I can help you list your property to get the best exposure and quick buyers.",
+  
+  // Renting queries
+  rent: "Looking for rentals? What type of property and location are you interested in?",
+  renting: "I can show you apartments, houses, and commercial spaces available for rent.",
+  lease: "Need a lease? I can provide rental agreements and legal assistance.",
+  
+  // Property types
+  apartment: "We have many apartments available in prime locations. Which city or neighborhood?",
+  house: "Looking for houses? What’s your budget and preferred area?",
+  villa: "Our luxury villas are in exclusive neighborhoods. Would you like to see listings?",
+  land: "Interested in land or plots? Let me know your preferred location and size.",
+  commercial: "We have offices, shops, warehouses for sale and rent. What type do you need?",
+  
+  // Location queries
+  location: "Which city or neighborhood are you interested in?",
+  city: "Please tell me the city or locality where you want to buy or rent a property.",
+  neighborhood: "Are there any specific neighborhoods you prefer?",
+  
+  // Budget and price queries
+  budget: "What’s your budget range? This will help me find suitable properties.",
+  price: "Looking for properties within a specific price range? Please specify.",
+  affordable: "I can find affordable properties based on your budget. Please share your limit.",
+  
+  // Financing and mortgage
+  mortgage: "Need help with mortgage options? I can connect you with trusted lenders.",
+  financing: "We offer mortgage assistance and financing advice. Want to know more?",
+  loan: "I can help you understand home loans and assist in application processes.",
+  
+  // Visits and tours
+  visit: "Would you like to schedule a visit to any property?",
+  tour: "I can arrange property tours at your convenience. Let me know your preferred date.",
+  openhouse: "We have open house events regularly. Would you like to attend any?",
+  
+  // Availability & timing
+  available: "Are you looking for properties available immediately or in the next few months?",
+  movein: "When are you planning to move in?",
+  
+  // Legal and documentation
+  documents: "I can guide you on the documents needed for buying or selling property.",
+  legal: "Need legal assistance with property deals? We have expert consultants.",
+  paperwork: "I can help you understand the paperwork required for property transactions.",
+  
+  // Agents and support
+  agents: "Would you like me to connect you to one of our expert real estate agents?",
+  support: "Our support team is here to help you anytime.",
+  
+  // Feedback and complaints
+  feedback: "We appreciate your feedback! How was your experience with us?",
+  complaint: "Sorry to hear that. Please share your complaint, and we will address it promptly.",
+  
+  // Promotions and offers
+  offers: "We have exciting offers on select properties. Would you like details?",
+  discounts: "Seasonal discounts are available on some listings. Want to know which?",
+  
+  // FAQs
+  faq: "Feel free to ask me any questions about buying, selling, renting, or financing property.",
+  
+  // Default reply
+  default: "Sorry, I didn't understand that. Could you please rephrase or ask something else?",
+};
+
+
+  function getBotReply(message) {
+    message = message.toLowerCase();
+    for (let key in botReplies) {
+      if (message.includes(key)) {
+        return botReplies[key];
+      }
+    }
+    return "Sorry, I didn't understand that. Can you please rephrase?";
+  }
+
+  chatBtn.addEventListener('click', () => {
+    chatContainer.style.display = 'flex';
+    chatBtn.style.display = 'none';
+    chatInput.focus();
+  });
+
+  chatClose.addEventListener('click', () => {
+    chatContainer.style.display = 'none';
+    chatBtn.style.display = 'flex';
+  });
+
+  function addMessage(content, sender) {
+    const msgDiv = document.createElement('div');
+    msgDiv.classList.add('message', sender === 'user' ? 'user-msg' : 'bot-msg');
+    msgDiv.textContent = content;
+    chatMessages.appendChild(msgDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function sendMessage() {
+    const msg = chatInput.value.trim();
+    if (!msg) return;
+    addMessage(msg, 'user');
+    chatInput.value = '';
+    setTimeout(() => {
+      const reply = getBotReply(msg);
+      addMessage(reply, 'bot');
+    }, 700);
+  }
+
+  chatSend.addEventListener('click', sendMessage);
+  chatInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage();
+  });
+</script>
+
+
+
+
 
   <!-- Footer -->
   <footer class="footer">
