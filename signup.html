@@ -512,28 +512,35 @@
     }
 
     /* Modal styles */
-    .modal {
-      display: none; /* Hidden by default */
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-    }
+   .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 
-    .modal-content {
-      background: var(--clr-secondary);
-      padding: 2rem;
-      border-radius: var(--radius);
-      max-width: 320px;
-      width: 90%;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
+  /* Add this: */
+  padding: 1rem; /* ensures modal content doesn't touch edges on small screens */
+  overflow-y: auto; /* allows scrolling if content is taller than viewport */
+}
+
+.modal-content {
+  background: var(--clr-secondary);
+  padding: 2rem;
+  border-radius: var(--radius);
+  max-width: 320px;
+  width: 100%; /* change to 100% for better responsiveness */
+  max-height: 90vh; /* limit height so it doesn't overflow */
+  overflow-y: auto; /* enable scrolling if content too tall */
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 
     .modal-content h2 {
       margin-bottom: 1rem;
@@ -579,6 +586,11 @@
         font-size: 0.85rem;
       }
     }
+    
+  .modal-content {
+    padding: 1.5rem; /* slightly smaller padding */
+  }
+
   </style>
 
   <script>

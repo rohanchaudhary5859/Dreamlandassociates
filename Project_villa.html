@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Projects - Real Estate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">  <title>Real Estate Home</title>
+ </head>
+<body>
+
+  <!-- Navbar -->
+ <style>
+  * {
+    font-family: "Roboto Condensed", sans-serif;
+  }
+
+  nav {
+    background-color: #fff;
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 10000;
+    transition: background-color 0.3s ease;
+  }
+
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #111;
+    user-select: none;
+  }
+
+  .logo img {
+    height: 70px;
+    margin-right: 12px;
+    transition: transform 0.3s ease;
+  }
+
+ 
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+  }
+
+  .nav-links li a {
+    position: relative;
+    text-decoration: none;
+    color: #444;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 6px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    user-select: none;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a:focus {
+    color: #000;
+    transform: scale(1.05);
+  }
+
+  /* Changed underline color here */
+  .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff5722; /* Changed underline color to orange */
+    border-radius: 2px;
+    transition: width 0.3s ease;
+  }
+
+  .nav-links li a:hover::after,
+  .nav-links li a:focus::after {
+    width: 100%;
+  }
+
+  .cta-button {
+    background-color: #000;
+    color: #fff;
+    padding: 0.75rem 1.8rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    user-select: none;
+  }
+
+  .cta-button:hover,
+  .cta-button:focus {
+    background-color: #222;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Hamburger styling */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+    width: 28px;
+    height: 24px;
+    user-select: none;
+    z-index: 10001;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hamburger div {
+    width: 100%;
+    height: 3.5px;
+    background: #222;
+    border-radius: 3px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Corrected Hamburger to X animation */
+  .hamburger.active div:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+
+  /* Backdrop overlay */
+  .backdrop {
+    position: fixed;
+    top: 70px; /* nav height */
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 70px);
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    z-index: 999;
+  }
+
+  .backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Mobile menu - reduced width */
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 2rem 2rem 3rem;
+    background: #fff;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.12);
+    position: fixed;
+    top: 112px;
+    right: 0;
+    width: 270px; /* Reduced width */
+    height: calc(100vh - 70px);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 0.35s ease;
+    border-left: 1px solid #eee;
+    user-select: none;
+    z-index: 1000;
+    overflow-y: auto;
+    will-change: transform, opacity;
+    border-radius: 0 0 0 10px;
+  }
+
+  .mobile-menu.active {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  .mobile-menu a:hover,
+  .mobile-menu a:focus {
+    background-color: #f0f0f0;
+    color: #000;
+  }
+
+  .mobile-menu .cta-button {
+    margin-top: 2rem;
+    width: 100%;
+    text-align: center;
+    padding: 0.85rem 0;
+    font-size: 1.1rem;
+    box-shadow: none;
+    border-radius: 50px;
+  }
+
+ 
+
+   @media (max-width: 992px) {
+    .nav-links,
+    .cta-button {
+      display: none;
+    }
+
+    .hamburger {
+      display: flex;
+    }
+  }
+ 
+
+  @media (max-width: 490px) {
+  nav {
+    padding: 1.90rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
+  }
+
+  .logo img {
+    height: 50px; /* Logo image ka height bada kiya */
+    margin-right: 16px; /* Margin thoda bada kiya for balance */
+  }
+}
+
+</style>
+
+<nav>
+  <div class="nav-container">
+    <a href="index.html" class="logo">
+      <img src="DL logo.png" alt="Logo" />
+    </a>
+
+<ul class="nav-links">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li><a href="projects.html">Projects</a></li>
+  <li><a href="contact.html" class="active">Contact</a></li>
+  <li><a href="add-property.html" class="active">Add Property</a></li>
+  <li><a href="login.html">Login</a></li>
+    <li><a href="customerprofile.html">Profile</a></li>
+  <li><a href="signup.html">Signup</a></li>
+</ul>
+
+<a href="contact.html" class="cta-button">Request A Visit →</a>
+
+<div
+  class="hamburger"
+  id="hamburger"
+  aria-label="Toggle menu"
+  role="button"
+  tabindex="0"
+>
+  <div></div>
+  <div></div>
+  <div></div>
+</div>
+
+<div
+  class="mobile-menu"
+  id="mobileMenu"
+  aria-hidden="true"
+  role="menu"
+>
+  <a href="index.html" role="menuitem">Home</a>
+  <a href="about.html" role="menuitem">About</a>
+  <a href="projects.html" role="menuitem">Projects</a>
+  <a href="contact.html" class="active" role="menuitem">Contact</a>
+  <a href="add-property.html" class="active">Add Property</a>
+  <a href="login.html" role="menuitem">Login</a>
+  <a href="signup.html" role="menuitem">Signup</a>
+  <a href="customerprofile.html">Profile</a>
+  <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
+</div>
+
+
+    
+</nav>
+
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const mobileMenu = document.getElementById("mobileMenu");
+  const backdrop = document.getElementById("backdrop");
+
+  function toggleMenu() {
+    const isActive = hamburger.classList.toggle("active");
+    mobileMenu.classList.toggle("active", isActive);
+    backdrop.classList.toggle("active", isActive);
+
+    // Set aria-expanded for accessibility
+    hamburger.setAttribute("aria-expanded", isActive);
+    mobileMenu.setAttribute("aria-hidden", !isActive);
+  }
+
+  hamburger.addEventListener("click", toggleMenu);
+  hamburger.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      toggleMenu();
+    }
+  });
+
+  // Close menu when clicking backdrop
+  backdrop.addEventListener("click", () => {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    backdrop.classList.remove("active");
+
+    hamburger.setAttribute("aria-expanded", false);
+    mobileMenu.setAttribute("aria-hidden", true);
+  });
+
+  // Close menu when clicking a link inside mobile menu
+  mobileMenu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      backdrop.classList.remove("active");
+
+      hamburger.setAttribute("aria-expanded", false);
+      mobileMenu.setAttribute("aria-hidden", true);
+    });
+  });
+
+  // Close menu on tapping outside hamburger or menu (for mobile)
+  document.addEventListener("click", (e) => {
+    if (
+      !mobileMenu.contains(e.target) &&
+      !hamburger.contains(e.target) &&
+      mobileMenu.classList.contains("active")
+    ) {
+      hamburger.classList.remove("active");
+      mobileMenu.classList.remove("active");
+      backdrop.classList.remove("active");
+
+      hamburger.setAttribute("aria-expanded", false);
+      mobileMenu.setAttribute("aria-hidden", true);
+    }
+  });
+</script>
+<section class="villa-hero">
+  <div class="container hero-container">
+    <div class="hero-image-wrapper">
+      <div class="slider">
+        <div class="slides">
+          <img src="https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=" alt="Luxury Beachside Villa 1" class="slide active" />
+          <img src="https://www.elitehavens.com/magazine/wp-content/uploads/2021/05/Header.jpg" alt="Luxury Beachside Villa 2" class="slide" />
+          <img src="https://d3oo9u3p09egds.cloudfront.net/filters:format(webp)/rental_property/colina-villa-h/01_Facade__10_.jpeg" alt="Luxury Beachside Villa 3" class="slide" />
+          <img src="https://t4.ftcdn.net/jpg/03/70/64/43/360_F_370644357_MDF4UXLAXTyyi2OyuK66tWW9cA2f8svL.jpg" alt="Luxury Beachside Villa 4" class="slide" />
+        </div>
+        <button class="slider-arrow prev" aria-label="Previous Image">&#10094;</button>
+        <button class="slider-arrow next" aria-label="Next Image">&#10095;</button>
+      </div>
+      <button class="hero-contact-btn">Contact Owner</button>
+    </div>
+
+    <div class="hero-info">
+      <h1 class="hero-title">Luxury Beachside Villa</h1>
+      <p class="hero-location">Goa, India</p>
+      <p class="hero-price">₹1.5 Crore</p>
+
+      <div class="villa-details-compact">
+        <div class="detail-item">
+          <span class="icon">🛏️</span>
+          <span><strong>Bedrooms:</strong> 4</span>
+        </div>
+        <div class="detail-item">
+          <span class="icon">🛁</span>
+          <span><strong>Bathrooms:</strong> 3</span>
+        </div>
+        <div class="detail-item">
+          <span class="icon">📐</span>
+          <span><strong>Area:</strong> 3500 sq.ft.</span>
+        </div>
+        <div class="detail-item">
+          <span class="icon">🏊‍♂️</span>
+          <span><strong>Amenities:</strong> Pool, Garden, WiFi, Parking</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Container & general styling */
+  .villa-hero {
+    background: #fff;
+    padding: 40px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    max-width: 1100px;
+    margin: 40px auto;
+    color: #000;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .hero-container {
+    display: flex;
+    gap: 35px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  /* Slider */
+  .hero-image-wrapper {
+    position: relative;
+    flex: 1 1 500px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    background: #000;
+  }
+
+  .slider {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+
+  .slide {
+    min-width: 100%;
+    user-select: none;
+    display: none;
+    object-fit: cover;
+    border-radius: 20px;
+    height: 320px;
+  }
+
+  .slide.active {
+    display: block;
+  }
+
+  /* Smaller, clean arrows without background */
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 4px 8px;
+    cursor: pointer;
+    user-select: none;
+    z-index: 10;
+    transition: color 0.3s ease;
+  }
+
+  .slider-arrow:hover {
+    color: #00aaff;
+  }
+
+  .slider-arrow.prev {
+    left: 10px;
+  }
+
+  .slider-arrow.next {
+    right: 10px;
+  }
+
+  /* Contact button */
+  .hero-contact-btn {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background: #000;
+    border: none;
+    padding: 12px 26px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    opacity: 0.95;
+    user-select: none;
+    z-index: 15;
+  }
+
+  .hero-contact-btn:hover {
+    background: #222;
+    transform: scale(1.05);
+    opacity: 1;
+  }
+
+  /* Info text */
+  .hero-info {
+    flex: 1 1 400px;
+  }
+
+  .hero-title {
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: #000;
+    margin-bottom: 10px;
+    line-height: 1.15;
+  }
+
+  .hero-location {
+    font-size: 1.1rem;
+    color: #555;
+    margin-bottom: 8px;
+  }
+
+  .hero-price {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 18px;
+  }
+
+  /* New compact details */
+  .villa-details-compact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 24px;
+    font-size: 14px;
+    color: #222;
+    max-width: 480px;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f0f4f8;
+    padding: 7px 14px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 0.08);
+  }
+
+  .icon {
+    font-size: 18px;
+    color: #0077cc;
+  }
+
+  .detail-item strong {
+    font-weight: 600;
+    margin-right: 3px;
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .villa-hero {
+      padding: 35px 15px;
+    }
+    .hero-title {
+      font-size: 2.1rem;
+    }
+    .hero-price {
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-container {
+      flex-direction: column;
+      gap: 25px;
+    }
+    .hero-title,
+    .hero-location,
+    .hero-price {
+      text-align: center;
+    }
+    .hero-title {
+      font-size: 1.8rem;
+    }
+    .hero-location {
+      font-size: 1rem;
+    }
+    .hero-price {
+      font-size: 1.3rem;
+    }
+    .hero-contact-btn {
+      position: static;
+      display: block;
+      margin: 0 auto 15px auto;
+      padding: 12px 36px;
+      border-radius: 30px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      opacity: 1;
+      transform: none;
+      z-index: auto;
+    }
+    .hero-image-wrapper {
+      width: 100%;
+    }
+    .slide {
+      height: 260px;
+      border-radius: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .villa-hero {
+      padding: 25px 15px;
+    }
+    .hero-title {
+      font-size: 1.5rem;
+    }
+    .hero-location {
+      font-size: 0.95rem;
+    }
+    .hero-price {
+      font-size: 1.1rem;
+    }
+    .villa-details-compact {
+      gap: 10px 16px;
+      font-size: 13px;
+      max-width: 100%;
+      justify-content: center;
+    }
+    .slide {
+      height: 180px;
+    }
+    .hero-contact-btn {
+      font-size: 0.9rem;
+      padding: 10px 26px;
+      border-radius: 25px;
+    }
+  }
+</style>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.slider-arrow.prev');
+  const nextBtn = document.querySelector('.slider-arrow.next');
+  let currentIndex = 0;
+
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('active', i === index);
+    });
+  }
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    showSlide(currentIndex);
+  });
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    showSlide(currentIndex);
+  });
+
+  // Optional auto slide every 5 seconds:
+  // setInterval(() => {
+  //   nextBtn.click();
+  // }, 5000);
+</script>
+
+<section class="villa-gallery">
+  <div class="container">
+    <h2 class="gallery-title">Gallery</h2>
+    <div class="gallery-grid">
+      <img src="villa1.jpg" alt="Villa Image 1" />
+      <img src="villa2.jpg" alt="Villa Image 2" />
+      <img src="villa3.jpg" alt="Villa Image 3" />
+      <img src="villa4.jpg" alt="Villa Image 4" />
+    </div>
+  </div>
+</section>
+<style>
+    .villa-gallery {
+  padding: 60px 20px;
+  background: #fafafa;
+  border-radius: 15px;
+  max-width: 1200px;
+  margin: 40px auto;
+  box-shadow: 0 0 30px rgb(0 0 0 / 0.05);
+}
+
+.gallery-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #222;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 12px;
+  object-fit: cover;
+  height: 150px;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 40px rgb(0 0 0 / 0.2);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+</style>
+<section class="villa-description">
+  <div class="container">
+    <h2 class="desc-title">About This Villa</h2>
+    <p class="desc-text">
+      This luxurious beachside villa offers panoramic sea views, 4 spacious bedrooms, a private pool, modern amenities, and direct beach access. Perfect for families and groups looking for a peaceful getaway with all comforts.
+    </p>
+  </div>
+</section>
+<style>
+    .villa-description {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 30px 25px;
+  background: white;
+  box-shadow: 0 12px 30px rgb(0 0 0 / 0.08);
+  border-radius: 15px;
+}
+
+.desc-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+.desc-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  letter-spacing: 0.02em;
+}
+
+</style>
+
+<section class="villa-amenities">
+  <div class="container">
+    <h2 class="amenities-title">Amenities</h2>
+    <ul class="amenities-list">
+      <li>🏊 Private Swimming Pool</li>
+      <li>📶 Wi-Fi & Smart TV</li>
+      <li>❄️ Air Conditioning</li>
+      <li>🍳 Fully Equipped Kitchen</li>
+      <li>🛡️ 24/7 Security</li>
+      <li>🏖️ Beach Access</li>
+    </ul>
+  </div>
+</section>
+<style>
+    .villa-amenities {
+  background: #fff;
+  padding: 50px 20px;
+  max-width: 1100px;
+  margin: 60px auto;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgb(0 0 0 / 0.07);
+}
+
+.amenities-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #222;
+}
+
+.amenities-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  list-style: none;
+  padding-left: 0;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.amenities-list li {
+  background: #f5f5f5;
+  border-radius: 12px;
+  padding: 15px 20px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.05);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: default;
+  transition: background-color 0.3s ease;
+}
+
+.amenities-list li:hover {
+  background-color: #ff5a5f;
+  color: white;
+}
+
+</style>
+<section class="villa-location">
+  <div class="container">
+    <h2 class="location-title">Location</h2>
+    <div class="map-wrapper">
+      <iframe
+        src="https://maps.google.com/maps?q=Goa&t=&z=13&ie=UTF8&iwloc=&output=embed"
+        allowfullscreen
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+  </div>
+</section>
+<style>
+    .villa-location {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 15px 40px rgb(0 0 0 / 0.15);
+  background: white;
+}
+
+.location-title {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #222;
+}
+
+.map-wrapper iframe {
+  width: 100%;
+  height: 350px;
+  border-radius: 15px;
+  border: none;
+}
+
+</style>
+
+<section class="villa-contact">
+  <div class="container">
+    <h2 class="contact-title">Contact Owner</h2>
+    <form class="contact-form" action="#" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="email" placeholder="Your Email" required />
+      <textarea name="message" rows="4" placeholder="Your Message" required></textarea>
+      <button type="submit" class="contact-submit-btn">Send Inquiry</button>
+    </form>
+  </div>
+</section>
+<style>
+    .villa-contact {
+  max-width: 600px;
+  margin: 60px auto;
+  padding: 30px 25px;
+  background: #fff;
+  box-shadow: 0 15px 40px rgb(0 0 0 / 0.12);
+  border-radius: 15px;
+}
+
+.contact-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  margin-bottom: 25px;
+  text-align: center;
+  color: #222;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 14px 18px;
+  font-size: 1.1rem;
+  border-radius: 12px;
+  border: 1.8px solid #ddd;
+  transition: border-color 0.3s ease;
+  resize: none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: #ff5a5f;
+  outline: none;
+}
+
+.contact-submit-btn {
+  background: #ff5a5f;
+  color: white;
+  padding: 14px 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 90, 95, 0.5);
+}
+
+.contact-submit-btn:hover {
+  background: #e04448;
+}
+
+</style>
