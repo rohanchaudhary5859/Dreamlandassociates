@@ -596,163 +596,199 @@
   </div>
 </footer>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
 
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.custom-footer {
+  width: 100%;
+  background: #0a0a0a;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 60px 20px 30px;
+  position: relative;
+  overflow: hidden;
+}
+
+.custom-footer::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at center, #00d5ff33 0%, transparent 70%);
+  animation: pulseBg 8s linear infinite;
+  z-index: 0;
+}
+
+@keyframes pulseBg {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
-
-  body {
-    margin: 0;
-    padding: 0;
+  100% {
+    transform: rotate(360deg) scale(1.05);
   }
+}
 
-  .custom-footer {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    font-family: 'Roboto Condensed', sans-serif;
-    padding: 60px 20px 20px;
-  }
+.custom-footer-wrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+}
 
+.custom-footer-about,
+.custom-footer-links,
+.custom-footer-contact {
+  flex: 1 1 280px;
+  min-width: 240px;
+}
+
+.custom-footer-about h3,
+.custom-footer-links h3,
+.custom-footer-contact h3 {
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 18px;
+  position: relative;
+  color: #00d5ff;
+}
+
+.custom-footer-about p,
+.custom-footer-contact p,
+.custom-footer-links a {
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.custom-footer-about p:hover,
+.custom-footer-contact p:hover {
+  color: #fff;
+}
+
+.custom-footer-links ul {
+  list-style: none;
+}
+
+.custom-footer-links li {
+  margin-bottom: 12px;
+}
+
+.custom-footer-links li a {
+  display: inline-block;
+  position: relative;
+  padding: 4px 0;
+  color: #bbb;
+}
+
+.custom-footer-links li a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 2px;
+  background: #00d5ff;
+  transition: width 0.3s ease;
+}
+
+.custom-footer-links li a:hover::before {
+  width: 100%;
+}
+
+.custom-footer-links li a:hover {
+  color: #fff;
+}
+
+.custom-social-icons {
+  margin-top: 25px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.custom-social-icons a {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #00d5ff33;
+  color: #00d5ff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+
+.custom-social-icons a:hover {
+  background: #00d5ff;
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 8px #00d5ff88;
+}
+
+.custom-footer-bottom {
+  text-align: center;
+  padding-top: 20px;
+  margin-top: 40px;
+  border-top: 1px solid #1a1a1a;
+  font-size: 0.9rem;
+  color: #888;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .custom-footer-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1300px;
-    margin: 0 auto;
-    justify-content: space-between;
+    gap: 30px;
   }
+}
 
-  .custom-footer-about,
-  .custom-footer-links,
-  .custom-footer-contact {
-    flex: 1 1 250px;
-    min-width: 200px;
+@media (max-width: 480px) {
+  .custom-footer {
+    padding: 40px 16px 20px;
   }
 
   .custom-footer-about h3,
   .custom-footer-links h3,
   .custom-footer-contact h3 {
-    font-weight: 600;
-    font-size: 1.75rem;
-    margin-bottom: 16px;
-    color: #fff;
+    font-size: 1.5rem;
   }
 
   .custom-footer-about p,
   .custom-footer-links a,
   .custom-footer-contact p {
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ccc;
-    line-height: 1.6;
-    text-decoration: none;
-  }
-
-  .custom-footer-links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .custom-footer-links li {
-    margin-bottom: 12px;
-  }
-
-  .custom-footer-links li a {
-    position: relative;
-    padding-bottom: 4px;
-  }
-
-  .custom-footer-links li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .custom-footer-links li a:hover::after {
-    transform: scaleX(1);
-  }
-
-  .custom-social-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 16px;
+    font-size: 0.9rem;
   }
 
   .custom-social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: #111;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, background 0.3s ease;
-  }
-
-  .custom-social-icons a:hover {
-    background: #fff;
-    color: #000;
-    transform: scale(1.1);
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
   }
 
   .custom-footer-bottom {
-    text-align: center;
-    border-top: 1px solid #222;
-    padding-top: 16px;
-    margin-top: 40px;
-    font-size: 0.9rem;
-    color: #777;
+    font-size: 0.8rem;
+    margin-top: 30px;
   }
+}
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .custom-footer-wrapper {
-      gap: 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .custom-footer {
-      padding: 40px 10px 10px;
-    }
-
-    .custom-footer-about h3,
-    .custom-footer-links h3,
-    .custom-footer-contact h3 {
-      font-size: 1.5rem;
-    }
-
-    .custom-footer-about p,
-    .custom-footer-links a,
-    .custom-footer-contact p {
-      font-size: 0.9rem;
-    }
-
-    .custom-social-icons a {
-      width: 36px;
-      height: 36px;
-      font-size: 1rem;
-    }
-
-    .custom-footer-bottom {
-      font-size: 0.8rem;
-      margin-top: 30px;
-    }
-  }
 </style>
 
 </style>
