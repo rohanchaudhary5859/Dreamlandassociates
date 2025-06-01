@@ -386,7 +386,7 @@
       <div class="property-content">
         <h3 class="property-title">2 BHK Apartment in Noida</h3>
         <p class="property-info">₹70 Lakh • 2 BHK • 1200 sq.ft</p>
-        <a href="#" class="property-btn">View Details <span>→</span></a>
+        <a href="Project_villa.html" class="property-btn">View Details <span>→</span></a>
       </div>
     </div>
     <div class="property-card">
@@ -394,7 +394,7 @@
       <div class="property-content">
         <h3 class="property-title">Independent House in Delhi</h3>
         <p class="property-info">₹95 Lakh • 3 BHK • 1800 sq.ft</p>
-        <a href="#" class="property-btn">View Details <span>→</span></a>
+        <a href="Project_villa.html" class="property-btn">View Details <span>→</span></a>
       </div>
     </div>
   </div>
@@ -403,13 +403,28 @@
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
+/* Define CSS variables for easy theme tweaking */
+:root {
+  --color-bg-start: #f9f9f9;
+  --color-bg-end: #ffffff;
+  --color-text: #111111;
+  --color-accent: #000000;
+  --color-accent-hover: #222222;
+  --btn-radius: 50px;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-strong: rgba(0, 0, 0, 0.12);
+  --font-primary: 'Roboto Condensed', sans-serif;
+}
+
 /* Section Container */
 .property-section {
-  background: linear-gradient(to right, #f9f9f9, #ffffff);
+  background: linear-gradient(to right, var(--color-bg-start), var(--color-bg-end));
   padding: 80px 20px;
-  font-family: "Roboto Condensed", sans-serif;
-  color: #111;
+  font-family: var(--font-primary);
+  color: var(--color-text);
   text-align: center;
+  /* subtle fade-in animation */
+  animation: fadeIn 0.9s ease forwards;
 }
 
 /* Heading */
@@ -417,53 +432,69 @@
   position: relative;
   display: inline-block;
   margin-bottom: 70px;
-  font-size: 4.0rem;
-  padding: 12px 0; /* upline aur underline ke liye thoda padding */
+  font-size: 4rem;
+  padding: 12px 0;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  /* subtle letter spacing for modern look */
 }
 
 .section-title::before,
 .section-title::after {
   content: "";
   position: absolute;
-  height: 2px;
-  background-color: #111;
-  width: 100%;
-  left: 0;
+  height: 3px;
+  background-color: var(--color-accent);
+  width: 120%;
+  left: -10%;
+  border-radius: 2px;
+  opacity: 0.2;
+  transition: opacity 0.3s ease;
 }
 
 .section-title::before {
-  top: 0;  /* heading ke upar line */
+  top: 0;
 }
 
 .section-title::after {
-  bottom: 0; /* heading ke niche line */
+  bottom: 0;
 }
 
+.section-title:hover::before,
+.section-title:hover::after {
+  opacity: 1;
+}
 
 /* Grid */
 .property-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 40px;
+  gap: 36px;
   padding: 0 10px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 /* Card */
 .property-card {
-  background: rgba(255, 255, 255, 0.85);
-  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 8px 20px var(--shadow-light);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
   display: flex;
   flex-direction: column;
-  animation: fadeIn 0.8s ease forwards;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  border: 1px solid #e0e0e0;
+  will-change: transform;
 }
 
 .property-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-10px);
+  box-shadow: 0 24px 40px var(--shadow-strong);
+  border-color: var(--color-accent-hover);
 }
 
 /* Image */
@@ -471,58 +502,74 @@
   width: 100%;
   height: 220px;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .property-card:hover img {
-  transform: scale(1.05);
+  transform: scale(1.07);
+  filter: brightness(1.05);
 }
 
 /* Content */
 .property-content {
-  padding: 24px 20px 30px;
+  padding: 28px 24px 32px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .property-title {
-  font-size: 1.3rem;
-  font-weight: 600;
-    font-family: "Roboto Condensed", sans-serif;
-  color: #000000;
-  margin-bottom: 10px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: var(--font-primary);
+  color: var(--color-accent);
+  margin-bottom: 14px;
+  letter-spacing: 0.02em;
 }
 
 .property-info {
-  font-size: 1rem;
-  color: #000000;
-    font-family: "Roboto Condensed", sans-serif;
-  margin-bottom: 20px;
+  font-size: 1.05rem;
+  color: #444444;
+  font-family: var(--font-primary);
+  margin-bottom: 26px;
+  line-height: 1.5;
+  flex-grow: 1;
 }
 
 /* Button */
 .property-btn {
-  display: inline-block;
-  background: #000;
+  align-self: center;
+  background: linear-gradient(135deg, #000000, #333333);
   color: #fff;
-  padding: 10px 22px;
-  border-radius: 50px;
+  padding: 12px 26px;
+  border-radius: var(--btn-radius);
   text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
 }
 
 .property-btn span {
   display: inline-block;
-  margin-left: 8px;
   transition: transform 0.3s ease;
 }
 
 .property-btn:hover {
-  background: #222;
+  background: linear-gradient(135deg, #222222, #555555);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
 }
 
 .property-btn:hover span {
-  transform: translateX(4px);
+  transform: translateX(6px);
 }
 
 /* Animation */
@@ -540,8 +587,8 @@
 /* Responsive */
 @media (max-width: 490px) {
   .section-title {
-    margin-top: -50px;
-    font-size: 2rem;
+    margin-top: -30px;
+    font-size: 2.4rem;
     margin-bottom: 40px;
   }
 
@@ -550,13 +597,19 @@
   }
 
   .property-title {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
 
   .property-info {
+    font-size: 1rem;
+  }
+
+  .property-btn {
+    padding: 10px 20px;
     font-size: 0.95rem;
   }
 }
+
 </style>
 
 
