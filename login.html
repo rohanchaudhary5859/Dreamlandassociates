@@ -550,17 +550,19 @@
 
     try {
       const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-      const user = userCredential.user;
+      const user = firebase.auth().currentUser;
 
-      await user.reload();
+      // Wait a little before reloading user state (optional but helpful for fresh verification)
+      await new Promise(resolve => setTimeout(resolve, 500)); 
 
+      await user.reload(); // Refresh the latest state of user
       if (user.emailVerified) {
         alert('Login successful!');
         localStorage.setItem('userEmail', user.email);
         localStorage.setItem('uid', user.uid);
         window.location.href = 'profile.html';
       } else {
-        // Show modal instead of alert
+        // Email not verified
         modal.style.display = 'flex';
         await firebase.auth().signOut();
       }
@@ -577,7 +579,6 @@
     modal.style.display = 'none';
   });
 
-  // Close modal if click outside modal-content
   window.addEventListener('click', (e) => {
     if (e.target === modal) {
       modal.style.display = 'none';
