@@ -369,147 +369,406 @@
 </script>
 
 
-  <!-- Profile Section -->
-  <style>
-  /* Minimal styles for demo */
-  .container { max-width: 900px; margin: 20px auto; font-family: Arial, sans-serif; }
-  .property-listings { display: flex; gap: 20px; flex-wrap: wrap; }
-  .property-card { border: 1px solid #ccc; border-radius: 8px; width: 280px; overflow: hidden; }
-  .property-card img { width: 100%; height: 180px; object-fit: cover; }
-  .property-info { padding: 10px; }
-  .btn-danger { background: #d9534f; color: white; border: none; padding: 8px 12px; cursor: pointer; border-radius: 4px; }
-  .btn-logout { margin-top: 20px; background: #0275d8; }
-</style>
+ <!-- Make sure Firebase SDK + Firestore are included in your page -->
+<!-- Replace your Firebase config below -->
 
-<section class="profile container">
-  <h1 id="welcome">Welcome, User</h1>
+<section class="auth-container" style="max-width:700px; margin:2rem auto; font-family:sans-serif;">
 
-  <div class="profile-info">
-    <p><strong>Email:</strong> <span id="userEmail">Loading...</span></p>
-    <p><strong>Phone:</strong> <span id="userPhone">Not set</span></p>
+  <!-- Login & Signup Forms -->
+  <div id="authForms" style="display:flex; gap:2rem; justify-content:center;">
+
+    <!-- Login -->
+    <form id="loginForm" style="flex:1; background:#f0f0f0; padding:1.5rem; border-radius:8px;">
+      <h2>Login</h2>
+      <input type="email" id="loginEmail" placeholder="Email" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="password" id="loginPassword" placeholder="Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <button type="submit" style="width:100%; padding:0.8rem; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer;">Login</button>
+    </form>
+
+    <!-- Signup -->
+    <form id="signupForm" style="flex:1; background:#f0f0f0; padding:1.5rem; border-radius:8px;">
+      <h2>Sign Up</h2>
+      <input type="text" id="signupName" placeholder="Full Name" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="email" id="signupEmail" placeholder="Email" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="tel" id="signupPhone" placeholder="Phone Number" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="password" id="signupPassword" placeholder="Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      
+      <label for="signupGender" style="display:block; margin-bottom:0.5rem;">Gender</label>
+      <select id="signupGender" required style="width:100%; padding:0.7rem; margin-bottom:1rem;">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <input type="text" id="signupLocation" placeholder="Location (City, State)" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      
+      <button type="submit" style="width:100%; padding:0.8rem; background:#28a745; color:#fff; border:none; border-radius:6px; cursor:pointer;">Sign Up</button>
+    </form>
   </div>
 
-  <h2>Your Listings</h2>
-  <div class="property-listings" id="listings">
-    <!-- Property cards will be added dynamically -->
-  </div>
+  <!-- Profile Section - Hidden initially -->
+  <section id="profileSection" style="display:none; background:#fff; padding:2rem; margin-top:2rem; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+    <h2>Welcome, <span id="profileDisplayName"></span></h2>
 
-  <button id="logoutBtn" class="btn-danger btn-logout">Logout</button>
+    <form id="profileForm" style="max-width:400px;">
+      <label>Full Name</label>
+      <input type="text" id="profileName" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+
+      <label>Email (read-only)</label>
+      <input type="email" id="profileEmail" readonly style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+
+      <label>Phone Number</label>
+      <input type="tel" id="profilePhone" style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+
+      <label>Gender</label>
+      <select id="profileGender" style="width:100%; padding:0.7rem; margin-bottom:1rem;">
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+
+      <label>Location</label>
+      <input type="text" id="profileLocation" placeholder="City, State" style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+
+      <button type="submit" style="width:100%; padding:0.8rem; background:#007bff; color:#fff; border:none; border-radius:6px; cursor:pointer;">Update Profile</button>
+    </form>
+
+    <hr style="margin:2rem 0;" />
+
+    <h3>Change Password</h3>
+    <form id="changePasswordForm" style="max-width:400px;">
+      <input type="password" id="currentPassword" placeholder="Current Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="password" id="newPassword" placeholder="New Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <input type="password" id="confirmNewPassword" placeholder="Confirm New Password" required style="width:100%; padding:0.7rem; margin-bottom:1rem;" />
+      <button type="submit" style="width:100%; padding:0.8rem; background:#ffc107; color:#000; border:none; border-radius:6px; cursor:pointer;">Change Password</button>
+    </form>
+
+    <button id="logoutBtn" style="margin-top:2rem; background:#dc3545; color:#fff; border:none; padding:0.8rem; width:100%; border-radius:6px; cursor:pointer;">Logout</button>
+  </section>
 </section>
+<style>
+    /* Container */
+.auth-container {
+  background: #f9fafb;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
 
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
-<script>
-  // Your actual Firebase config here
-  const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    // ...rest of config
-  };
-  firebase.initializeApp(firebaseConfig);
+/* Flex for auth forms */
+#authForms {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-  const welcomeEl = document.getElementById('welcome');
-  const userEmailEl = document.getElementById('userEmail');
-  const userPhoneEl = document.getElementById('userPhone');
-  const listingsEl = document.getElementById('listings');
-  const logoutBtn = document.getElementById('logoutBtn');
+/* Forms styling */
+form {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+  width: 320px;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
 
-  // Sample listings data (replace with your dynamic data)
-  const sampleListings = [
-    {
-      img: "images/house1.jpg",
-      title: "Modern Villa in Noida",
-      desc: "₹1.2 Cr • 3 BHK • 2500 sq.ft"
-    },
-    {
-      img: "images/house2.jpg",
-      title: "2 BHK Flat in Gurgaon",
-      desc: "₹75 Lakh • 2 BHK • 1100 sq.ft"
-    }
-  ];
+form:hover {
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
 
-  // Render listings dynamically
-  function renderListings(listings) {
-    listingsEl.innerHTML = '';
-    listings.forEach(listing => {
-      const card = document.createElement('div');
-      card.className = 'property-card';
-      card.innerHTML = `
-        <img src="${listing.img}" alt="${listing.title || 'Property Image'}" />
-        <div class="property-info">
-          <h3>${listing.title}</h3>
-          <p>${listing.desc}</p>
-          <button class="btn-danger">Delete</button>
-        </div>
-      `;
-      listingsEl.appendChild(card);
-    });
+/* Headings */
+form h2, #profileSection h2, #profileSection h3 {
+  margin-bottom: 1rem;
+  font-weight: 700;
+  color: #007bff;
+}
+
+/* Inputs and selects */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1.25rem;
+  border: 1.5px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="tel"]:focus,
+select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+}
+
+/* Buttons */
+button {
+  font-size: 1rem;
+  padding: 0.85rem 0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
+
+#loginForm button {
+  background-color: #007bff;
+  color: white;
+}
+
+#loginForm button:hover {
+  background-color: #0056b3;
+}
+
+#signupForm button {
+  background-color: #28a745;
+  color: white;
+}
+
+#signupForm button:hover {
+  background-color: #1e7e34;
+}
+
+#profileForm button {
+  background-color: #007bff;
+  color: white;
+}
+
+#profileForm button:hover {
+  background-color: #0056b3;
+}
+
+#changePasswordForm button {
+  background-color: #ffc107;
+  color: #212529;
+}
+
+#changePasswordForm button:hover {
+  background-color: #e0a800;
+}
+
+#logoutBtn {
+  background-color: #dc3545;
+  color: white;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+
+#logoutBtn:hover {
+  background-color: #a71d2a;
+}
+
+/* Section spacing */
+#profileSection {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  padding: 2rem;
+  max-width: 450px;
+  margin: 2rem auto 0;
+  box-sizing: border-box;
+}
+
+#profileSection hr {
+  border: none;
+  border-top: 1px solid #eee;
+  margin: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 720px) {
+  #authForms {
+    flex-direction: column;
+    align-items: center;
   }
 
-  // Listen for auth state changes
-  firebase.auth().onAuthStateChanged(user => {
-    if (user) {
-      welcomeEl.textContent = `Welcome, ${user.displayName || 'User'}`;
-      userEmailEl.textContent = user.email || 'Not set';
-      // Phone number typically comes from phone auth; else Not set
-      userPhoneEl.textContent = user.phoneNumber || 'Not set';
+  form {
+    width: 100%;
+    max-width: 360px;
+  }
 
-      renderListings(sampleListings);
+  #profileSection {
+    max-width: 100%;
+    margin: 1rem auto 0;
+  }
+}
 
-    } else {
-      // Redirect to login if user is not signed in
-      window.location.href = 'login.html';
+</style>
+<script>
+  // Initialize Firebase here before this script
+  // Initialize Firestore
+  const db = firebase.firestore();
+
+  // Elements
+  const authForms = document.getElementById('authForms');
+  const profileSection = document.getElementById('profileSection');
+
+  // LOGIN FORM
+  document.getElementById('loginForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = e.target.loginEmail.value.trim();
+    const password = e.target.loginPassword.value;
+
+    try {
+      await firebase.auth().signInWithEmailAndPassword(email, password);
+      alert('Login successful!');
+      e.target.reset();
+    } catch (error) {
+      alert(error.message);
     }
   });
 
-  // Logout button click handler
-  logoutBtn.addEventListener('click', () => {
-    firebase.auth().signOut()
-      .then(() => window.location.href = 'login.html')
-      .catch(err => alert('Error logging out: ' + err.message));
+  // SIGNUP FORM
+  document.getElementById('signupForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const name = e.target.signupName.value.trim();
+    const email = e.target.signupEmail.value.trim();
+    const phone = e.target.signupPhone.value.trim();
+    const password = e.target.signupPassword.value;
+    const confirmPassword = e.target.signupConfirmPassword.value;
+    const gender = e.target.signupGender.value;
+    const location = e.target.signupLocation.value.trim();
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    try {
+      const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+      const user = userCredential.user;
+
+      // Update displayName
+      await user.updateProfile({ displayName: name });
+
+      // Save extra profile data in Firestore
+      await db.collection('users').doc(user.uid).set({
+        phone,
+        gender,
+        location,
+      });
+
+      // Send email verification
+      await user.sendEmailVerification();
+
+      alert('Signup successful! Verification email sent.');
+      e.target.reset();
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+
+  // Observe auth state changes
+  firebase.auth().onAuthStateChanged(async user => {
+    if (user) {
+      // Hide auth forms, show profile
+      authForms.style.display = 'none';
+      profileSection.style.display = 'block';
+
+      // Show profile info
+      document.getElementById('profileDisplayName').textContent = user.displayName || 'User';
+      document.getElementById('profileName').value = user.displayName || '';
+      document.getElementById('profileEmail').value = user.email || '';
+
+      // Get extra profile data from Firestore
+      const doc = await db.collection('users').doc(user.uid).get();
+      if (doc.exists) {
+        const data = doc.data();
+        document.getElementById('profilePhone').value = data.phone || '';
+        document.getElementById('profileGender').value = data.gender || '';
+        document.getElementById('profileLocation').value = data.location || '';
+      }
+    } else {
+      // Show auth forms, hide profile
+      authForms.style.display = 'flex';
+      profileSection.style.display = 'none';
+    }
+  });
+
+  // Update profile form submit
+  document.getElementById('profileForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const user = firebase.auth().currentUser;
+    if (!user) return alert('User not logged in.');
+
+    const newName = document.getElementById('profileName').value.trim();
+    const phone = document.getElementById('profilePhone').value.trim();
+    const gender = document.getElementById('profileGender').value;
+    const location = document.getElementById('profileLocation').value.trim();
+
+    if (!newName) return alert('Name cannot be empty');
+
+    try {
+      await user.updateProfile({ displayName: newName });
+      await db.collection('users').doc(user.uid).set({ phone, gender, location }, { merge: true });
+
+      document.getElementById('profileDisplayName').textContent = newName;
+      alert('Profile updated successfully');
+    } catch (error) {
+      alert(error.message);
+    }
+  });
+
+  // Logout button
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await firebase.auth().signOut();
+    alert('Logged out successfully');
+  });
+
+  // Change password form submit
+  document.getElementById('changePasswordForm').addEventListener('submit', async e => {
+    e.preventDefault();
+
+    const currentPassword = document.getElementById('currentPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+    if (newPassword !== confirmNewPassword) {
+      alert('New passwords do not match');
+      return;
+    }
+
+    const user = firebase.auth().currentUser;
+    if (!user) return alert('User not logged in.');
+
+    // Re-authenticate user with current password before changing password
+    const credential = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
+
+    try {
+      await user.reauthenticateWithCredential(credential);
+      await user.updatePassword(newPassword);
+
+      alert('Password changed successfully!');
+      e.target.reset();
+    } catch (error) {
+      alert('Error changing password: ' + error.message);
+    }
   });
 </script>
 
-
-  <!-- Footer -->
-  <footer class="footer">
-  <div class="footer-wrapper">
-    <div class="footer-section about">
-      <h3>Real Estate Website</h3>
-      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
-    </div>
-    <div class="footer-section links">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-section contact">
-      <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
-      <p>Email: info@realestate.com</p>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
-  </div>
-</footer>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');

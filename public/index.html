@@ -643,8 +643,7 @@ document.addEventListener("click", (e) => {
 }
 
   </style>
-</head>
-<body>
+
 
   <section class="hero">
     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Luxury Home" />
@@ -1148,6 +1147,244 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 });
 
 </script>
+<section class="services-section">
+<h2 class="services-heading">Our Services</h2>
+  <div class="services-grid">
+    
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-home"></i></div>
+      <div class="service-title">Residential Sales & Purchases</div>
+      <div class="service-description">
+        Helping clients buy and sell homes with expert market insight and negotiation skills.
+      </div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-key"></i></div>
+      <div class="service-title">Property Leasing & Rentals</div>
+      <div class="service-description">
+        Assisting landlords and tenants in securing rental agreements that meet their needs.
+      </div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-building"></i></div>
+      <div class="service-title">Commercial Real Estate</div>
+      <div class="service-description">
+        Supporting businesses in finding, buying, or leasing commercial spaces.
+      </div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="service-title">Real Estate Investment Consulting</div>
+      <div class="service-description">
+        Providing strategic advice for investors to identify profitable opportunities and maximize returns.
+      </div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-search-dollar"></i></div>
+      <div class="service-title">Market Analysis & Property Valuation</div>
+      <div class="service-description">
+        Delivering accurate pricing insights based on current market trends and property assessments.
+      </div>
+    </div>
+
+    <div class="service-box">
+      <div class="service-icon"><i class="fas fa-tools"></i></div>
+      <div class="service-title">Property Management</div>
+      <div class="service-description">
+        Full-service management for residential and commercial properties, including tenant screening, rent collection, and maintenance coordination.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
+
+/* === Clean & Compact Services Section (Black on White) === */
+
+.services-section {
+  max-width: 1250px;
+  margin: -80px auto 60px auto;
+  padding: 60px 20px;
+  margin-top: -130px;
+  background: #ffffff;
+  border-radius: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: center;
+  color: #111;
+}
+
+/* Heading */
+.services-heading {
+  font-size: 2.90rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+.services-heading::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 200px;
+  height: 3px;
+  background-color: #000;
+  transition: transform 0.4s ease;
+  transform-origin: center;
+  border-radius: 2px;
+}
+
+.services-heading.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+@media (min-width: 900px) {
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Service Box */
+.service-box {
+  background: #fff;
+  border: 1px solid #e4e4e4;
+  border-radius: 14px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.service-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.service-box:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transform: translateY(-6px);
+}
+
+/* Icon */
+.service-icon {
+  font-size: 28px;
+  color: #111;
+  margin-bottom: 18px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.service-box:hover .service-icon {
+  color: #000;
+  transform: scale(1.1);
+}
+
+/* Title */
+.service-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #111;
+  text-transform: capitalize;
+}
+
+/* Description */
+.service-description {
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+  .services-section {
+    padding: 40px 16px;
+    margin-top: -50px;
+  }
+
+  .services-heading {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+  }
+
+  .services-heading::after {
+    width: 80px;
+  }
+
+  .service-icon {
+    font-size: 24px;
+    margin-bottom: 14px;
+  }
+
+  .service-title {
+    font-size: 1.1rem;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+  }
+}
+
+
+</style>
+<script>
+  // Scroll animation for heading underline
+window.addEventListener("scroll", function () {
+  const heading = document.querySelector(".services-heading");
+  const headingPosition = heading.getBoundingClientRect().top;
+  const screenPosition = window.innerHeight / .25;
+
+  if (headingPosition < screenPosition) {
+    heading.classList.add("active");
+  }
+});
+
+</script>
+
+
+<script>
+  // Animate heading underline on DOM load
+  document.addEventListener("DOMContentLoaded", () => {
+    const title = document.querySelector('.services-title');
+    setTimeout(() => title.classList.add('active'), 200);
+
+    // Scroll-trigger fade-up for each service box with stagger
+    const boxes = document.querySelectorAll('.service-box');
+    const revealOnScroll = () => {
+      boxes.forEach((box, i) => {
+        const rect = box.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 100) {
+          setTimeout(() => {
+            box.classList.add('visible');
+          }, i * 150); // stagger animation delay
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // initial check
+  });
+</script>
+
+
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 
@@ -1613,44 +1850,68 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 <!-- Ongoing Projects Section Start -->
 
 <section class="projects-section">
-  <h2>Ongoing & Upcoming Projects</h2>
+  <h2>Upcoming Developments — Make It a Great Investment!</h2>
   <p class="subtitle">
-    Discover the future of living with our thoughtfully crafted developments. Whether it's urban sophistication or serene nature views, our projects are designed to elevate your lifestyle.
+    Major infrastructure projects are underway, making this the ideal time to invest in the region. From enhanced connectivity to futuristic developments, the area is set to experience rapid growth.
   </p>
 
-  <div class="projects-grid">
+  <div class="projects-scroll-container">
     <div class="project-card animate">
       <div class="project-img">
-        <img src="https://www.adanirealty.com/-/media/project/realty/blogs/types-of-residential-properties.ashx" alt="Skyline Heights">
+        <img src="https://static.toiimg.com/thumb/msid-106517784,width-1280,height-720,resizemode-4/106517784.jpg" alt="Metro Project">
       </div>
       <div class="project-content">
-        <h3>Skyline Heights</h3>
+        <h3>Metro Project (Doiwala)</h3>
         <p>
-          Nestled in the city's vibrant core, Skyline Heights redefines luxury living. These premium apartments combine smart technology, high-end interiors, and panoramic skyline views. Completion by <strong>December 2025</strong>.
+          Doiwala will be a metro station as part of the extended network. Survey already commenced in <strong>January 2024</strong>, accelerating the area's development prospects.
         </p>
       </div>
     </div>
 
     <div class="project-card animate">
       <div class="project-img">
-        <img src="https://images.timesproperty.com/blog/3480/unnamed_67.jpg" alt="Green Valley Villas">
+        <img src="https://images.news9live.com/wp-content/uploads/2024/04/Jolly-Grant-airport.jpg" alt="Airport Upgrade">
       </div>
       <div class="project-content">
-        <h3>Green Valley Villas</h3>
+        <h3>JollyGrant Airport – International Upgrade</h3>
         <p>
-          A tranquil retreat with lush greenery and sustainable living. Solar energy, rainwater harvesting, and green roofs — perfect for those who crave nature with luxury.
+          The transformation of JollyGrant Airport into an international hub is already underway, promising increased global connectivity and economic activity.
         </p>
       </div>
     </div>
 
     <div class="project-card animate">
       <div class="project-img">
-        <img src="https://cdn.britannica.com/05/157305-004-53D5D212.jpg" alt="Urban Crest">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSns0MQP3kyNgeKm6f0aInJkTS4drcz7bNkIg&s" alt="Aero City">
       </div>
       <div class="project-content">
-        <h3>Urban Crest</h3>
+        <h3>Aero City – 3080 Hectares</h3>
         <p>
-          A smart urban sanctuary in the expanding tech corridor with community zones, seamless connectivity, and intelligent layouts. Estimated by <strong>March 2026</strong>.
+          Planned over <strong>3080 hectares</strong>, this ambitious Aero City project is under active survey. It’s poised to become a new economic and residential zone in the region.
+        </p>
+      </div>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-img">
+        <img src="https://im.indiatimes.in/content/2025/May/FqlxO8maMAESCuA-1_6813249b0df86.jpg?w=1200&h=900&cc=1&webp=1&q=75" alt="Expressway">
+      </div>
+      <div class="project-content">
+        <h3>Delhi - Dehradun Expressway</h3>
+        <p>
+          A 12–6 lane expressway project connecting Delhi to Dehradun, expected to be completed in just <strong>2 years</strong>. This will drastically cut down travel time and boost trade and tourism.
+        </p>
+      </div>
+    </div>
+
+    <div class="project-card animate">
+      <div class="project-img">
+        <img src="https://staticimg.amarujala.com/assets/images/2024/06/17/jammu-reasi-kashmir-train-railway-station-rail-bridge_a8a5484b68f6d3b45569ffc0ca7b84f0.jpeg" alt="Railway Line">
+      </div>
+      <div class="project-content">
+        <h3>Saharanpur - Dehradun Railway</h3>
+        <p>
+          The upcoming railway line between Saharanpur and Dehradun is projected to be completed in <strong>5 years</strong>, improving passenger and cargo connectivity in the region.
         </p>
       </div>
     </div>
@@ -1658,163 +1919,536 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 </section>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
-  .projects-section {
-    background: #fff;
-    padding: 100px 20px 80px;
-    text-align: center;
-    margin-top: -70px;
+  
+.projects-section {
+  background: #fff;
+  padding: 100px 20px 80px;
+  text-align: center;
+  margin-top: -70px;
   font-family: "Roboto Condensed", sans-serif;
-    color: #000;
-  }
+  color: #111;
+}
 
+.projects-section h2 {
+  font-size: 2.90rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #111;
+  margin-bottom: 50px;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+/* Animated underline */
+.projects-section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 90%;
+  max-width: 1000px;
+  height: 3px;
+  background: linear-gradient(90deg, #000, #555);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.projects-section h2.active::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+.projects-section .subtitle {
+  max-width: 720px;
+  margin: 0 auto 70px;
+  font-size: 1.2rem;
+  color: #000000;
+  line-height: 1.8;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.projects-scroll-container {
+  display: flex;
+  gap: 24px;
+  margin-top: -20px;
+  overflow-x: auto;
+  padding: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  box-shadow: inset 10px 0 8px -8px rgba(0,0,0,0.1),
+              inset -10px 0 8px -8px rgba(0,0,0,0.1);
+}
+
+.projects-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.project-card {
+  flex: 0 0 330px;
+  background: #fff;
+  margin-top: 30px;
+  border-radius: 18px;
+  font-family: "Roboto Condensed", sans-serif;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  scroll-snap-align: center;
+  cursor: pointer;
+  border: 1px solid #ddd;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+  transform-origin: center center; /* prevents vertical jump */
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  border-color: #000;
+}
+
+.project-img img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  transition: filter 0.3s ease;
+  filter: brightness(95%);
+}
+
+.project-card:hover .project-img img {
+  filter: brightness(100%);
+}
+
+.project-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.project-content h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  font-weight: 700;
+  color: #000;
+  border-bottom: 2px solid #000;
+  padding-bottom: 6px;
+}
+
+.project-content p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Animate fade-up */
+.animate {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive for small screens */
+@media (max-width: 490px) {
   .projects-section h2 {
-    font-size: 3.2rem;
-    font-weight: 900;
-    margin-bottom: 18px;
-    letter-spacing: 0.03em;
+    font-size: 2.4rem;
   }
 
   .projects-section .subtitle {
-    max-width: 720px;
-    margin: 0 auto 70px;
-    font-size: 1.2rem;
-    color: #000000;
-    line-height: 1.8;
-    font-weight: 400;
+    font-size: 1rem;
+    padding: 0 12px;
+    margin-bottom: 50px;
   }
 
-  .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 48px;
-    padding: 0 15px;
+  .projects-scroll-container {
+    justify-content: flex-start;
+    padding-left: 30px;
+    box-shadow: none; /* simpler on small */
   }
 
   .project-card {
-    background: #fefefe;
-    border-radius: 18px;
-    overflow: hidden;
-    box-shadow:
-      0 2px 8px rgba(0,0,0,0.08),
-      0 8px 20px rgba(0,0,0,0.04);
-    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1), box-shadow 0.35s ease;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-  }
-
-  .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow:
-      0 8px 24px rgba(0,0,0,0.12),
-      0 12px 40px rgba(0,0,0,0.1);
-  }
-
-  .project-img img {
-    width: 100%;
-    height: 230px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
-    will-change: transform;
-  }
-
-  .project-card:hover .project-img img {
-    transform: scale(1.05);
-  }
-
-  .project-content {
-    padding: 28px 24px;
-    text-align: left;
-    flex-grow: 1;
+    flex: 0 0 90%;
+    margin: 0 auto;
+    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
   }
 
   .project-content h3 {
-    font-size: 1.7rem;
-    margin-bottom: 14px;
-    font-weight: 700;
-    color: #000;
+    font-size: 1.3rem;
   }
 
   .project-content p {
-    font-size: 1rem;
-    color: #1a1a1a;
-    line-height: 1.75;
-    font-weight: 400;
+    font-size: 0.95rem;
   }
-
-  /* Animation */
-  .animate {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .animate.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (max-width: 490px) {
-    .projects-section h2 {
-      font-size: 2.4rem;
-    }
-
-    .projects-section .subtitle {
-      font-size: 1rem;
-      padding: 0 12px;
-      margin-bottom: 50px;
-    }
-
-    .project-content h3 {
-      font-size: 1.4rem;
-    }
-
-    .project-content p {
-      font-size: 0.95rem;
-    }
-  }
+}
 </style>
 
 <script>
+  // Animate projects heading underline on scroll and on load
+  window.addEventListener('scroll', () => {
+    const heading = document.querySelector('.projects-section h2');
+    const headingPosition = heading.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.5;
+
+    if (headingPosition < screenPosition) {
+      heading.classList.add('active');
+    }
+  });
+
+  window.addEventListener('load', () => {
+    const heading = document.querySelector('.projects-section h2');
+    const headingPosition = heading.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.5;
+
+    if (headingPosition < screenPosition) {
+      heading.classList.add('active');
+    }
+  });
+
+  // Fade-up animation for project cards using Intersection Observer
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if(entry.isIntersecting){
         entry.target.classList.add('visible');
       }
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0.2 });
 
   document.querySelectorAll('.animate').forEach(el => observer.observe(el));
 </script>
 
+<section class="section-wrapper">
+  <div class="container">
+    <div class="section-heading projects-section">
+      <h1>What Drives Us: Building Inclusive and Sustainable Communities</h1>
+      <p>
+        At Dreamland Associate, we are dedicated to creating welcoming, inclusive communities where people can live, work, and grow. Our goal is to provide quality real estate solutions backed by experience and a commitment to customer satisfaction. We believe in building neighborhoods that inspire and support a better way of life for everyone.
+      </p>
+    </div>
+
+    <div class="card-container">
+      <div class="card">
+        <div class="icon">📊</div>
+        <h2>Our Mission</h2>
+        <p>
+          At Dreamland Associate, our mission is clear: to create exceptional spaces where individuals, families, and communities can live, work, and unwind. We recognize the importance of making well-informed decisions in today’s real estate environment. With a wealth of experience and a dedication to excellence, we offer the expertise and support you need to find your ideal property.
+        </p>
+      </div>
+      <div class="card alt">
+        <div class="icon">💡</div>
+        <h2>Our Vision</h2>
+        <p>
+          At Dreamland Associate, our vision is to redefine the real estate landscape by building communities that inspire and endure. We aim to be a trusted leader in the industry, known for our unwavering dedication to quality, innovation, and customer satisfaction. Our goal is to develop vibrant neighborhoods where people can live, work, and enjoy life to the fullest. Through our work, we seek to contribute to the growth and development.
+        </p>
+      </div>
+    </div>
+
+    <div class="community">
+      <div class="icon">👨‍👩‍👧‍👦</div>
+      <h2>Humanitarian Community</h2>
+      <p>
+        At Dreamland Associate’s housing projects, cultural and sports activities are thoughtfully developed to be vibrant and inclusive, fostering a sense of community, promoting a civilized and upscale environment, and building strong relationships within the city.
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
+
+/* Base styles moved from body to section-wrapper */
+.section-wrapper {
+  background-color: #ffffff;
+  color: #000;
+  margin: 0 auto;
+  font-family: "Roboto Condensed", sans-serif;
+  padding: 60px 20px 80px; /* reduced top padding for closer title and section */
+  max-width: 1250px;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.container {
+  margin: 0 auto;
+  margin-top: -140px;
+  max-width: 1250px;
+  padding: 0 15px;
+}
+
+/* Section heading */
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px; /* reduced space below title */
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.8s forwards ease-in-out;
+  animation-delay: 0.2s;
+}
+
+.section-heading h1 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 6px; /* less space below heading */
+  letter-spacing: 1.1px;
+  color: #111;
+  line-height: 1.1;
+}
+
+.section-heading p {
+  font-size: 16px;
+  color: #000000;
+  line-height: 1.4;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Card container and cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -70px;
+  gap: 25px;
+  margin-bottom: 50px; /* slightly reduced */
+  justify-content: center;
+}
+
+.card {
+  flex: 1 1 320px;
+  background-color: #f9f9f9;
+  padding: 28px 25px;
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(25px);
+  animation: fadeInUp 0.8s forwards ease-in-out;
+}
+
+.card:nth-child(1) { animation-delay: 0.25s; }
+.card:nth-child(2) { animation-delay: 0.45s; }
+.card:nth-child(3) { animation-delay: 0.65s; }
+
+/* Fixed: removed vertical movement on hover */
+.card:hover {
+  transform: none; /* NO vertical move */
+  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.14);
+  background-color: #fff;
+}
+
+.card.alt {
+  background-color: #eae0d5;
+}
+
+.card h2 {
+  margin-top: 14px;
+  font-size: 21px;
+  color: #222;
+}
+
+.card p {
+  margin-top: 10px;
+  line-height: 1.65;
+  font-size: 15px;
+  color: #000000;
+}
+
+/* Icon style */
+.icon {
+  font-size: 38px;
+  color: #777;
+  transition: color 0.3s ease;
+}
+
+.card:hover .icon {
+  color: #000;
+}
+
+/* Community section */
+.community {
+  background-color: #f9f9f9;
+  padding: 45px 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInUp 0.8s forwards ease-in-out;
+  animation-delay: 0.9s;
+}
+
+.community .icon {
+  font-size: 42px;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.community h2 {
+  font-size: 25px;
+  margin-bottom: 12px;
+  color: #222;
+}
+
+.community p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #444;
+}
+
+/* Projects section heading with underline */
+.projects-section h1 {
+  position: relative;
+  font-size: 2.6rem;
+  font-weight: 700;
+  margin-bottom: 35px;
+  padding-bottom: 10px;
+  color: #111;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.projects-section h1::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(1);
+  width: 90%;
+  max-width: 800px;
+  height: 3px;
+  background: linear-gradient(90deg, #000, #555);
+  border-radius: 2px;
+  transform-origin: center;
+  transition: transform 0.5s ease;
+}
+
+.projects-section h1:hover,
+.projects-section h1.active {
+  color: #000;
+}
+
+.projects-section h1:hover::after,
+.projects-section h1.active::after {
+  transform: translateX(-50%) scaleX(1.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .card-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .card, .card.alt {
+    width: 100%;
+  }
+
+  .section-heading h1,
+  .projects-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .section-heading p {
+    font-size: 15px;
+  }
+
+  .community {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 490px) {
+  .section-wrapper {
+    margin-top: -30px;
+    padding: 40px 15px 60px;
+  }
+
+  .section-heading h1,
+  .projects-section h1 {
+    font-size: 1.9rem;
+  }
+
+  .section-heading p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .card-container {
+    gap: 16px;
+  }
+
+  .card {
+    flex: 1 1 100%;
+    padding: 20px 18px;
+  }
+
+  .card h2 {
+    font-size: 19px;
+  }
+
+  .card p {
+    font-size: 14px;
+  }
+
+  .community {
+    padding: 30px 15px;
+  }
+
+  .community h2 {
+    font-size: 22px;
+  }
+
+  .community p {
+    font-size: 14px;
+  }
+
+  .icon {
+    font-size: 32px;
+  }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+</style>
+<style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
-  /* Chat button with chat bubble icon */
- /* Floating Chatbot Button */
+/* Chatbot Button */
 #chatbot-btn {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  background: #3b3b3b;
-  color: white;
+  background: #1f1f1f;
+  color: #fff;
   border: none;
   padding: 14px 22px;
-  border-radius: 50px;
+  border-radius: 40px;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
-  transition: background 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease, transform 0.2s ease;
   z-index: 9999;
 }
 #chatbot-btn:hover {
   background: #000;
+  transform: translateY(-2px);
 }
 #chatbot-btn svg {
   width: 20px;
@@ -1822,25 +2456,26 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   fill: white;
 }
 
-/* Chatbot Box */
+/* Chatbot Container */
 #chatbot-container {
   position: fixed;
   bottom: 100px;
   right: 30px;
-  width: 360px;
-  max-height: 520px;
+  width: 380px;
+  max-height: calc(100vh - 150px);
   background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(12px);
-  border-radius: 18px;
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
   display: none;
   flex-direction: column;
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
   overflow: hidden;
   animation: fadeInUp 0.4s ease forwards;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: 'Inter', sans-serif;
   z-index: 10000;
   transform: translateY(20px);
   opacity: 0;
+  transition: bottom 0.3s ease;
 }
 
 @keyframes fadeInUp {
@@ -1852,11 +2487,11 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 /* Header */
 #chatbot-header {
-  background: #000;
-  color: white;
-  padding: 16px 20px;
+  background: #111;
+  color: #fff;
+  padding: 16px 22px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 700;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1864,32 +2499,31 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 #chatbot-close {
   cursor: pointer;
   font-size: 22px;
-  color: #ccc;
+  color: #aaa;
   transition: color 0.2s ease;
 }
 #chatbot-close:hover {
   color: #fff;
 }
 
-/* Chat Area */
+/* Messages Area */
 #chatbot-messages {
   flex: 1;
-  padding: 16px;
+  padding: 18px;
   overflow-y: auto;
-  background: #f5f5f5;
+  background: #f7f7f7;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
 }
 
 /* Message Bubbles */
 .message {
   max-width: 80%;
-  padding: 12px 16px;
-  border-radius: 18px;
+  padding: 13px 18px;
+  border-radius: 20px;
   font-size: 15px;
-  line-height: 1.5;
-  position: relative;
+  line-height: 1.6;
   animation: slideIn 0.3s ease;
   word-break: break-word;
 }
@@ -1906,15 +2540,15 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 
 .user-msg {
   align-self: flex-end;
-  background: #000;
+  background: #111;
   color: white;
-  border-bottom-right-radius: 4px;
+  border-bottom-right-radius: 6px;
 }
 .bot-msg {
   align-self: flex-start;
-  background: #eaeaea;
+  background: #e9e9e9;
   color: #111;
-  border-bottom-left-radius: 4px;
+  border-bottom-left-radius: 6px;
 }
 
 /* Input Area */
@@ -1928,10 +2562,10 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   flex: 1;
   padding: 12px 16px;
   border: 1.5px solid #ccc;
-  border-radius: 20px;
+  border-radius: 24px;
   font-size: 15px;
   outline: none;
-  transition: all 0.3s;
+  transition: border-color 0.3s ease;
 }
 #chatbot-input:focus {
   border-color: #000;
@@ -1941,9 +2575,9 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   color: white;
   border: none;
   margin-left: 10px;
-  padding: 12px 18px;
-  border-radius: 20px;
-  font-weight: bold;
+  padding: 12px 20px;
+  border-radius: 24px;
+  font-weight: 600;
   font-size: 15px;
   cursor: pointer;
   transition: background 0.3s ease, transform 0.2s ease;
@@ -1953,7 +2587,7 @@ document.querySelectorAll('.image-slider').forEach(slider => {
   transform: scale(1.05);
 }
 
-/* Scrollbar */
+/* Scrollbar Styling */
 #chatbot-messages::-webkit-scrollbar {
   width: 6px;
 }
@@ -1968,15 +2602,17 @@ document.querySelectorAll('.image-slider').forEach(slider => {
 /* Responsive */
 @media (max-width: 480px) {
   #chatbot-container {
-    width: 90vw;
-    right: 5vw;
-    max-height: 65vh;
-    bottom: 80px;
-    border-radius: 14px;
+    width: 92vw;
+    right: 4vw;
+    max-height: 70vh;
+    bottom: 90px;
+    border-radius: 16px;
   }
 }
 
+
 </style>
+
 
 <!-- Chat button with icon -->
 <button id="chatbot-btn" aria-label="Open chatbox">

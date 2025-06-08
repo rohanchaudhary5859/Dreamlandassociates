@@ -404,126 +404,241 @@
     <button type="submit" class="btn-primary">Signup</button>
     <p>Already have an account? <a href="login.html">Login here</a></p>
   </form>
-</section>
 
-<style>
-  :root {
-    --clr-primary: #000;
-    --clr-secondary: #fff;
-    --radius: 0.5rem;
-    --transition: 0.3s;
-  }
+  <div id="verificationModal" class="modal">
+    <div class="modal-content">
+      <h2>Verify Your Email</h2>
+      <p>Please open your email and verify your account.</p>
+      <button id="closeModalBtn">OK</button>
+    </div>
+  </div>
 
-  * {
-    box-sizing: border-box;
+  <style>
+    :root {
+      --clr-primary: #000;
+      --clr-secondary: #fff;
+      --radius: 0.5rem;
+      --transition: 0.3s;
+    }
 
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    font-family: "Roboto Condensed", sans-serif;
-    background: #f5f5f5;
-  }
+    body {
+      margin: 0;
+      font-family: "Roboto Condensed", sans-serif;
+      background: #f5f5f5;
+    }
 
-  .container {
-    width: 90%;
-    max-width: 400px;
-    margin: 3rem auto;
-  }
+    .container {
+      width: 90%;
+      max-width: 700px;
+      margin: 3rem auto;
+    }
 
-  .auth {
-    background: var(--clr-secondary);
-    padding: 2.5rem;
-    border-radius: var(--radius);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-  }
-
-  .auth h1 {
-    margin-bottom: 2rem;
-    font-size: 1.8rem;
-    color: var(--clr-primary);
-  }
-
-  .form-group {
-    margin-bottom: 1.5rem;
-    text-align: left;
-  }
-
-  .form-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #333;
-  }
-
-  .form-group input {
-    width: 100%;
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: var(--radius);
-    transition: border-color var(--transition);
-  }
-
-  .form-group input:focus {
-    outline: none;
-    border-color: var(--clr-primary);
-    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
-  }
-
-  .btn-primary {
-    width: 100%;
-    padding: 0.9rem;
-    font-size: 1rem;
-    border-radius: var(--radius);
-    border: 2px solid var(--clr-primary);
-    cursor: pointer;
-    transition: background var(--transition), color var(--transition);
-    background: var(--clr-primary);
-    color: var(--clr-secondary);
-  }
-
-  .btn-primary:hover {
-    background: var(--clr-secondary);
-    color: var(--clr-primary);
-  }
-
-  .auth p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-top: 1rem;
-  }
-
-  .auth p a {
-    color: var(--clr-primary);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  .auth p a:hover {
-    text-decoration: underline;
-  }
-
-  @media (max-width: 480px) {
     .auth {
-      padding: 2rem;
+      background: var(--clr-secondary);
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
     }
 
     .auth h1 {
-      font-size: 1.6rem;
+      margin-bottom: 2rem;
+      font-size: 1.8rem;
+      color: var(--clr-primary);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: var(--radius);
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: var(--clr-primary);
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
     }
 
     .btn-primary {
-      font-size: 0.95rem;
-      padding: 0.8rem;
+      width: 100%;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border-radius: var(--radius);
+      border: 2px solid var(--clr-primary);
+      cursor: pointer;
+      transition: background var(--transition), color var(--transition);
+      background: var(--clr-primary);
+      color: var(--clr-secondary);
+    }
+
+    .btn-primary:hover {
+      background: var(--clr-secondary);
+      color: var(--clr-primary);
     }
 
     .auth p {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 1rem;
     }
+
+    .auth p a {
+      color: var(--clr-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .auth p a:hover {
+      text-decoration: underline;
+    }
+
+    /* Modal styles */
+   .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+
+  /* Add this: */
+  padding: 1rem; /* ensures modal content doesn't touch edges on small screens */
+  overflow-y: auto; /* allows scrolling if content is taller than viewport */
+}
+
+.modal-content {
+  background: var(--clr-secondary);
+  padding: 2rem;
+  border-radius: var(--radius);
+  max-width: 320px;
+  width: 100%; /* change to 100% for better responsiveness */
+  max-height: 90vh; /* limit height so it doesn't overflow */
+  overflow-y: auto; /* enable scrolling if content too tall */
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+
+    .modal-content h2 {
+      margin-bottom: 1rem;
+      color: var(--clr-primary);
+    }
+
+    .modal-content p {
+      margin-bottom: 1.5rem;
+      color: #555;
+      font-size: 1rem;
+    }
+
+    .modal-content button {
+      padding: 0.7rem 1.2rem;
+      background: var(--clr-primary);
+      color: var(--clr-secondary);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background var(--transition);
+    }
+
+    .modal-content button:hover {
+      background: #222;
+    }
+
+    @media (max-width: 480px) {
+      .auth {
+        padding: 2rem;
+              margin-top: -40px;
+
+      }
+
+      .auth h1 {
+        font-size: 1.6rem;
+      }
+
+      .btn-primary {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+      }
+
+      .auth p {
+        font-size: 0.85rem;
+      }
+    }
+    
+  .modal-content {
+    padding: 1.5rem; /* slightly smaller padding */
   }
-</style>
+
+  </style>
+
+  <script>
+    const signupForm = document.getElementById('signupForm');
+    const modal = document.getElementById('verificationModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+
+    signupForm.addEventListener('submit', function (e) {
+      e.preventDefault(); // prevent default submission
+
+      // Check if form is valid using HTML5 validation API
+      if (!signupForm.checkValidity()) {
+        signupForm.reportValidity();
+        return; // stop if invalid
+      }
+
+      // Password and Confirm Password match check
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+
+      // Show modal on successful validation
+      modal.style.display = 'flex';
+
+      // Optionally clear form fields here if needed
+      // signupForm.reset();
+    });
+
+    closeModalBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Optional: close modal if user clicks outside modal-content
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</section>
+
+<!-- Modal Popup -->
+
 
 <footer class="footer">
   <div class="footer-wrapper">
