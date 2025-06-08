@@ -457,203 +457,26 @@
 </section>
 
 <style>
- @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Inter&family=Roboto+Condensed&family=Roboto+Slab&display=swap');
 
 :root {
-  --color-bg-start: #fafafa;
-  --color-bg-end: #ffffff;
-  --color-text: #1a1a1a;
+  --color-bg: #fafafa;
+  --color-text: #222222;
   --color-accent: #111111;
-  --color-accent-hover: #333333;
-  --btn-radius: 48px;
-  --shadow-light: rgba(0, 0, 0, 0.08);
-  --shadow-strong: rgba(0, 0, 0, 0.15);
+  --color-accent-hover: #555555;
+  --btn-radius: 32px;
   --font-primary: 'Roboto Condensed', sans-serif;
-  --btn-gradient-start: #000000;
-  --btn-gradient-end: #222222;
+  --btn-bg: #222222;
+  --btn-bg-hover: #444444;
 }
 
 .wrapper {
-  background: linear-gradient(90deg, var(--color-bg-start), var(--color-bg-end));
-  padding: 90px 24px;
+  background: var(--color-bg);
+  padding: 60px 20px;
   font-family: var(--font-primary);
   color: var(--color-text);
   text-align: center;
-  animation: fadeIn 1s ease forwards;
-}
-
-.header-title {
-  position: relative;
-  display: inline-block;
-  margin-bottom: 70px;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-  text-transform: uppercase;
-  font-family: 'Inter', var(--font-primary);
-  padding: 16px 0;
-  user-select: none;
-}
-
-.header-title::before,
-.header-title::after {
-  content: "";
-  position: absolute;
-  height: 4px;
-  background-color: var(--color-accent);
-  width: 85%;
-  left: 7%;
-  border-radius: 3px;
-  opacity: 0.35;
-  transition: opacity 0.4s ease;
-}
-
-.header-title::before {
-  top: 0;
-}
-
-.header-title::after {
-  bottom: 0;
-}
-
-.header-title:hover::before,
-.header-title:hover::after {
-  opacity: 1;
-}
-
-.estate-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 40px;
-  padding: 0 16px;
-  max-width: 1240px;
-  margin: 0 auto;
-}
-
-.estate-card {
-  background: rgba(255, 255, 255, 0.65);
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow:
-    0 8px 20px var(--shadow-light),
-    inset 0 0 20px rgba(255, 255, 255, 0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  backdrop-filter: blur(15px);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  will-change: transform;
-}
-
-.estate-card:hover {
-  transform: translateY(-12px) scale(1.03);
-  box-shadow:
-    0 28px 48px var(--shadow-strong),
-    inset 0 0 30px rgba(255, 255, 255, 0.45);
-  border-color: var(--color-accent-hover);
-}
-
-.estate-card img {
-  width: 100%;
-  height: 240px;
-  object-fit: cover;
-  transition: transform 0.6s ease, filter 0.6s ease;
-  border-bottom-left-radius: 28px;
-  border-bottom-right-radius: 28px;
-}
-
-.estate-card:hover img {
-  transform: scale(1.08);
-  filter: brightness(1.1);
-}
-
-.estate-content {
-  padding: 32px 28px 36px;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  text-align: center;
-}
-
-.estate-name {
-  font-size: 1.6rem;
-  font-weight: 800;
-  font-family: var(--font-primary);
-  color: var(--color-accent);
-  margin-bottom: 16px;
-  letter-spacing: 0.025em;
-}
-
-.estate-desc {
-  font-size: .90rem;
-  color: #000000;
-  font-family: var(--font-primary);
-  margin-bottom: 30px;
-  line-height: 1.6;
-  flex-grow: 1;
-  user-select: none;
-}
-
-.details-btn {
-  align-self: center;
-  background: linear-gradient(135deg, var(--btn-gradient-start), var(--btn-gradient-end));
-  color: #fff;
-  padding: 14px 28px;
-  border-radius: var(--btn-radius);
-  text-decoration: none;
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.05em;
-  box-shadow:
-    0 8px 12px rgba(0, 0, 0, 0.3),
-    inset 0 0 12px rgba(255, 255, 255, 0.15);
-  transition:
-    background 0.35s ease,
-    box-shadow 0.35s ease,
-    color 0.35s ease,
-    transform 0.3s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  user-select: none;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.details-btn::before {
-  content: "";
-  position: absolute;
-  top: -40%;
-  left: -50%;
-  width: 200%;
-  height: 180%;
-  background: rgba(255, 255, 255, 0.15);
-  transform: rotate(25deg);
-  transition: transform 0.5s ease;
-  pointer-events: none;
-}
-
-.details-btn:hover::before {
-  transform: translateX(50%) rotate(25deg);
-}
-
-.details-btn:hover {
-  background: linear-gradient(135deg, var(--color-bg-end), var(--color-bg-start));
-  color: var(--color-accent);
-  box-shadow:
-    0 12px 20px rgba(0, 0, 0, 0.15),
-    inset 0 0 12px rgba(0, 0, 0, 0.1);
-  transform: scale(1.05);
-}
-
-.details-btn:hover span {
-  transform: translateX(8px);
-  transition: transform 0.3s ease;
+  animation: fadeIn 0.6s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
@@ -667,46 +490,161 @@
   }
 }
 
+.header-title {
+  display: inline-block;
+  margin-bottom: 40px;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-family: 'Inter', var(--font-primary);
+  position: relative;
+  padding-bottom: 10px;
+  user-select: none;
+  cursor: default;
+}
+
+.header-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 3px;
+  width: 60px;
+  background-color: var(--color-accent);
+  border-radius: 2px;
+  transition: width 0.35s ease, background-color 0.3s ease;
+}
+
+.header-title:hover::after {
+  width: 100px;
+  background-color: var(--color-accent-hover);
+}
+
+.estate-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.estate-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ddd;
+  transition: border-color 0.3s ease, transform 0.4s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.6s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.estate-card:hover {
+  border-color: var(--color-accent-hover);
+  transform: translateY(-6px);
+}
+
+.estate-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 16px;
+}
+
+.estate-content {
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.estate-name {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  margin-bottom: 10px;
+  letter-spacing: 0.02em;
+}
+
+.estate-desc {
+  font-size: 0.85rem;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 20px;
+  user-select: none;
+  flex-grow: 1;
+}
+
+.details-btn {
+  background-color: var(--btn-bg);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: var(--btn-radius);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  text-decoration: none;
+}
+
+.details-btn:hover {
+  background-color: var(--btn-bg-hover);
+  transform: scale(1.05);
+}
+
 /* Responsive Adjustments */
 @media (max-width: 600px) {
   .header-title {
-    font-size: 2.5rem;
-    margin-bottom: 48px;
+    font-size: 1.7rem;
+    margin-bottom: 32px;
   }
 
   .estate-card img {
-    height: 200px;
+    height: 160px;
   }
 
   .estate-name {
-    font-size: 1.4rem;
+    font-size: 1.1rem;
   }
 
   .estate-desc {
-    font-size: 1rem;
-    margin-bottom: 24px;
+    font-size: 0.8rem;
+    margin-bottom: 16px;
   }
 
   .details-btn {
-    padding: 12px 24px;
-    font-size: 1rem;
-    border-radius: 40px;
+    padding: 8px 20px;
+    font-size: 0.85rem;
+    border-radius: 28px;
   }
 }
 
-/* Adjust grid for 490px breakpoint */
-@media (max-width: 490px) {
+@media (max-width: 480px) {
   .estate-grid {
-    grid-template-columns: 1fr !important; /* stack cards vertically */
-    gap: 24px;
-    margin-top: -10px;
-    padding: 0 12px;
-  }
-  .estate-card {
-    max-width: 100%;
-    margin: 0 auto;
+    grid-template-columns: 1fr !important;
+    gap: 16px;
   }
 }
+
 </style>
 
 
