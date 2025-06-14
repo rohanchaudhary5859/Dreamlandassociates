@@ -266,7 +266,6 @@
   <li><a href="contact.html" class="active">Contact</a></li>
   <li><a href="add-property.html" class="active">Add Property</a></li>
   <li><a href="login.html">Login</a></li>
-    <li><a href="customerprofile.html">Profile</a></li>
   <li><a href="signup.html">Signup</a></li>
 </ul>
 
@@ -297,7 +296,6 @@
   <a href="add-property.html" class="active">Add Property</a>
   <a href="login.html" role="menuitem">Login</a>
   <a href="signup.html" role="menuitem">Signup</a>
-  <a href="customerprofile.html">Profile</a>
   <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
 </div>
 
@@ -625,7 +623,8 @@
   padding: 30px 25px;
   text-align: center;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  border: 2px solid transparent; /* added transparent border */
+  transition: border 0.3s ease, box-shadow 0.3s ease, color 0.3s ease;
   cursor: default;
 }
 
@@ -653,17 +652,19 @@
   transition: color 0.3s ease;
 }
 
+/* Updated subtle border hover */
 .feature-box:hover {
-  background-color: #111;
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.3);
-  transform: translateY(-8px) scale(1.05);
+  background-color: transparent; /* no background change */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* subtle shadow */
+  border: 2px solid #111; /* subtle dark border */
+  transform: none; /* no translate or scale */
 }
 
 .feature-box:hover span,
 .feature-box:hover h3,
 .feature-box:hover p {
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  color: #111; /* keep text dark, no white */
+  text-shadow: none; /* no text shadow */
 }
 
 /* Tablet */
@@ -713,6 +714,7 @@
     font-size: 0.95rem;
   }
 }
+
 
 </style>
 
