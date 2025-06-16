@@ -366,51 +366,58 @@
   });
 </script>
 
-<section class="project-modern">
+<section class="project-modern" id="laxmi-enclave">
   <div class="modern-container">
     <div class="modern-text">
       <h1>
         Laxmi Enclave
-        <span>About the Project</span>
+        <span>– About the Project</span>
       </h1>
       <p class="intro">
-        Laxmi Enclave is a strategically located ongoing gated colony near Ratanpur on Shimla Bypass Highway. This residential project offers thoughtfully designed plots with modern infrastructure, paved roads, continuous water and electricity supply, making it an ideal choice for future growth and smart investment.
+        <strong>Laxmi Enclave</strong> is an ongoing gated colony near <strong>Ratanpur, Shimla Bypass Highway</strong>. It offers well-planned <strong>residential plots</strong> with paved roads, water and electricity, and excellent future value — ideal for families and smart investors in <strong>Dehradun</strong>.
       </p>
       <ul class="features-list">
         <li>🔐 <span>Secure Gated Community with 24/7 Surveillance</span></li>
-        <li>🛣️ <span>Wide, Paved Internal Roads & Efficient Drainage</span></li>
-        <li>💧 <span>Reliable Water & Electricity Connections</span></li>
-        <li>📍 <span>Prime Location near Ratanpur on Shimla Bypass</span></li>
-        <li>📈 <span>Excellent Investment Potential with Growth Prospects</span></li>
+        <li>🛣️ <span>Wide Paved Roads & Proper Drainage</span></li>
+        <li>💧 <span>Reliable Water & Electricity Supply</span></li>
+        <li>📍 <span>Strategic Location near Ratanpur, Shimla Bypass</span></li>
+        <li>📈 <span>High Investment Potential with Growth Prospects</span></li>
       </ul>
+     
     </div>
     <div class="modern-image">
-      <img src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/e5f6ff00-ba47-4390-93a9-c00185e7225d/Leonardo_Phoenix_10_Bhadraj_Colony_a_wellestablished_gated_res_3.jpg" alt="Laxmi Enclave" />
+      <img 
+        src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/e5f6ff00-ba47-4390-93a9-c00185e7225d/Leonardo_Phoenix_10_Bhadraj_Colony_a_wellestablished_gated_res_3.jpg" 
+        alt="Laxmi Enclave – Residential Plots on Shimla Bypass near Ratanpur" 
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
 
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet');
+ @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 .project-modern {
-  font-family: "Roboto Condensed", sans-serif;
-  background: #fff;
-  color: #111;
-  padding: 50px 5vw;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  margin-top: -30px;
+  padding: 80px 5vw;
   overflow: hidden;
 }
 
 .modern-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   align-items: center;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: auto;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s ease-out forwards;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
 }
 
 @keyframes fadeUp {
@@ -420,32 +427,28 @@
   }
 }
 
-.modern-text {
-  flex: 1;
-  min-width: 260px;
-}
-
 .modern-text h1 {
-  font-size: 2rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   line-height: 1.3;
+  color: #000000;
 }
 
 .modern-text h1 span {
   display: block;
-  font-size: 1rem;
+  font-size: 1.50rem;
   font-weight: 500;
-  color: #555;
-  margin-top: 5px;
+  color: #000000;
+  margin-top: 8px;
 }
 
 .modern-text .intro {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #444;
-  max-width: 500px;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #000000;
+  margin: 24px 0;
+  max-width: 620px;
 }
 
 .features-list {
@@ -455,72 +458,64 @@
 }
 
 .features-list li {
-  font-size: 0.95rem;
-  background: #f7f7f7;
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
+  background: #f9f9f9;
+  padding: 16px 22px;
+  border-left: 5px solid #4d2f01;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #222;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .features-list li:hover {
-  transform: translateX(5px);
-  background: #f0f0f0;
-}
-
-.modern-image {
-  flex: 1;
-  min-width: 260px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transform: translateX(10px);
+  background-color: #f0f0f0;
 }
 
 .modern-image img {
   width: 100%;
-  max-width: 420px;
-  border-radius: 14px;
+  max-width: 520px;
+  border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .modern-image img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  transform: scale(1.05);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .modern-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
   .modern-text h1 {
-    font-size: 1.6rem;
+    font-size: 2.2rem;
   }
 
-  .modern-text h1 span {
+  .modern-text .intro {
+    font-size: 0.98rem;
+  }
+
+  .features-list li {
     font-size: 0.95rem;
   }
 
-  .modern-text .intro,
-  .features-list li {
-    font-size: 0.9rem;
-  }
-
-  .modern-image {
-    margin-top: 10px;
+  .project-modern {
+    padding: 60px 5vw;
   }
 }
+
   </style>
 
 <section class="plot-features">
   <div class="container">
     <div class="features-title-wrap">
       <div class="line"></div>
-      <h2 class="features-title">Plot Features</h2>
+      <h2 class="features-title">Why Choose Us?</h2>
       <div class="line"></div>
     </div>
     <div class="features-grid">

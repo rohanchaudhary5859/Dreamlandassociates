@@ -366,52 +366,58 @@
   });
 </script>
 
-<section class="project-modern">
+<section class="project-modern" id="bhauwala-gated-colony">
   <div class="modern-container">
     <div class="modern-text">
       <h1>
         Bhauwala Gated Colony
-        <span>About the Project</span>
+        <span>– About the Project</span>
       </h1>
       <p class="intro">
-        Bhauwala Gated Colony offers spacious residential plots near Bhauwala Chowk with well-planned layouts and modern infrastructure. The project includes wide roads, reliable water and electricity supply, and a secure, peaceful environment. Ideal for both long-term investment and comfortable family living, this ready-to-move community ensures hassle-free ownership.
+        <strong>Bhauwala Gated Colony</strong> offers ready-to-move <strong>residential plots</strong> near <strong>Bhauwala Chowk, Dehradun</strong>. With wide roads, water and electricity supply, and a peaceful gated environment, it’s perfect for families and smart investors.
       </p>
       <ul class="features-list">
-        <li>🔐 <span>Gated Community with 24/7 Security</span></li>
-        <li>🛣️ <span>Developed Plots with Road & Utility Access</span></li>
-        <li>💧 <span>Water and Electricity Infrastructure</span></li>
+        <li>🔐 <span>24/7 Secured Gated Community</span></li>
+        <li>🛣️ <span>Well-Developed Plots with Road Access</span></li>
+        <li>💧 <span>Water & Electricity Infrastructure</span></li>
         <li>📍 <span>Prime Location near Bhauwala Chowk</span></li>
-        <li>🏡 <span>Ideal for Investment & Residential Use</span></li>
+        <li>🏡 <span>Ideal for Living & Long-Term Investment</span></li>
       </ul>
     </div>
     <div class="modern-image">
-      <img src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/9f998fa9-267c-4d7c-87ee-3cca72b2d99c/Leonardo_Phoenix_10_Bhauwala_Gated_Colony_a_spacious_and_wellp_1.jpg" alt="Bhauwala Gated Colony" />
+      <img 
+        src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/9f998fa9-267c-4d7c-87ee-3cca72b2d99c/Leonardo_Phoenix_10_Bhauwala_Gated_Colony_a_spacious_and_wellp_1.jpg" 
+        alt="Bhauwala Gated Colony – Residential Plots for Sale near Dehradun" 
+        loading="lazy"
+      />
     </div>
   </div>
 </section>
 
 
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Oswald:wght@200..700&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&family=Savate:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet');
+   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 .project-modern {
-  font-family: "Roboto Condensed", sans-serif;
-  background: #fff;
-  color: #111;
-  padding: 50px 5vw;
+  font-family: 'Inter', sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  margin-top: -30px;
+  padding: 80px 5vw;
   overflow: hidden;
 }
 
 .modern-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   align-items: center;
-  justify-content: space-between;
-  max-width: 1100px;
-  margin: auto;
+  gap: 60px;
+  max-width: 1200px;
+  margin: 0 auto;
   opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.8s ease-out forwards;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease-out forwards;
 }
 
 @keyframes fadeUp {
@@ -421,32 +427,28 @@
   }
 }
 
-.modern-text {
-  flex: 1;
-  min-width: 260px;
-}
-
 .modern-text h1 {
-  font-size: 2rem;
+  font-size: 2.75rem;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 14px;
   line-height: 1.3;
+  color: #000000;
 }
 
 .modern-text h1 span {
   display: block;
-  font-size: 1rem;
+  font-size: 1.50rem;
   font-weight: 500;
-  color: #555;
-  margin-top: 5px;
+  color: #000000;
+  margin-top: 8px;
 }
 
 .modern-text .intro {
-  font-size: 1rem;
-  line-height: 1.6;
-  margin-bottom: 20px;
-  color: #444;
-  max-width: 500px;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #000000;
+  margin: 24px 0;
+  max-width: 620px;
 }
 
 .features-list {
@@ -456,65 +458,57 @@
 }
 
 .features-list li {
-  font-size: 0.95rem;
-  background: #f7f7f7;
-  padding: 12px 16px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  transition: transform 0.3s ease;
+  background: #f9f9f9;
+  padding: 16px 22px;
+  border-left: 5px solid #4d2f01;
+  margin-bottom: 16px;
+  border-radius: 12px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  color: #222;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .features-list li:hover {
-  transform: translateX(5px);
-  background: #f0f0f0;
-}
-
-.modern-image {
-  flex: 1;
-  min-width: 260px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  transform: translateX(10px);
+  background-color: #f0f0f0;
 }
 
 .modern-image img {
   width: 100%;
-  max-width: 420px;
-  border-radius: 14px;
+  max-width: 520px;
+  border-radius: 20px;
   object-fit: cover;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .modern-image img:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+  transform: scale(1.05);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
-  .modern-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
   .modern-text h1 {
-    font-size: 1.6rem;
+    font-size: 2.2rem;
   }
 
-  .modern-text h1 span {
+  .modern-text .intro {
+    font-size: 0.98rem;
+  }
+
+  .features-list li {
     font-size: 0.95rem;
   }
 
-  .modern-text .intro,
-  .features-list li {
-    font-size: 0.9rem;
-  }
-
-  .modern-image {
-    margin-top: 10px;
+  .project-modern {
+    padding: 60px 5vw;
   }
 }
+
   </style>
 </section>
 
@@ -523,7 +517,7 @@
   <div class="container">
     <div class="features-title-wrap">
       <div class="line"></div>
-      <h2 class="features-title">Why Choose Bhauwala Gated Colony?</h2>
+      <h2 class="features-title">Why Choose Us?</h2>
       <div class="line"></div>
     </div>
     <div class="features-grid">

@@ -659,19 +659,23 @@ document.addEventListener("click", (e) => {
         <div class="field">
           🏷️
           <select>
-            <option>Category</option>
             <option>Apartment</option>
-            <option>Villa</option>
-            <option>Commercial</option>
+          <option>Villa</option>
+          <option>Gated Colony</option>
+          <option>Residential Plot</option>
+          <option>Commercial</option>
           </select>
         </div>
         <div class="field">
           📍
           <select>
-            <option>Location</option>
-            <option>New York</option>
-            <option>California</option>
-            <option>Texas</option>
+           <option value="lachiwalla">Lachiwalla</option>
+    <option value="bhauwala">Bhauwala</option>
+    <option value="bhadraj">Bhadraj</option>
+    <option value="dev">Dev Enclave</option>
+    <option value="forest">Forest Enclave</option>
+    <option value="shreeram">Shree Ram</option>
+    <option value="laxmi">Laxmi Enclave</option>
           </select>
         </div>
         <button class="search-button">
@@ -691,135 +695,153 @@ document.addEventListener("click", (e) => {
       </div>
     </div>
   </section>
+<script>
+  document.getElementById("searchBtn").addEventListener("click", function () {
+    const category = document.getElementById("category").value;
+    const location = document.getElementById("location").value;
+
+    // Map location keys to HTML pages
+    const locationPages = {
+      lachiwalla: "lachiwalla.html",
+      bhauwala: "bhauwala.html",
+      bhadraj: "bhadraj.html",
+      dev: "devenclave.html",
+      forest: "forestenclave.html",
+      shreeram: "shreeramenclave.html",
+      laxmi: "laxmienclave.html"
+    };
+
+    // Simple validation
+    if (!location) {
+      alert("Please select a location.");
+      return;
+    }
+
+    // Redirect to the correct page
+    const page = locationPages[location];
+    if (page) {
+      window.location.href = page + `?category=${category}`;
+    } else {
+      alert("Project not found for the selected location.");
+    }
+  });
+</script>
+
+  
 <section class="featured-section">
   <div class="header-wrapper">
     <hr class="line" />
-    <h2 class="featured-heading">Featured Listings</h2>
-    <p class="featured-subtext">Explore premium properties with unmatched comfort and luxury.</p>
+    <h2 class="featured-heading">Featured Residential Listings</h2>
+    <p class="featured-subtext">
+      Explore top-rated gated colonies in Dehradun offering secure residential plots with modern amenities, seamless city access, and eco-friendly surroundings.
+    </p>
     <hr class="line" />
   </div>
 
   <div class="card-grid">
-  <!-- Card 1 -->
-  <div class="property-card" tabindex="0" data-drag="Drag">
-    <div class="image-slider">
-      <img src="https://wordpress.themeholy.com/realar/wp-content/uploads/2024/05/property_inner_3.png" alt="Lakeview Villa Exterior" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/035-1170x785.jpg" alt="Lakeview Villa Interior" />
-      <img src="https://wordpress.themeholy.com/realar/wp-content/uploads/2024/05/property_inner_5.png" alt="Lakeview Kitchen" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/045.jpg" alt="Lakeview Bedroom" />
+    <!-- Lachiwalla Greens -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/632a3a75-b7cd-44d4-bb7a-7a7274fe390c/Leonardo_Phoenix_10_A_beautiful_premium_gated_residential_colo_3.jpg" alt="Lachiwalla Greens Gated Colony in Doiwala Dehradun" />
+      </div>
+      <div class="card-content">
+        <h3>Lachiwalla Greens</h3>
+        <p class="location">Doiwala, Dehradun</p>
+        <p class="summary">
+          A premium gated colony featuring landscaped green parks, wide concrete roads, solar street lighting, underground electricity, 24/7 security, and seamless access to Jolly Grant Airport and Dehradun city center.
+        </p>
+      </div>
     </div>
-    <div class="card-content">
-      <h3>Modern Lakeview Villa</h3>
-      <p class="location">Lake Tahoe, California</p>
-      <p class="details">🛏 5 Beds &nbsp;&nbsp; 🛁 4 Baths &nbsp;&nbsp; 📐 3200 sqft</p>
-      <p class="extra-details">
-        • Spacious open-plan kitchen<br>
-        • Private dock access<br>
-        • Solar panels installed<br>
-        • 2-car garage<br>
-        • Nearby hiking trails
-      </p>
-      <p class="summary">Stunning villa with lake views, large living spaces, and modern finishes.</p>
+
+    <!-- Bhauwala -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/9f998fa9-267c-4d7c-87ee-3cca72b2d99c/Leonardo_Phoenix_10_Bhauwala_Gated_Colony_a_spacious_and_wellp_1.jpg" alt="Bhauwala Gated Residential Plots" />
+      </div>
+      <div class="card-content">
+        <h3>Bhauwala</h3>
+        <p class="location">Near Bhauwala Chowk</p>
+        <p class="summary">
+          Strategically located gated plots with well-laid roads, boundary walls, water and electricity connections, nearby schools, shops, and peaceful surroundings ideal for family living and long-term investment.
+        </p>
+      </div>
+    </div>
+
+    <!-- Bhadraj Colony -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/e52392df-61c9-49e4-8db9-f6aa9b079f91/generations/e5f6ff00-ba47-4390-93a9-c00185e7225d/Leonardo_Phoenix_10_Bhadraj_Colony_a_wellestablished_gated_res_3.jpg" alt="Bhadraj Colony Residential Property in Dehradun" />
+      </div>
+      <div class="card-content">
+        <h3>Bhadraj Colony</h3>
+        <p class="location">Bhauwala, Dehradun</p>
+        <p class="summary">
+          A well-developed gated residential enclave with lush trees, cemented internal roads, secure fencing, water tanks, and close proximity to educational institutions and daily essentials.
+        </p>
+      </div>
+    </div>
+
+    <!-- Dev Enclave -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/54cd3f89-0f02-426c-bdc9-348de18d486b/generations/cc8f1f64-f58c-447b-a30a-ae21a5131570/segments/4:4:1/Flux_Dev_Dev_Enclave_a_completed_gated_colony_located_on_Ramga_3.jpg" alt="Dev Enclave Residential Plots" />
+      </div>
+      <div class="card-content">
+        <h3>Dev Enclave</h3>
+        <p class="location">Ramgadh, Shimla Bypass</p>
+        <p class="summary">
+          A completed and fully occupied gated community featuring paved roads, electricity, water supply, legal documentation, and easy connectivity to Shimla Bypass, ideal for end-users and investors.
+        </p>
+      </div>
+    </div>
+
+    <!-- Forest Enclave -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/54cd3f89-0f02-426c-bdc9-348de18d486b/generations/2dc90dbb-1dde-4419-a83a-d7fbddde333c/segments/2:4:1/Flux_Dev_Forest_Enclave_a_gated_community_nestled_in_the_lush__1.jpg" alt="Forest Enclave Bhauwala" />
+      </div>
+      <div class="card-content">
+        <h3>Forest Enclave</h3>
+        <p class="location">Dhoomnagar, Bhauwala</p>
+        <p class="summary">
+          Forest-themed gated colony offering eco-living with nature trails, green belts, secure boundaries, ready-to-move-in plots, and full civic infrastructure including roadways and street lighting.
+        </p>
+      </div>
+    </div>
+
+    <!-- Shree Ram Enclave -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/54cd3f89-0f02-426c-bdc9-348de18d486b/generations/01096e8f-700e-4ea1-83d6-ba3751182c83/segments/1:4:1/Flux_Dev_Shree_Ram_Enclave_an_ongoing_gated_colony_project_loc_0.jpg" alt="Shree Ram Enclave Dehradun Property" />
+      </div>
+      <div class="card-content">
+        <h3>Shree Ram Enclave</h3>
+        <p class="location">Tuntowala, Chandarbani</p>
+        <p class="summary">
+          An emerging gated colony with 100+ sq yd plots, legal RERA-compliant documentation, black-top roads, community park, water pipeline, and future access to major highways. Perfect for investment or home building.
+        </p>
+      </div>
+    </div>
+
+    <!-- Laxmi Enclave -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://cdn.leonardo.ai/users/930e30b8-bd64-4330-bbfe-40b43518204a/generations/77773a86-4910-4cb4-bb53-12df3279721d/segments/1:4:1/Lucid_Realism_Laxmi_Enclave_an_ongoing_gated_residential_colon_0.jpg" alt="Laxmi Enclave Plots on Shimla Bypass" />
+      </div>
+      <div class="card-content">
+        <h3>Laxmi Enclave</h3>
+        <p class="location">Ratanpur, Shimla Bypass</p>
+        <p class="summary">
+          A promising upcoming gated residential colony offering vastu-compliant plots, wide roads, secured entry, water tank, street lighting, and access to schools, hospitals, and Shimla Bypass Road.
+        </p>
+      </div>
     </div>
   </div>
-
-  <!-- Card 2 -->
-  <div class="property-card" tabindex="0" data-drag="Drag">
-    <div class="image-slider">
-      <img src="https://wordpress.themeholy.com/realar/wp-content/uploads/2024/05/property_inner_1.png" alt="Skytower Loft Exterior" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/012-1170x785.jpg" alt="Loft Living Room" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/040-1170x785.jpg" alt="Loft Kitchen" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/047.jpg" alt="Loft Bedroom" />
-    </div>
-    <div class="card-content">
-      <h3>Urban Skytower Loft</h3>
-      <p class="location">Manhattan, New York</p>
-      <p class="details">🛏 3 Beds &nbsp;&nbsp; 🛁 2 Baths &nbsp;&nbsp; 📐 1500 sqft</p>
-      <p class="extra-details">
-        • Floor-to-ceiling windows<br>
-        • Smart home tech<br>
-        • Gym and pool access<br>
-        • Concierge services<br>
-        • Walk to subway
-      </p>
-      <p class="summary">A stylish loft with panoramic city views, high ceilings, and open floor plan.</p>
-    </div>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="property-card" tabindex="0" data-drag="Drag">
-    <div class="image-slider">
-      <img src="https://wordpress.themeholy.com/realar/wp-content/uploads/2024/05/property_inner_4.png" alt="Forest Cabin Exterior" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/030-1170x785.jpg" alt="Cabin Living Room" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/012-1170x785.jpg" alt="Cabin Kitchen" />
-      <img src="https://demo01.houzez.co/wp-content/uploads/2016/03/008-1170x785.jpg" alt="Cabin Bedroom" />
-    </div>
-    <div class="card-content">
-      <h3>Cozy Forest Cabin</h3>
-      <p class="location">Banff, Canada</p>
-      <p class="details">🛏 4 Beds &nbsp;&nbsp; 🛁 3 Baths &nbsp;&nbsp; 📐 2200 sqft</p>
-      <p class="extra-details">
-        • Wood-burning fireplace<br>
-        • Large deck with mountain views<br>
-        • Fully furnished<br>
-        • Close to ski resorts<br>
-        • Pet-friendly
-      </p>
-      <p class="summary">Quiet retreat cabin surrounded by nature, perfect for weekend getaways.</p>
-    </div>
-  </div>
-
-  <!-- Card 4 -->
-  <div class="property-card" tabindex="0" data-drag="Drag">
-    <div class="image-slider">
-      <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Beach House Exterior" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/030-1170x877.jpg" alt="Beach House Living Room" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/026-1170x877.jpg" alt="Beach House Kitchen" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/008-1170x877.jpg" alt="Beach House Bedroom" />
-    </div>
-    <div class="card-content">
-      <h3>Luxury Beach House</h3>
-      <p class="location">Malibu, California</p>
-      <p class="details">🛏 6 Beds &nbsp;&nbsp; 🛁 5 Baths &nbsp;&nbsp; 📐 4000 sqft</p>
-      <p class="extra-details">
-        • Oceanfront views<br>
-        • Infinity pool<br>
-        • Private beach access<br>
-        • Home theater<br>
-        • Outdoor kitchen
-      </p>
-      <p class="summary">Elegant beach house with spacious terraces and premium amenities.</p>
-    </div>
-  </div>
-
-  <!-- Card 5 -->
-  <div class="property-card" tabindex="0" data-drag="Drag">
-    <div class="image-slider">
-      <img src="https://hips.hearstapps.com/hmg-prod/images/imagereader-3-1550604839.jpg?crop=1xw:1xh;center,top&resize=980:*" alt="Penthouse Exterior" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/030-1170x877.jpg" alt="Beach House Living Room" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/026-1170x877.jpg" alt="Beach House Kitchen" />
-      <img src="https://demo04.houzez.co/wp-content/uploads/2016/03/008-1170x877.jpg" alt="Beach House Bedroom" />
-    </div>
-    <div class="card-content">
-      <h3>Downtown Penthouse</h3>
-      <p class="location">Chicago, Illinois</p>
-      <p class="details">🛏 4 Beds &nbsp;&nbsp; 🛁 3 Baths &nbsp;&nbsp; 📐 2800 sqft</p>
-      <p class="extra-details">
-        • City skyline views<br>
-        • Rooftop terrace<br>
-        • Smart security<br>
-        • Private elevator<br>
-        • Wine cellar
-      </p>
-      <p class="summary">Modern penthouse with luxurious finishes and breathtaking views.</p>
-    </div>
-  </div>
-</div>
-
 
   <!-- Drag tooltip -->
-  <div id="drag-tooltip"> Drag</div>
+  <div id="drag-tooltip">Drag</div>
 </section>
+
 
 <style>
  @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
@@ -1919,41 +1941,46 @@ window.addEventListener("scroll", function () {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
-  
-.projects-section {
-  background: #fff;
+  .projects-section {
+  background: linear-gradient(to bottom, #ffffff);
   padding: 100px 20px 80px;
   text-align: center;
-  margin-top: -70px;
   font-family: "Roboto Condensed", sans-serif;
   color: #111;
+  overflow-x: hidden;
 }
 
 .projects-section h2 {
-  font-size: 2.90rem;
-  font-weight: 700;
+  font-size: 3rem;
+  font-weight: 800;
   text-transform: uppercase;
-  color: #111;
-  margin-bottom: 50px;
-  letter-spacing: 1px;
+  letter-spacing: 1.8px;
   position: relative;
   display: inline-block;
+  margin-bottom: 40px;
+  color: #111;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s ease;
 }
 
-/* Animated underline */
+.projects-section h2.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .projects-section h2::after {
   content: '';
   position: absolute;
-  bottom: 0;
+  bottom: -12px;
   left: 50%;
   transform: translateX(-50%) scaleX(0);
   width: 90%;
-  max-width: 1000px;
-  height: 3px;
-  background: linear-gradient(90deg, #000, #555);
-  border-radius: 2px;
+  height: 4px;
+  background: linear-gradient(90deg, #111, #444);
+  border-radius: 3px;
   transform-origin: center;
-  transition: transform 0.5s ease;
+  transition: transform 0.6s ease 0.3s;
 }
 
 .projects-section h2.active::after {
@@ -1962,165 +1989,192 @@ window.addEventListener("scroll", function () {
 
 .projects-section .subtitle {
   max-width: 720px;
-  margin: 0 auto 70px;
-  font-size: 1.2rem;
-  color: #000000;
+  margin: 0 auto 60px;
+  font-size: 1.25rem;
+  color: #444;
   line-height: 1.8;
-  font-weight: 400;
-  font-style: normal;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease 0.3s;
+}
+
+.projects-section .subtitle.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .projects-scroll-container {
   display: flex;
   gap: 24px;
-  margin-top: -20px;
   overflow-x: auto;
-  padding: 10px;
+  padding: 10px 0 20px;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-  box-shadow: inset 10px 0 8px -8px rgba(0,0,0,0.1),
-              inset -10px 0 8px -8px rgba(0,0,0,0.1);
 }
 
 .projects-scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 .project-card {
   flex: 0 0 330px;
   background: #fff;
-  margin-top: 30px;
-  border-radius: 18px;
-  font-family: "Roboto Condensed", sans-serif;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d0d0d0;
   scroll-snap-align: center;
   cursor: pointer;
-  border: 1px solid #ddd;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.05);
-  transform-origin: center center; /* prevents vertical jump */
-}
-
-.project-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-  border-color: #000;
-}
-
-.project-img img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  border-top-left-radius: 18px;
-  border-top-right-radius: 18px;
-  transition: filter 0.3s ease;
-  filter: brightness(95%);
-}
-
-.project-card:hover .project-img img {
-  filter: brightness(100%);
-}
-
-.project-content {
-  padding: 20px;
-  text-align: left;
-}
-
-.project-content h3 {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
-  font-weight: 700;
-  color: #000;
-  border-bottom: 2px solid #000;
-  padding-bottom: 6px;
-}
-
-.project-content p {
-  font-size: 1rem;
-  color: #444;
-  line-height: 1.6;
-  font-weight: 400;
-}
-
-/* Animate fade-up */
-.animate {
+  transform: translateY(60px);
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: all 0.6s ease;
 }
 
-.animate.visible {
+.project-card.visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Responsive for small screens */
+.project-img {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-img img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.4s ease, filter 0.3s ease;
+  filter: brightness(95%);
+}
+
+.project-card:hover .project-img img {
+  transform: scale(1.05);
+  filter: brightness(102%);
+}
+
+.project-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover .project-img::after {
+  opacity: 1;
+}
+
+.project-content {
+  padding: 22px 20px 24px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.project-content h3 {
+  font-size: 1.55rem;
+  font-weight: 700;
+  color: #111;
+  position: relative;
+  margin-bottom: 0;
+}
+
+.project-content h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 50px;
+  height: 3px;
+  background-color: #000;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.project-card:hover h3::after {
+  width: 100%;
+}
+
+.project-content p {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Staggered delays for fade-up */
+.project-card:nth-child(1) { transition-delay: 0.1s; }
+.project-card:nth-child(2) { transition-delay: 0.2s; }
+.project-card:nth-child(3) { transition-delay: 0.3s; }
+.project-card:nth-child(4) { transition-delay: 0.4s; }
+.project-card:nth-child(5) { transition-delay: 0.5s; }
+
+/* Responsive */
 @media (max-width: 490px) {
   .projects-section h2 {
-    font-size: 2.4rem;
+    font-size: 2.3rem;
   }
 
   .projects-section .subtitle {
     font-size: 1rem;
+    margin-bottom: 40px;
     padding: 0 12px;
-    margin-bottom: 50px;
   }
 
   .projects-scroll-container {
-    justify-content: flex-start;
-    padding-left: 30px;
-    box-shadow: none; /* simpler on small */
+    padding-left: 20px;
   }
 
   .project-card {
     flex: 0 0 90%;
     margin: 0 auto;
-    box-shadow: 0 8px 15px rgba(0,0,0,0.05);
   }
 
   .project-content h3 {
-    font-size: 1.3rem;
+    font-size: 1.35rem;
   }
 
   .project-content p {
     font-size: 0.95rem;
   }
 }
+
 </style>
-
 <script>
-  // Animate projects heading underline on scroll and on load
-  window.addEventListener('scroll', () => {
+  // Reveal title + subtitle
+  const revealHeading = () => {
     const heading = document.querySelector('.projects-section h2');
-    const headingPosition = heading.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.5;
+    const subtitle = document.querySelector('.projects-section .subtitle');
+    const top = heading.getBoundingClientRect().top;
+    const screenPosition = window.innerHeight / 1.3;
 
-    if (headingPosition < screenPosition) {
+    if (top < screenPosition) {
       heading.classList.add('active');
+      subtitle.classList.add('visible');
     }
-  });
+  };
 
-  window.addEventListener('load', () => {
-    const heading = document.querySelector('.projects-section h2');
-    const headingPosition = heading.getBoundingClientRect().top;
-    const screenPosition = window.innerHeight / 1.5;
+  window.addEventListener('scroll', revealHeading);
+  window.addEventListener('load', revealHeading);
 
-    if (headingPosition < screenPosition) {
-      heading.classList.add('active');
-    }
-  });
-
-  // Fade-up animation for project cards using Intersection Observer
+  // Reveal cards
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        observer.unobserve(entry.target); // Animate once
       }
     });
-  }, { threshold: 0.2 });
+  }, { threshold: 0.25 });
 
-  document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+  document.querySelectorAll('.project-card').forEach(card => observer.observe(card));
 </script>
+
 
 <section class="section-wrapper">
   <div class="container">
@@ -2164,16 +2218,32 @@ window.addEventListener("scroll", function () {
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap');
 
 /* Base styles moved from body to section-wrapper */
-.section-wrapper {
-  background-color: #ffffff;
-  color: #000;
-  margin: 0 auto;
-  font-family: "Roboto Condensed", sans-serif;
-  padding: 60px 20px 80px; /* reduced top padding for closer title and section */
-  max-width: 1250px;
-  transition: background-color 0.4s ease, color 0.4s ease;
+/* Define CSS variables for easy theming */
+:root {
+  --primary-color: #111;
+  --secondary-color: #222;
+  --accent-color: #eae0d5;
+  --light-bg: #ffffff;
+  --card-bg: #f9f9f9;
+  --text-color: #000;
+  --font-family: 'Roboto Condensed', sans-serif;
+  --transition-speed: 0.4s;
+  --shadow-default: 0 12px 28px rgba(0, 0, 0, 0.07);
+  --shadow-hover: 0 22px 44px rgba(0, 0, 0, 0.14);
 }
 
+/* Overall section wrapper with smoother transitions */
+.section-wrapper {
+  background-color: var(--light-bg);
+  color: var(--text-color);
+  margin: 0 auto;
+  font-family: var(--font-family);
+  padding: 60px 20px 80px;
+  max-width: 1250px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+/* Central container tweaks */
 .container {
   margin: 0 auto;
   margin-top: -140px;
@@ -2181,10 +2251,10 @@ window.addEventListener("scroll", function () {
   padding: 0 15px;
 }
 
-/* Section heading */
+/* Section heading with refined animation */
 .section-heading {
   text-align: center;
-  margin-bottom: 40px; /* reduced space below title */
+  margin-bottom: 40px;
   opacity: 0;
   transform: translateY(15px);
   animation: fadeInUp 0.8s forwards ease-in-out;
@@ -2192,38 +2262,39 @@ window.addEventListener("scroll", function () {
 }
 
 .section-heading h1 {
-  font-size: 2.6rem;
+  font-size: 2.90rem;
   font-weight: 700;
-  margin-bottom: 6px; /* less space below heading */
+  margin-bottom: 6px;
   letter-spacing: 1.1px;
-  color: #111;
+  color: var(--primary-color);
   line-height: 1.1;
 }
 
 .section-heading p {
-  font-size: 16px;
-  color: #000000;
+  font-size: 18px;
+  color: var(--text-color);
   line-height: 1.4;
   max-width: 600px;
   margin: 0 auto;
 }
 
-/* Card container and cards */
+/* Card container using flex for a modern grid feel */
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: -70px;
-  gap: 25px;
-  margin-bottom: 50px; /* slightly reduced */
   justify-content: center;
+  gap: 25px;
+  margin: -70px auto 50px;
+  max-width: 100%;
 }
 
+/* Individual cards with modern shadow and transition effects */
 .card {
   flex: 1 1 320px;
-  background-color: #f9f9f9;
+  background-color: var(--card-bg);
   padding: 28px 25px;
   border-radius: 16px;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--shadow-default);
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   cursor: pointer;
   opacity: 0;
@@ -2235,31 +2306,31 @@ window.addEventListener("scroll", function () {
 .card:nth-child(2) { animation-delay: 0.45s; }
 .card:nth-child(3) { animation-delay: 0.65s; }
 
-/* Fixed: removed vertical movement on hover */
-.card:hover {
-  transform: none; /* NO vertical move */
-  box-shadow: 0 22px 44px rgba(0, 0, 0, 0.14);
-  background-color: #fff;
+/* Alternate card style */
+.card.alt {
+  background-color: var(--accent-color);
 }
 
-.card.alt {
-  background-color: #eae0d5;
+.card:hover {
+  transform: translateY(0);
+  box-shadow: var(--shadow-hover);
+  background-color: var(--light-bg);
 }
 
 .card h2 {
   margin-top: 14px;
-  font-size: 21px;
-  color: #222;
+  font-size: 25px;
+  color: var(--secondary-color);
 }
 
 .card p {
   margin-top: 10px;
   line-height: 1.65;
-  font-size: 15px;
-  color: #000000;
+  font-size: 16px;
+  color: var(--text-color);
 }
 
-/* Icon style */
+/* Icon styling with smooth color transition */
 .icon {
   font-size: 38px;
   color: #777;
@@ -2267,16 +2338,16 @@ window.addEventListener("scroll", function () {
 }
 
 .card:hover .icon {
-  color: #000;
+  color: var(--text-color);
 }
 
-/* Community section */
+/* Community section with balanced padding and centered layout */
 .community {
-  background-color: #f9f9f9;
+  background-color: var(--card-bg);
   padding: 45px 25px;
   border-radius: 16px;
   text-align: center;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--shadow-default);
   opacity: 0;
   transform: translateY(15px);
   animation: fadeInUp 0.8s forwards ease-in-out;
@@ -2292,23 +2363,23 @@ window.addEventListener("scroll", function () {
 .community h2 {
   font-size: 25px;
   margin-bottom: 12px;
-  color: #222;
+  color: var(--secondary-color);
 }
 
 .community p {
-  font-size: 15px;
+  font-size: 16px;
   line-height: 1.6;
-  color: #444;
+  color: #000000;
 }
 
-/* Projects section heading with underline */
+/* Projects section heading with dynamic underline effect */
 .projects-section h1 {
   position: relative;
   font-size: 2.6rem;
   font-weight: 700;
   margin-bottom: 35px;
   padding-bottom: 10px;
-  color: #111;
+  color: var(--primary-color);
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -2322,7 +2393,7 @@ window.addEventListener("scroll", function () {
   width: 90%;
   max-width: 800px;
   height: 3px;
-  background: linear-gradient(90deg, #000, #555);
+  background: linear-gradient(90deg, var(--primary-color), #555);
   border-radius: 2px;
   transform-origin: center;
   transition: transform 0.5s ease;
@@ -2330,7 +2401,7 @@ window.addEventListener("scroll", function () {
 
 .projects-section h1:hover,
 .projects-section h1.active {
-  color: #000;
+  color: var(--text-color);
 }
 
 .projects-section h1:hover::after,
@@ -2338,26 +2409,22 @@ window.addEventListener("scroll", function () {
   transform: translateX(-50%) scaleX(1.2);
 }
 
-/* Responsive Design */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .card-container {
     flex-direction: column;
     gap: 20px;
   }
-
   .card, .card.alt {
     width: 100%;
   }
-
   .section-heading h1,
   .projects-section h1 {
     font-size: 2.2rem;
   }
-
   .section-heading p {
     font-size: 15px;
   }
-
   .community {
     padding: 40px 20px;
   }
@@ -2368,52 +2435,42 @@ window.addEventListener("scroll", function () {
     margin-top: -30px;
     padding: 40px 15px 60px;
   }
-
   .section-heading h1,
   .projects-section h1 {
     font-size: 1.9rem;
   }
-
   .section-heading p {
     font-size: 14px;
     max-width: 100%;
   }
-
   .card-container {
     gap: 16px;
   }
-
   .card {
     flex: 1 1 100%;
     padding: 20px 18px;
   }
-
   .card h2 {
     font-size: 19px;
   }
-
   .card p {
     font-size: 14px;
   }
-
   .community {
     padding: 30px 15px;
   }
-
   .community h2 {
     font-size: 22px;
   }
-
   .community p {
     font-size: 14px;
   }
-
   .icon {
     font-size: 32px;
   }
 }
 
-/* Animations */
+/* Modern fade-in animation */
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -2425,27 +2482,28 @@ window.addEventListener("scroll", function () {
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto+Slab:wght@100..900&display=swap');
 /* Chatbot Button */
+/* Chatbot Toggle Button */
 #chatbot-btn {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
-  background: #1f1f1f;
+  bottom: 28px;
+  right: 28px;
+  background: linear-gradient(135deg, #1f1f1f, #2c2c2c);
   color: #fff;
   border: none;
   padding: 14px 22px;
-  border-radius: 40px;
-  font-size: 16px;
+  border-radius: 50px;
+  font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 10px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-  transition: background 0.3s ease, transform 0.2s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transition: all 0.3s ease;
   z-index: 9999;
 }
 #chatbot-btn:hover {
-  background: #000;
+  background: linear-gradient(135deg, #000, #1a1a1a);
   transform: translateY(-2px);
 }
 #chatbot-btn svg {
@@ -2460,20 +2518,20 @@ window.addEventListener("scroll", function () {
   bottom: 100px;
   right: 30px;
   width: 380px;
-  max-height: calc(100vh - 150px);
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(14px);
+  max-height: calc(100vh - 140px);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(18px);
   border-radius: 20px;
   display: none;
   flex-direction: column;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
   overflow: hidden;
   animation: fadeInUp 0.4s ease forwards;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   z-index: 10000;
   transform: translateY(20px);
   opacity: 0;
-  transition: bottom 0.3s ease;
+  transition: all 0.4s ease;
 }
 
 @keyframes fadeInUp {
@@ -2485,10 +2543,10 @@ window.addEventListener("scroll", function () {
 
 /* Header */
 #chatbot-header {
-  background: #111;
+  background: #0d0d0d;
   color: #fff;
-  padding: 16px 22px;
-  font-size: 18px;
+  padding: 16px 24px;
+  font-size: 17px;
   font-weight: 700;
   display: flex;
   justify-content: space-between;
@@ -2497,7 +2555,7 @@ window.addEventListener("scroll", function () {
 #chatbot-close {
   cursor: pointer;
   font-size: 22px;
-  color: #aaa;
+  color: #999;
   transition: color 0.2s ease;
 }
 #chatbot-close:hover {
@@ -2507,17 +2565,17 @@ window.addEventListener("scroll", function () {
 /* Messages Area */
 #chatbot-messages {
   flex: 1;
-  padding: 18px;
+  padding: 20px 18px;
   overflow-y: auto;
-  background: #f7f7f7;
+  background: #f9f9f9;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 /* Message Bubbles */
 .message {
-  max-width: 80%;
+  max-width: 82%;
   padding: 13px 18px;
   border-radius: 20px;
   font-size: 15px;
@@ -2527,7 +2585,7 @@ window.addEventListener("scroll", function () {
 }
 @keyframes slideIn {
   from {
-    transform: translateY(10px);
+    transform: translateY(8px);
     opacity: 0;
   }
   to {
@@ -2538,47 +2596,48 @@ window.addEventListener("scroll", function () {
 
 .user-msg {
   align-self: flex-end;
-  background: #111;
+  background: #0d0d0d;
   color: white;
   border-bottom-right-radius: 6px;
 }
 .bot-msg {
   align-self: flex-start;
-  background: #e9e9e9;
-  color: #111;
+  background: #ededed;
+  color: #1a1a1a;
   border-bottom-left-radius: 6px;
 }
 
 /* Input Area */
 #chatbot-input-area {
   display: flex;
-  padding: 14px;
+  padding: 14px 16px;
   background: #fff;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #e0e0e0;
 }
 #chatbot-input {
   flex: 1;
   padding: 12px 16px;
-  border: 1.5px solid #ccc;
+  border: none;
   border-radius: 24px;
+  background: #f0f0f0;
   font-size: 15px;
   outline: none;
-  transition: border-color 0.3s ease;
+  transition: all 0.3s ease;
 }
 #chatbot-input:focus {
-  border-color: #000;
+  background: #e6e6e6;
 }
 #chatbot-send {
-  background: #000;
+  background: #111;
   color: white;
   border: none;
   margin-left: 10px;
-  padding: 12px 20px;
+  padding: 12px 18px;
   border-radius: 24px;
   font-weight: 600;
   font-size: 15px;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
+  transition: all 0.3s ease;
 }
 #chatbot-send:hover {
   background: #222;
@@ -2587,7 +2646,7 @@ window.addEventListener("scroll", function () {
 
 /* Scrollbar Styling */
 #chatbot-messages::-webkit-scrollbar {
-  width: 6px;
+  width: 5px;
 }
 #chatbot-messages::-webkit-scrollbar-thumb {
   background-color: #bbb;
@@ -2607,6 +2666,7 @@ window.addEventListener("scroll", function () {
     border-radius: 16px;
   }
 }
+
 
 
 </style>
@@ -3052,25 +3112,33 @@ window.addEventListener("scroll", function () {
   <!-- Footer -->
   <footer class="footer">
   <div class="footer-wrapper">
+    <!-- About Section -->
     <div class="footer-section about">
-      <h3>Real Estate Website</h3>
-      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
+      <h3>Dreamland Associates</h3>
+      <p>Trusted property consultants in Dehradun. Find premium residential plots and gated communities with transparency, trust, and value.</p>
     </div>
+
+    <!-- Quick Links -->
     <div class="footer-section links">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="index.html" title="Go to Home">Home</a></li>
+        <li><a href="projects.html" title="Explore Properties">Properties</a></li>
+        <li><a href="add-property.html" title="Meet Our Agents">Add Properties</a></li>
+        <li><a href="contact.html" title="Contact Dreamland Associates">Contact Us</a></li>
+        <li><a href="about.html" title="About Dreamland Associates">About Us</a></li>
       </ul>
     </div>
+
+    <!-- Contact Info -->
     <div class="footer-section contact">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
-      <p>Email: info@realestate.com</p>
+      <p>Dreamland Associates<br>
+      Ratanpur Chowk, Shimla Bypass Road,<br>
+      Dehradun, Uttarakhand 248007</p>
+ 
+
+      <!-- Social Media Icons -->
       <div class="social-icons">
         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
@@ -3084,81 +3152,75 @@ window.addEventListener("scroll", function () {
       </div>
     </div>
   </div>
+
+  <!-- Footer Bottom -->
   <div class="footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+    <p>&copy; 2025 Dreamland Associates. All rights reserved. </p>
   </div>
 </footer>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
-
 .footer {
-  background-color: #0a0a0a;
+  background: url('https://i.gifer.com/1AKS.gif') center center / cover no-repeat;
   color: #fff;
   font-family: "Roboto Condensed", sans-serif;
-  padding: 60px 20px 30px;
+  padding: 70px 20px 40px;
   position: relative;
   overflow: hidden;
-  border-top: 1px solid #222;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .footer::before {
-  content: '';
+  content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, #00d5ff33 0%, transparent 70%);
-  animation: pulseBg 8s linear infinite;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
   z-index: 0;
 }
 
-@keyframes pulseBg {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  100% {
-    transform: rotate(360deg) scale(1.05);
-  }
-}
-
 .footer-wrapper {
-  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
   justify-content: space-between;
-  position: relative;
-  z-index: 1;
+  gap: 60px;
 }
 
 .footer-section {
   flex: 1 1 280px;
-  padding: 25px 30px;
   min-width: 240px;
+  padding: 20px 0;
 }
 
 .footer-section h3 {
-  font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 18px;
-  color: #00d5ff;
+  font-size: 1.9rem;
+  font-weight: 700;
+  margin-bottom: 20px;
   position: relative;
 }
 
-.footer-section p {
-  color: #ccc;
-  font-weight: 300;
-  font-size: 1rem;
-  line-height: 1.6;
-  transition: color 0.3s ease;
-  max-width: 320px;
+.footer-section h3::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: #fff;
+  margin-top: 8px;
+  border-radius: 2px;
 }
 
-.footer-section p:hover {
-  color: #fff;
+.footer-section p {
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #eaeaea;
+  margin-bottom: 14px;
+  max-width: 340px;
 }
 
 .footer-section.links ul {
@@ -3168,27 +3230,28 @@ window.addEventListener("scroll", function () {
 }
 
 .footer-section.links ul li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .footer-section.links ul li a {
   font-weight: 300;
   font-size: 1rem;
-  color: #bbb;
+  color: #eaeaea;
   text-decoration: none;
-  position: relative;
   padding: 4px 0;
+  position: relative;
+  display: inline-block;
   transition: all 0.3s ease;
 }
 
 .footer-section.links ul li a::before {
   content: "";
   position: absolute;
-  left: 0;
   bottom: 0;
+  left: 0;
   width: 0%;
   height: 2px;
-  background: #00d5ff;
+  background-color: #fff;
   transition: width 0.3s ease;
 }
 
@@ -3197,17 +3260,17 @@ window.addEventListener("scroll", function () {
 }
 
 .footer-section.links ul li a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .footer-section.contact p {
   margin: 10px 0;
-  color: #ccc;
+  color: #eaeaea;
   font-weight: 300;
 }
 
 .social-icons {
-  margin-top: 25px;
+  margin-top: 20px;
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
@@ -3216,32 +3279,32 @@ window.addEventListener("scroll", function () {
 .social-icons a {
   width: 44px;
   height: 44px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #00d5ff33;
-  color: #00d5ff;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(4px);
 }
 
 .social-icons a:hover {
-  background: #00d5ff;
-  color: #000;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 0 8px #00d5ff88;
+  background: #fff;
+  color: #111;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #1a1a1a;
+  margin-top: 50px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
-  font-size: 0.9rem;
-  color: #888;
+  font-size: 0.95rem;
+  color: #ccc;
   font-weight: 300;
   position: relative;
   z-index: 1;
@@ -3251,69 +3314,56 @@ window.addEventListener("scroll", function () {
 @media (max-width: 900px) {
   .footer-wrapper {
     flex-direction: column;
-    gap: 35px;
+    gap: 40px;
   }
+
   .footer-section {
-    padding: 15px 0;
-    max-width: 100%;
+    padding: 10px 0;
   }
+
+  .footer-section h3 {
+    font-size: 1.6rem;
+  }
+
   .footer-section p,
   .footer-section.links ul li a {
-    max-width: 100%;
     font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
   .footer-wrapper {
-    flex-direction: column;
-    gap: 16px;
+    gap: 24px;
     padding: 0 10px;
   }
 
-  .footer-section {
-    padding: 12px 0;
-    max-width: 100%;
-    flex: none;
-  }
-
   .footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
-    line-height: 1.2;
+    font-size: 1.4rem;
   }
 
   .footer-section p,
   .footer-section.links ul li a {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     line-height: 1.5;
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .footer-section.links ul li {
-    margin-bottom: 10px;
   }
 
   .social-icons {
-    margin-top: 15px;
-    gap: 14px;
-    justify-content: flex-start;
+    margin-top: 12px;
+    gap: 12px;
   }
 
   .social-icons a {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
   }
 
   .footer-bottom {
-    margin-top: 28px;
-    padding-top: 14px;
-    font-size: 0.85rem;
-    color: #777;
+    font-size: 0.8rem;
+    margin-top: 30px;
   }
 }
+
 
 </style>
 
