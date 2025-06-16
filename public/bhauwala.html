@@ -397,10 +397,10 @@
 
 
   <style>
-   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
 
 .project-modern {
-  font-family: 'Inter', sans-serif;
+  font-family: "Roboto Condensed";
   background: #ffffff;
   color: #1a1a1a;
   margin-top: -30px;
@@ -568,13 +568,15 @@
 
 
 <style>
+     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
+
 .plot-features {
   background: #fff;
   padding: 60px 24px;
   max-width: 1100px; /* updated */
   border-radius: 20px;
   margin: -20px auto 0 auto;
-  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Roboto Condensed";
   color: #000000;
 }
 
@@ -717,6 +719,167 @@
 
 </style>
 
+<section class="property-description" aria-labelledby="bhauwala-heading">
+  <div class="container">
+
+    <!-- Title with black lines -->
+    <header class="section-header">
+      <div class="line"></div>
+      <h1 id="bhauwala-heading" class="property-title">Bhauwala Gated Colony – About the Project</h1>
+      <div class="line"></div>
+    </header>
+
+    <p class="overview">
+      Bhauwala Gated Colony offers ready-to-move residential plots near Bhauwala Chowk, Dehradun. With wide roads, reliable water and electricity supply, and a secure, peaceful environment, it's an ideal destination for families and smart investors alike.
+    </p>
+
+    <article class="section">
+      <h2>Key Features</h2>
+      <div class="line-heading"></div>
+      <ul>
+        <li>Ready-to-move plots near Bhauwala Chowk</li>
+        <li>24/7 water and electricity connections</li>
+        <li>Spacious internal roads within a gated layout</li>
+      </ul>
+    </article>
+
+    <article class="section">
+      <h2>Location & Value</h2>
+      <div class="line-heading"></div>
+      <ul>
+        <li>Close to nature with city accessibility</li>
+        <li>High growth potential and peaceful surroundings</li>
+        <li>Ideal for residential or investment purposes</li>
+      </ul>
+    </article>
+
+  </div>
+</section>
+
+<style>
+
+     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
+
+.property-description {
+  background: #fff;
+  color: #111;
+  font-family: "Roboto Condensed";
+  padding: 60px 20px;
+}
+
+.property-description .container {
+  max-width: 1100px;
+  margin: auto;
+  padding: 0 15px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.property-title {
+  font-size: 34px;
+  font-weight: 800;
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+
+.section-header .line {
+  flex-grow: 1;
+  height: 2px;
+  background: linear-gradient(to right, #000000, transparent);
+  border-radius: 10px;
+  min-width: 50px;
+  opacity: 0.3;
+}
+
+.overview {
+  font-size: 18px;
+  line-height: 1.7;
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 40px;
+  color: #333;
+}
+
+.section {
+  margin-bottom: 40px;
+}
+
+.section h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.line-heading {
+  height: 3px;
+  width: 80px;
+  background: linear-gradient(to right, #000000, transparent);
+  border-radius: 8px;
+  margin-bottom: 20px;
+  opacity: 0.2;
+}
+
+.section ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.section ul li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 14px;
+  font-size: 16px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.section ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  background-color: #000;
+  border-radius: 50%;
+}
+
+.section p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #444;
+  max-width: 800px;
+}
+
+@media (max-width: 768px) {
+  .property-title {
+    font-size: 26px;
+  }
+
+  .overview {
+    font-size: 16px;
+  }
+
+  .section h2 {
+    font-size: 20px;
+  }
+
+  .section ul li {
+    font-size: 15px;
+  }
+}
+</style>
+
 
 
 <section class="villa-gallery">
@@ -746,7 +909,7 @@
   color: #000;
   border-radius: 28px;
   max-width: 1300px;
-  margin-top: -10px;
+  margin-top: -70px;
   animation: slideUp 0.8s ease-in-out;
   font-family: 'Inter', 'Poppins', sans-serif;
 }
@@ -854,7 +1017,7 @@
 @media (max-width: 480px)
 {
   .villa-gallery {
-    margin-top: 10px;
+    margin-top: -70px;
   }
 
   .gallery-grid {
