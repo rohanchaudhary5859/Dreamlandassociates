@@ -459,21 +459,30 @@
 </section>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+SC:ital,wght@0,100..900;1,100..900&display=swap');
-
+   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
 :root {
   --color-bg: #fafafa;
   --color-text: #1e1e1e;
   --color-accent: #111111;
-  --color-accent-hover: #555555;
+  --color-accent-hover: #444;
   --btn-radius: 28px;
-  --font-primary: 'Alumni Sans SC', sans-serif;
-  --btn-bg: #222222;
-  --btn-bg-hover: #444444;
+  --btn-bg: #222;
+  --btn-bg-hover: #333;
+  --card-radius: 20px;
+  --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --transition-fast: 0.3s ease;
+  --font-family: "Roboto Condensed", sans-serif;
 }
 
+body {
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}
 
-
+/* Wrapper and fade-in */
 .wrapper {
   padding: 60px 20px;
   text-align: center;
@@ -491,15 +500,16 @@
   }
 }
 
+/* Section Title */
 .header-title {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: var(--color-accent);
   margin-bottom: 48px;
   position: relative;
   display: inline-block;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
   text-transform: uppercase;
   user-select: none;
   cursor: default;
@@ -515,7 +525,7 @@
   width: 60px;
   background-color: var(--color-accent);
   border-radius: 2px;
-  transition: width 0.35s ease, background-color 0.3s ease;
+  transition: width var(--transition-fast), background-color var(--transition-fast);
 }
 
 .header-title:hover::after {
@@ -523,24 +533,26 @@
   background-color: var(--color-accent-hover);
 }
 
+/* Grid Layout */
 .estate-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
+  gap: 28px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
+/* Estate Card */
 .estate-card {
   background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-light);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid #e0e0e0;
-  transition: transform 0.35s ease, border-color 0.3s ease;
+  border: 1px solid #e5e5e5;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.6s ease forwards;
@@ -555,15 +567,17 @@
 
 .estate-card:hover {
   border-color: var(--color-accent-hover);
-  transform: translateY(-6px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .estate-card img {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
 }
 
+/* Content */
 .estate-content {
   padding: 20px 16px;
   display: flex;
@@ -573,7 +587,7 @@
 }
 
 .estate-name {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: 600;
   margin-bottom: 12px;
   color: var(--color-accent);
@@ -581,24 +595,26 @@
 
 .estate-desc {
   font-size: 1rem;
-  color: #555;
-  line-height: 1.5;
+  color: #333;
+  line-height: 1.6;
   margin-bottom: 20px;
   flex-grow: 1;
 }
 
+/* Button */
 .details-btn {
   background-color: var(--btn-bg);
   color: #fff;
-  padding: 10px 28px;
+  padding: 12px 28px;
   border-radius: var(--btn-radius);
   font-weight: 600;
   font-size: 1rem;
   letter-spacing: 0.03em;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color var(--transition-fast), transform 0.2s ease;
   text-decoration: none;
+  display: inline-block;
 }
 
 .details-btn:hover {
@@ -606,7 +622,7 @@
   transform: scale(1.05);
 }
 
-/* Responsive Adjustments */
+/* Responsive Tweaks */
 @media (max-width: 768px) {
   .header-title {
     font-size: 2rem;
@@ -622,23 +638,27 @@
   }
 
   .estate-desc {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .details-btn {
     font-size: 0.9rem;
-    padding: 8px 20px;
+    padding: 10px 22px;
   }
 }
 
 @media (max-width: 480px) {
   .estate-grid {
-    grid-template-columns: 1fr !important;
-    gap: 16px;
+    grid-template-columns: 1fr;
+    gap: 18px;
   }
 
   .header-title {
-    font-size: 1.8rem;
+    font-size: 1.75rem;
+  }
+
+  .estate-card img {
+    height: 160px;
   }
 }
 
@@ -648,29 +668,30 @@
 
 
   <!-- Footer -->
-  <footer class="custom-footer">
+<footer class="custom-footer">
   <div class="custom-footer-wrapper">
     <div class="custom-footer-about">
-      <h3>Real Estate</h3>
-      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
+      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun
+</h3>
+      <p>Discover premium residential plots and gated community projects in Dehradun with Dream Land Associates. As one of the leading real estate developers in Dehradun, we specialize in offering secure, value-driven property investments with a focus on transparency, trust, and long-term growth. Explore our top-rated gated colonies and residential land for sale in prime locations across Dehradun and nearby areas.</p>
     </div>
 
     <div class="custom-footer-links">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">Agents</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="#">Contact</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="add-property.html">Add Property</a></li>
+        <li><a href="about.html">About Dream Land</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
       </ul>
     </div>
 
     <div class="custom-footer-contact">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville</p>
-      <p>Phone: +1 (234) 567-890</p>
-      <p>Email: info@realestate.com</p>
+      <p>Bhauwala Road, Dehradun, Uttarakhand, India</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Email: contact@dreamlandassociates.in</p>
       <div class="custom-social-icons">
         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
         <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -680,12 +701,12 @@
   </div>
 
   <div class="custom-footer-bottom">
-    <p>&copy; 2025 Real Estate. All rights reserved.</p>
+    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
   </div>
 </footer>
+
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
-
 * {
   margin: 0;
   padding: 0;
@@ -694,32 +715,49 @@
 
 .custom-footer {
   width: 100%;
-  background: #0a0a0a;
-  color: #fff;
+  background-color: #0a0a0a;
+  color: #f1f1f1;
   font-family: 'Roboto Condensed', sans-serif;
-  padding: 60px 20px 30px;
+  padding: 80px 30px 50px;
   position: relative;
   overflow: hidden;
 }
 
-.custom-footer::before {
+/* ✅ Glowing animated blobs */
+.custom-footer::before,
+.custom-footer::after {
   content: '';
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at center, #00d5ff33 0%, transparent 70%);
-  animation: pulseBg 8s linear infinite;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 213, 255, 0.4), transparent 70%);
+  filter: blur(100px);
+  animation: moveBlob 20s infinite alternate ease-in-out;
   z-index: 0;
+  border-radius: 50%;
 }
 
-@keyframes pulseBg {
+.custom-footer::before {
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.custom-footer::after {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 10s;
+}
+
+@keyframes moveBlob {
   0% {
-    transform: rotate(0deg) scale(1);
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -30px) scale(1.2);
   }
   100% {
-    transform: rotate(360deg) scale(1.05);
+    transform: translate(-40px, 20px) scale(1);
   }
 }
 
@@ -728,7 +766,7 @@
   z-index: 1;
   display: flex;
   flex-wrap: wrap;
-  gap: 50px;
+  gap: 60px;
   max-width: 1200px;
   margin: 0 auto;
   justify-content: space-between;
@@ -737,147 +775,161 @@
 .custom-footer-about,
 .custom-footer-links,
 .custom-footer-contact {
-  flex: 1 1 280px;
-  min-width: 240px;
+  flex: 1 1 300px;
+  min-width: 250px;
 }
 
 .custom-footer-about h3,
 .custom-footer-links h3,
 .custom-footer-contact h3 {
-  font-weight: 600;
-  font-size: 1.75rem;
-  margin-bottom: 18px;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffffff;
   position: relative;
-  color: #00d5ff;
+  padding-bottom: 6px;
+}
+
+.custom-footer-about h3::after,
+.custom-footer-links h3::after,
+.custom-footer-contact h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
 }
 
 .custom-footer-about p,
 .custom-footer-contact p,
 .custom-footer-links a {
-  font-weight: 300;
   font-size: 1rem;
+  font-weight: 300;
   color: #ccc;
-  line-height: 1.6;
+  line-height: 1.7;
   text-decoration: none;
-  transition: all 0.3s ease;
+  display: block;
+  margin-bottom: 12px;
+  transition: color 0.3s ease;
 }
 
 .custom-footer-about p:hover,
-.custom-footer-contact p:hover {
-  color: #fff;
+.custom-footer-contact p:hover,
+.custom-footer-links a:hover {
+  color: #ffffff;
 }
 
 .custom-footer-links ul {
   list-style: none;
+  padding: 0;
 }
 
 .custom-footer-links li {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.custom-footer-links li a {
-  display: inline-block;
+.custom-footer-links a {
   position: relative;
-  padding: 4px 0;
-  color: #bbb;
+  padding-bottom: 3px;
 }
 
-.custom-footer-links li a::before {
+.custom-footer-links a::after {
   content: "";
   position: absolute;
-  left: 0;
   bottom: 0;
-  width: 0%;
+  left: 0;
   height: 2px;
-  background: #00d5ff;
+  width: 0%;
+  background: #ffffff;
   transition: width 0.3s ease;
 }
 
-.custom-footer-links li a:hover::before {
+.custom-footer-links a:hover::after {
   width: 100%;
-}
-
-.custom-footer-links li a:hover {
-  color: #fff;
 }
 
 .custom-social-icons {
   margin-top: 25px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .custom-social-icons a {
-  width: 44px;
-  height: 44px;
-  display: inline-flex;
+  width: 42px;
+  height: 42px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid #00d5ff33;
-  color: #00d5ff;
-  font-size: 1.2rem;
+  border-radius: 10px;
+  background: #111;
+  border: 1px solid #444;
+  color: #fff;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
-  backdrop-filter: blur(6px);
 }
 
 .custom-social-icons a:hover {
-  background: #00d5ff;
-  color: #000;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 0 8px #00d5ff88;
+  background: #ffffff;
+  color: #0a0a0a;
 }
 
 .custom-footer-bottom {
   text-align: center;
-  padding-top: 20px;
-  margin-top: 40px;
+  padding-top: 30px;
+  margin-top: 50px;
   border-top: 1px solid #1a1a1a;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   color: #888;
-  position: relative;
-  z-index: 1;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .custom-footer-wrapper {
-    gap: 30px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 40px;
+  }
+
+  .custom-social-icons {
+    justify-content: center;
   }
 }
-
-@media (max-width: 480px) {
-  .custom-footer {
-    padding: 40px 16px 20px;
+@media (max-width: 490px) {
+  .custom-footer-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    gap: 15px; /* ⬅️ Much tighter */
   }
 
-  .custom-footer-about h3,
-  .custom-footer-links h3,
-  .custom-footer-contact h3 {
-    font-size: 1.5rem;
+  .custom-footer-about,
+  .custom-footer-links,
+  .custom-footer-contact {
+    width: 100%;
+    min-width: auto;
+    margin-bottom: 10px; /* ⬅️ Small spacing between blocks */
   }
 
   .custom-footer-about p,
-  .custom-footer-links a,
-  .custom-footer-contact p {
-    font-size: 0.9rem;
+  .custom-footer-contact p,
+  .custom-footer-links a {
+    margin-bottom: 6px; /* ⬅️ Reduce vertical spacing inside */
   }
 
-  .custom-social-icons a {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
+  .custom-social-icons {
+    justify-content: flex-start;
+    margin-top: 15px; /* ⬅️ Reduce space above icons */
+    gap: 10px; /* ⬅️ Tighter icon spacing */
   }
 
   .custom-footer-bottom {
-    font-size: 0.8rem;
-    margin-top: 30px;
+    margin-top: 30px; /* ⬅️ Less spacing above copyright */
   }
 }
-
-</style>
 
 </style>
 </body>
