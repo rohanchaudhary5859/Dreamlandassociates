@@ -473,24 +473,26 @@
   <footer class="footer">
   <div class="footer-wrapper">
     <div class="footer-section about">
-      <h3>Real Estate Website</h3>
-      <p>Your trusted partner in finding your dream home. Transparent deals. Quality living.</p>
+      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun</h3>
+      <p>Discover premium residential plots and gated community projects in Dehradun with Dream Land Associates. As one of the leading real estate developers in Dehradun, we specialize in offering secure, value-driven property investments with a focus on transparency, trust, and long-term growth. Explore our top-rated gated colonies and residential land for sale in prime locations across Dehradun and nearby areas.</p>
     </div>
+
     <div class="footer-section links">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Properties</a></li>
-        <li><a href="#">Agents</a></li>
-        <li><a href="#">Contact Us</a></li>
-        <li><a href="#">About Us</a></li>
+        <li><a href="index.html" title="Dreamland Associates - Home">Home</a></li>
+        <li><a href="projects.html" title="Explore Residential Projects in Dehradun">Properties</a></li>
+        <li><a href="add-property.html" title="Add Your Property with Dreamland">Add Properties</a></li>
+        <li><a href="contact.html" title="Get in Touch with Dreamland Associates">Contact Us</a></li>
+        <li><a href="about.html" title="About Dreamland Associates - Dehradun Real Estate Experts">About Us</a></li>
       </ul>
     </div>
+
     <div class="footer-section contact">
       <h3>Contact Us</h3>
-      <p>123 Main Street, Cityville, Country</p>
-      <p>Phone: +1 234 567 890</p>
-      <p>Email: info@realestate.com</p>
+      <p>Bhauwala Road, Dehradun, Uttarakhand, India</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Email: contact@dreamlandassociates.in</p>
       <div class="social-icons">
         <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
@@ -505,162 +507,235 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2025 Real Estate Website. All rights reserved.</p>
+    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
   </div>
 </footer>
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .footer {
-    background-color: #000;
-    color: #fff;
-    font-family: "Roboto Condensed", sans-serif;
-    padding: 50px 20px 30px;
-    border-top: 1px solid #222;
-  }
-  .footer-wrapper {
-    max-width: 1100px;
-    margin: 0 auto;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 50px;
-    justify-content: space-between;
-  }
-  .footer-section {
-    flex: 1 1 280px;
-    padding: 25px 30px;
-  }
-  .footer-section h3 {
-    font-weight: 600;
-    font-size: 1.8rem;
-    background: linear-gradient(90deg, #fff, #bbb);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: 0.1em;
-    margin-bottom: 22px;
-  }
-  .footer-section p {
-    color: #ddd;
-    font-weight: 300;
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 320px;
-  }
-  .footer-section.links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  .footer-section.links ul li {
-    margin-bottom: 16px;
-  }
-  .footer-section.links ul li a {
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ccc;
-    text-decoration: none;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-  }
-  .footer-section.links ul li a::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, #fff, #bbb);
-    transform-origin: left;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-  }
-  .footer-section.links ul li a:hover,
-  .footer-section.links ul li a:focus {
-    color: #fff;
-  }
-  .footer-section.links ul li a:hover::after,
-  .footer-section.links ul li a:focus::after {
-    transform: scaleX(1);
-  }
-  .footer-section.contact p {
-    margin: 10px 0;
-    color: #ccc;
-    font-weight: 300;
-  }
-  .social-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 18px;
-  }
-  .social-icons a {
-    width: 44px;
-    height: 44px;
-    background: #111;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    box-shadow:
-      0 0 6px rgba(255 255 255, 0.3),
-      inset 0 0 5px rgba(255 255 255, 0.6);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  .social-icons a:hover {
-    transform: scale(1.15);
-    box-shadow:
-      0 0 16px rgba(255 255 255, 0.8),
-      inset 0 0 12px rgba(255 255 255, 1);
-    color: #fff;
-    background: #222;
-  }
-  .footer-bottom {
-    margin-top: 45px;
-    border-top: 1px solid #222;
-    padding-top: 18px;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    font-weight: 300;
-  }
+.footer {
+  width: 100%;
+  background: #0a0a0a;
+  color: #f1f1f1;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 80px 30px 50px;
+  position: relative;
+  overflow: hidden;
+}
 
-  /* Responsive */
-  @media (max-width: 900px) {
-    .footer-wrapper {
-      flex-direction: column;
-      gap: 35px;
-    }
-    .footer-section {
-      padding: 15px 0;
-      max-width: 100%;
-    }
-    .footer-section p,
-    .footer-section.links ul li a {
-      max-width: 100%;
-      font-size: 0.95rem;
-    }
+/* ✅ Glowing animated background blobs */
+.footer::before,
+.footer::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 213, 255, 0.4), transparent 70%);
+  filter: blur(100px);
+  animation: moveBlob 20s infinite alternate ease-in-out;
+  z-index: 0;
+  border-radius: 50%;
+}
+.footer::before {
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+.footer::after {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 10s;
+}
+
+@keyframes moveBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
   }
-  @media (max-width: 480px) {
+  50% {
+    transform: translate(50px, -30px) scale(1.2);
+  }
+  100% {
+    transform: translate(-40px, 20px) scale(1);
+  }
+}
+
+.footer-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: 1250px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 60px;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+
+.footer-section {
+  flex: 1 1 280px;
+  padding: 25px 30px;
+  min-width: 240px;
+}
+
+.footer-section h3 {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  position: relative;
+  padding-bottom: 6px;
+}
+.footer-section h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+}
+
+.footer-section p {
+  color: #ccc;
+  font-weight: 300;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 320px;
+  transition: color 0.3s ease;
+}
+.footer-section p:hover {
+  color: #fff;
+}
+
+/* ✅ Quick links with underline effect on hover */
+.footer-section.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-section.links ul li {
+  margin-bottom: 12px;
+}
+.footer-section.links ul li a {
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 3px;
+  transition: color 0.3s ease;
+  display: inline-block;
+}
+.footer-section.links ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background: #ffffff;
+  transition: width 0.3s ease;
+}
+.footer-section.links ul li a:hover {
+  color: #fff;
+}
+.footer-section.links ul li a:hover::after {
+  width: 100%;
+}
+
+/* ✅ Contact section */
+.footer-section.contact p {
+  margin: 10px 0;
+  color: #ccc;
+  font-weight: 300;
+}
+
+/* ✅ Social icons */
+.social-icons {
+  margin-top: 25px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.social-icons a {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid #00d5ff33;
+  color: #ffffff;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px);
+}
+.social-icons a:hover {
+  background: #ffffff;
+  color: #000;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 8px #00d5ff88;
+}
+
+/* ✅ Footer bottom */
+.footer-bottom {
+  text-align: center;
+  padding-top: 30px;
+  margin-top: 50px;
+  border-top: 1px solid #1a1a1a;
+  font-size: 0.95rem;
+  color: #888;
+  z-index: 1;
+  position: relative;
+}
+
+/* ✅ Responsive design */
+@media (max-width: 900px) {
   .footer-wrapper {
     flex-direction: column;
-    gap: 16px; /* balanced spacing */
-    padding: 0 10px; /* some side padding */
+    gap: 35px;
+    align-items: center;
+    text-align: center;
   }
+  .footer-section {
+    padding: 15px 0;
+    max-width: 100%;
+  }
+  .social-icons {
+    justify-content: center;
+  }
+}
 
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 16px 20px;
+  }
+  .footer-wrapper {
+    gap: 16px;
+    padding: 0 10px;
+    align-items: flex-start;
+    text-align: left;
+  }
   .footer-section {
     padding: 12px 0;
     max-width: 100%;
-    flex: none; /* avoid flex growing */
+    flex: none;
+    margin-bottom: 10px;
   }
-
   .footer-section h3 {
     font-size: 1.5rem;
     margin-bottom: 14px;
     line-height: 1.2;
   }
-
   .footer-section p,
   .footer-section.links ul li a {
     font-size: 0.9rem;
@@ -668,29 +743,27 @@
     max-width: 100%;
     margin: 0;
   }
-
   .footer-section.links ul li {
     margin-bottom: 10px;
   }
-
   .social-icons {
     margin-top: 15px;
-    gap: 14px;
-    justify-content: flex-start; /* align left for better flow */
+    gap: 10px;
+    justify-content: flex-start;
   }
-
   .social-icons a {
     width: 38px;
     height: 38px;
+    font-size: 1rem;
   }
-
   .footer-bottom {
-    margin-top: 28px;
+    margin-top: 30px;
     padding-top: 14px;
     font-size: 0.85rem;
     color: #777;
   }
 }
+
 
 </style>
   <Style>
