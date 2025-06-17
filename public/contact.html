@@ -598,18 +598,18 @@
 <footer class="footer">
   <div class="footer-container">
     <div class="footer-col about">
-      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun
-      <p>Trusted real estate company in Dehradun offering premium residential plots and gated colony developments with transparency and long-term value.</p>
+      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun</h3>
+      <p>Discover premium residential plots and gated community projects in Dehradun with Dream Land Associates. As one of the leading real estate developers in Dehradun, we specialize in offering secure, value-driven property investments with a focus on transparency, trust, and long-term growth. Explore our top-rated gated colonies and residential land for sale in prime locations across Dehradun and nearby areas.</p>
     </div>
 
     <div class="footer-col links">
       <h3>Quick Links</h3>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/projects">Our Projects</a></li>
-        <li><a href="/agents">Meet Our Agents</a></li>
-        <li><a href="/about">About Dream Land</a></li>
-        <li><a href="/contact">Contact Us</a></li>
+        <li><a href="index.html" title="Dreamland Associates - Home">Home</a></li>
+        <li><a href="projects.html" title="Explore Residential Projects in Dehradun">Properties</a></li>
+        <li><a href="add-property.html" title="Add Your Property with Dreamland">Add Properties</a></li>
+        <li><a href="contact.html" title="Get in Touch with Dreamland Associates">Contact Us</a></li>
+        <li><a href="about.html" title="About Dreamland Associates - Dehradun Real Estate Experts">About Us</a></li>
       </ul>
     </div>
 
@@ -627,145 +627,230 @@
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; 2025 Dream Land Associates. All rights reserved. Expert real estate solutions for residential plots and gated communities in Dehradun.</p>
+    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
   </div>
 </footer>
+
 
 <!-- Styles -->
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;600&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  .footer {
-    background: #000;
-    color: #fff;
-    font-family: 'Roboto Condensed', sans-serif;
-    padding: 60px 20px 20px;
+.footer {
+  background: #000;
+  color: #fff;
+  font-family: 'Roboto Condensed', sans-serif;
+  padding: 60px 20px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ Glowing animated blobs */
+.footer::before,
+.footer::after {
+  content: '';
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 213, 255, 0.25), transparent 70%);
+  filter: blur(100px);
+  z-index: 0;
+  border-radius: 50%;
+  animation: blobShift 18s infinite ease-in-out alternate;
+}
+
+.footer::before {
+  top: -100px;
+  left: -80px;
+}
+
+.footer::after {
+  bottom: -100px;
+  right: -80px;
+  animation-delay: 9s;
+}
+
+@keyframes blobShift {
+  0% {
+    transform: translate(0, 0) scale(1);
   }
+  50% {
+    transform: translate(50px, -30px) scale(1.2);
+  }
+  100% {
+    transform: translate(-40px, 20px) scale(1);
+  }
+}
 
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-col {
+  flex: 1 1 250px;
+  min-width: 200px;
+}
+
+.footer-col h3 {
+  font-weight: 600;
+  font-size: 1.75rem;
+  margin-bottom: 16px;
+  color: #fff;
+  position: relative;
+  padding-bottom: 6px;
+}
+
+.footer-col h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+.footer-col p,
+.footer-col a {
+  font-weight: 300;
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.6;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-col p:hover,
+.footer-col a:hover {
+  color: #fff;
+}
+
+.footer-col.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col.links li {
+  margin-bottom: 12px;
+}
+
+.footer-col.links li a {
+  position: relative;
+  padding-bottom: 4px;
+  display: inline-block;
+}
+
+.footer-col.links li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.footer-col.links li a:hover::after {
+  transform: scaleX(1);
+}
+
+.social-icons {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 1.1rem;
+  backdrop-filter: blur(4px);
+  transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+}
+
+.social-icons a:hover {
+  background: #fff;
+  color: #000;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid #222;
+  padding-top: 16px;
+  margin-top: 40px;
+  font-size: 0.9rem;
+  color: #777;
+  position: relative;
+  z-index: 1;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
   .footer-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 40px;
-    max-width: 1200px;
-    margin: 0 auto;
-    justify-content: space-between;
+    gap: 20px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
 
-  .footer-col {
-    flex: 1 1 250px;
-    min-width: 200px;
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 40px 10px 10px;
   }
 
   .footer-col h3 {
-    font-weight: 600;
-    font-size: 1.75rem;
-    margin-bottom: 16px;
-    color: #fff;
+    font-size: 1.5rem;
   }
 
   .footer-col p,
   .footer-col a {
-    font-weight: 300;
-    font-size: 1rem;
-    color: #ccc;
-    line-height: 1.6;
-    text-decoration: none;
-  }
-
-  .footer-col.links ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .footer-col.links li {
-    margin-bottom: 12px;
-  }
-
-  .footer-col.links li a {
-    position: relative;
-    padding-bottom: 4px;
-  }
-
-  .footer-col.links li a::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 2px;
-    background: #fff;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
-  }
-
-  .footer-col.links li a:hover::after {
-    transform: scaleX(1);
-  }
-
-  .social-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 16px;
+    font-size: 0.9rem;
   }
 
   .social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background: #111;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 1.1rem;
-    transition: transform 0.3s ease, background 0.3s ease;
-  }
-
-  .social-icons a:hover {
-    background: #fff;
-    color: #000;
-    transform: scale(1.1);
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
   }
 
   .footer-bottom {
-    text-align: center;
-    border-top: 1px solid #222;
-    padding-top: 16px;
-    margin-top: 40px;
-    font-size: 0.9rem;
-    color: #777;
+    font-size: 0.8rem;
+    margin-top: 30px;
   }
+}
 
-  /* Responsive */
-  @media (max-width: 768px) {
-    .footer-container {
-      gap: 20px;
-    }
-  }
-
-  @media (max-width: 480px) {
-    .footer {
-      padding: 40px 10px 10px;
-    }
-    .footer-col h3 {
-      font-size: 1.5rem;
-    }
-    .footer-col p,
-    .footer-col a {
-      font-size: 0.9rem;
-    }
-    .social-icons a {
-      width: 36px;
-      height: 36px;
-      font-size: 1rem;
-    }
-    .footer-bottom {
-      font-size: 0.8rem;
-      margin-top: 30px;
-    }
-  }
 </style>
 
   <script src="js/main.js"></script>

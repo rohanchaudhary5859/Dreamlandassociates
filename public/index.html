@@ -3167,13 +3167,11 @@ window.addEventListener("scroll", function () {
   <!-- Footer -->
   <footer class="footer">
   <div class="footer-wrapper">
-    <!-- About Section -->
     <div class="footer-section about">
-      <h3>Dreamland Associates</h3>
-      <p>Trusted property consultants in Dehradun. Discover premium residential plots and gated communities built on transparency, trust, and long-term value.</p>
+      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun</h3>
+      <p>Discover premium residential plots and gated community projects in Dehradun with Dream Land Associates. As one of the leading real estate developers in Dehradun, we specialize in offering secure, value-driven property investments with a focus on transparency, trust, and long-term growth. Explore our top-rated gated colonies and residential land for sale in prime locations across Dehradun and nearby areas.</p>
     </div>
 
-    <!-- Quick Links -->
     <div class="footer-section links">
       <h3>Quick Links</h3>
       <ul>
@@ -3185,58 +3183,88 @@ window.addEventListener("scroll", function () {
       </ul>
     </div>
 
-    <!-- Contact Info -->
     <div class="footer-section contact">
       <h3>Contact Us</h3>
-      <address>
-        Dreamland Associates<br>
-        Ratanpur Chowk, Shimla Bypass Road,<br>
-        Dehradun, Uttarakhand 248007
-      </address>
-      <p><strong>Phone:</strong> +91 98765 43210</p>
-      <p><strong>Email:</strong> contact@dreamlandassociates.in</p>
-
-      <!-- Social Media Icons -->
+      <p>Bhauwala Road, Dehradun, Uttarakhand, India</p>
+      <p>Phone: +91 98765 43210</p>
+      <p>Email: contact@dreamlandassociates.in</p>
       <div class="social-icons">
-        <a href="#" aria-label="Dreamland Associates on Facebook" target="_blank" rel="noopener noreferrer">
+        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
         </a>
-        <a href="#" aria-label="Dreamland Associates on Twitter" target="_blank" rel="noopener noreferrer">
+        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
         </a>
-        <a href="#" aria-label="Dreamland Associates on Instagram" target="_blank" rel="noopener noreferrer">
+        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- Footer Bottom -->
   <div class="footer-bottom">
-    <p>&copy; 2025 <strong>Dreamland Associates</strong>. All rights reserved. Expert real estate services for residential plots and gated communities in Dehradun.</p>
+    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
   </div>
 </footer>
 
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .footer {
-  background: url('https://i.gifer.com/1AKS.gif') center center / cover no-repeat;
+  width: 100%;
+  background: black;
   color: #fff;
   font-family: "Roboto Condensed", sans-serif;
-  padding: 70px 20px 40px;
+  padding: 80px 30px 50px;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.footer::before {
-  content: "";
+/* ✅ Glowing animated blobs */
+.footer::before,
+.footer::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(2px);
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(0, 213, 255, 0.4), transparent 70%);
+  filter: blur(100px);
+  animation: moveBlob 20s infinite alternate ease-in-out;
   z-index: 0;
+  border-radius: 50%;
+}
+
+.footer::before {
+  top: -100px;
+  left: -100px;
+  animation-delay: 0s;
+}
+
+.footer::after {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 10s;
+}
+
+@keyframes moveBlob {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(50px, -30px) scale(1.2);
+  }
+  100% {
+    transform: translate(-40px, 20px) scale(1);
+  }
+}
+
+.footer::before {
+  background: rgba(0, 213, 255, 0.3);
 }
 
 .footer-wrapper {
@@ -3261,15 +3289,18 @@ window.addEventListener("scroll", function () {
   font-weight: 700;
   margin-bottom: 20px;
   position: relative;
+  padding-bottom: 6px;
+  color: #ffffff;
 }
 
 .footer-section h3::after {
   content: "";
-  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
   width: 40px;
-  height: 3px;
-  background: #fff;
-  margin-top: 8px;
+  height: 2px;
+  background: #ffffff;
   border-radius: 2px;
 }
 
@@ -3278,8 +3309,13 @@ window.addEventListener("scroll", function () {
   font-size: 1rem;
   line-height: 1.7;
   color: #eaeaea;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   max-width: 340px;
+  transition: color 0.3s ease;
+}
+
+.footer-section p:hover {
+  color: #ffffff;
 }
 
 .footer-section.links ul {
@@ -3297,9 +3333,9 @@ window.addEventListener("scroll", function () {
   font-size: 1rem;
   color: #eaeaea;
   text-decoration: none;
-  padding: 4px 0;
   position: relative;
   display: inline-block;
+  padding-bottom: 3px;
   transition: all 0.3s ease;
 }
 
@@ -3310,7 +3346,7 @@ window.addEventListener("scroll", function () {
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: #fff;
+  background-color: #ffffff;
   transition: width 0.3s ease;
 }
 
@@ -3324,42 +3360,41 @@ window.addEventListener("scroll", function () {
 
 .footer-section.contact p {
   margin: 10px 0;
-  color: #eaeaea;
   font-weight: 300;
 }
 
 .social-icons {
-  margin-top: 20px;
+  margin-top: 25px;
   display: flex;
-  gap: 16px;
+  gap: 14px;
   flex-wrap: wrap;
 }
 
 .social-icons a {
-  width: 44px;
-  height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #fff;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(4px);
 }
 
 .social-icons a:hover {
-  background: #fff;
-  color: #111;
+  background: #ffffff;
+  color: #0a0a0a;
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
 }
 
 .footer-bottom {
   margin-top: 50px;
-  padding-top: 24px;
+  padding-top: 30px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
   font-size: 0.95rem;
@@ -3374,10 +3409,12 @@ window.addEventListener("scroll", function () {
   .footer-wrapper {
     flex-direction: column;
     gap: 40px;
+    text-align: center;
+    align-items: center;
   }
 
-  .footer-section {
-    padding: 10px 0;
+  .social-icons {
+    justify-content: center;
   }
 
   .footer-section h3 {
@@ -3392,8 +3429,16 @@ window.addEventListener("scroll", function () {
 
 @media (max-width: 480px) {
   .footer-wrapper {
-    gap: 24px;
+    gap: 15px;
     padding: 0 10px;
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .footer-section {
+    width: 100%;
+    min-width: auto;
+    margin-bottom: 10px;
   }
 
   .footer-section h3 {
@@ -3404,11 +3449,13 @@ window.addEventListener("scroll", function () {
   .footer-section.links ul li a {
     font-size: 0.88rem;
     line-height: 1.5;
+    margin-bottom: 6px;
   }
 
   .social-icons {
-    margin-top: 12px;
-    gap: 12px;
+    margin-top: 15px;
+    gap: 10px;
+    justify-content: flex-start;
   }
 
   .social-icons a {
