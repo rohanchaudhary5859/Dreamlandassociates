@@ -937,21 +937,17 @@
       <div class="line"></div>
     </div>
     <div class="gallery-grid">
-      <img src="https://img.freepik.com/free-photo/colonial-style-house-night-scene_1150-17925.jpg?semt=ais_hybrid&w=740" alt="Villa Image 1" class="fade-in" />
-      <img src="https://amazingarchitecture.com/storage/1827/black_house_amin_moazzen_bangal_india.jpg" alt="Villa Image 2" class="fade-in" />
-      <img src="https://assets.cntraveller.in/photos/612350165ee2ad4060e8cb54/master/w_1600%2Cc_limit/Xanadu%2520exterior.jpg" alt="Villa Image 3" class="fade-in" />
-      <img src="https://st4.depositphotos.com/4743681/40513/i/450/depositphotos_405136450-stock-photo-cityscape-modern-apartment-buildings-new.jpg" alt="Villa Image 4" class="fade-in" />
-      <img src="https://st2.depositphotos.com/1026649/46232/i/600/depositphotos_462320432-stock-photo-tangalle-sri-lanka-nov-2017.jpg" alt="Villa Image 5" class="fade-in" />
-      <img src="https://st2.depositphotos.com/9498682/42980/i/600/depositphotos_429801000-stock-photo-chinese-traditional-colorful-temples-putuoshan.jpg" alt="Villa Image 6" class="fade-in" />
-      <img src="https://st4.depositphotos.com/4743681/31347/i/600/depositphotos_313475944-stock-photo-cityscape-residential-buildings-late-autumn.jpg" alt="Villa Image 7" class="fade-in" />
-      <img src="https://static7.depositphotos.com/1033409/754/i/600/depositphotos_7540056-stock-photo-luxurious-open-air-swimming-pool.jpg" alt="Villa Image 8" class="fade-in" />
-    </div>
+      <img src="Green 1.png" alt="Villa Image 1" class="fade-in" />
+      <img src="Green 2.png" alt="Villa Image 2" class="fade-in" />
+      <img src="Green 3.png" alt="Villa Image 3" class="fade-in" />
+      <img src="Green 4.png" alt="Villa Image 4" class="fade-in" />
+      <img src="Green 5.png" alt="Villa Image 5" class="fade-in" />
+          </div>
   </div>
 </section>
 
 <style>
      @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
-
 .villa-gallery {
   padding: 70px 20px;
   background-color: #fff;
@@ -994,13 +990,19 @@
 /* Gallery Grid */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 30px;
+  justify-content: center;
+}
+
+.gallery-item {
+  display: flex;
+  justify-content: center;
 }
 
 .gallery-grid img {
   width: 100%;
-  aspect-ratio: 4 / 3; /* ✅ keeps images responsive & fixes cutting issue */
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 18px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
@@ -1024,9 +1026,6 @@
 .fade-in:nth-child(3) { animation-delay: 0.3s; }
 .fade-in:nth-child(4) { animation-delay: 0.4s; }
 .fade-in:nth-child(5) { animation-delay: 0.5s; }
-.fade-in:nth-child(6) { animation-delay: 0.6s; }
-.fade-in:nth-child(7) { animation-delay: 0.7s; }
-.fade-in:nth-child(8) { animation-delay: 0.8s; }
 
 /* Animations */
 @keyframes fadeInUp {
@@ -1051,6 +1050,15 @@
   }
 }
 
+/* Center last row (2 items) when exactly 5 images exist */
+.gallery-grid:has(.gallery-item:nth-child(5)) .gallery-item:nth-child(4) {
+  grid-column-start: 2;
+}
+
+.gallery-grid:has(.gallery-item:nth-child(5)) .gallery-item:nth-child(5) {
+  grid-column-start: 3;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .gallery-title-wrap {
@@ -1061,30 +1069,36 @@
   .gallery-title {
     font-size: 2.2rem;
   }
-}
-
-@media (max-width: 480px)
-{
-  .villa-gallery {
-    margin-top: -70px;
-  }
 
   .gallery-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
+  .gallery-grid:has(.gallery-item:nth-child(5)) .gallery-item:nth-child(4),
+  .gallery-grid:has(.gallery-item:nth-child(5)) .gallery-item:nth-child(5) {
+    grid-column-start: auto; /* Reset centering on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
   .villa-gallery {
     padding: 50px 16px;
+    margin-top: -70px;
   }
 
   .gallery-title {
     font-size: 1.75rem;
   }
 
+  .gallery-grid {
+    grid-template-columns: 1fr;
+  }
+
   .gallery-grid img {
-    aspect-ratio: 4 / 3; /* 👈 keeps image height consistent and prevents cutting */
+    aspect-ratio: 4 / 3;
   }
 }
+
 
 </style>
 
