@@ -20,8 +20,10 @@
 <body>
 
   <!-- Navbar -->
-  <style>
- * {
+ <style>
+     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
+
+  * {
     font-family: "Roboto Condensed";
   }
 
@@ -30,10 +32,20 @@
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
-      background: rgba(255, 255, 255, 0.824); /* glass effect */
-
+    background: rgba(255, 255, 255, 0.824);
     z-index: 10000;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Shrink on scroll */
+  nav.shrink {
+    padding: 0.6rem 2rem;
+    background: rgba(255, 255, 255, 0.735);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  nav.shrink .logo img {
+    height: 45px;
   }
 
   .nav-container {
@@ -44,15 +56,11 @@
     margin: 0 auto;
   }
 
-  
-
   .logo img {
     height: 60px;
     margin-right: 12px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, height 0.3s ease;
   }
-
- 
 
   .nav-links {
     list-style: none;
@@ -60,16 +68,16 @@
     gap: 2.5rem;
   }
 
-  .nav-links li a {
-    position: relative;
-    text-decoration: none;
-    color: #1d1d1d;
-    font-size: 1.15rem;
-    font-weight: 600;
-    padding: 6px 0;
-    transition: color 0.3s ease, transform 0.2s ease;
-    border-radius: 4px;
-    user-select: none;
+   .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff5722; /* Changed underline color to orange */
+    border-radius: 2px;
+    transition: width 0.3s ease;
   }
 
   .nav-links li a:hover,
@@ -78,7 +86,6 @@
     transform: scale(1.05);
   }
 
-  /* Changed underline color here */
   .nav-links li a::after {
     content: "";
     position: absolute;
@@ -86,7 +93,7 @@
     height: 3px;
     bottom: 0;
     left: 0;
-    background-color: #ff5722; /* Changed underline color to orange */
+    background-color: #000000;
     border-radius: 2px;
     transition: width 0.3s ease;
   }
@@ -115,7 +122,6 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   }
 
-  /* Hamburger styling */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -136,7 +142,6 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Corrected Hamburger to X animation */
   .hamburger.active div:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
@@ -149,10 +154,9 @@
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
-  /* Backdrop overlay */
   .backdrop {
     position: fixed;
-    top: 70px; /* nav height */
+    top: 70px;
     left: 0;
     width: 100vw;
     height: calc(100vh - 70px);
@@ -168,7 +172,6 @@
     pointer-events: auto;
   }
 
-  /* Mobile menu - reduced width */
   .mobile-menu {
     display: flex;
     flex-direction: column;
@@ -179,7 +182,7 @@
     position: fixed;
     top: 112px;
     right: 0;
-    width: 270px; /* Reduced width */
+    width: 270px;
     height: calc(100vh - 70px);
     transform: translateX(100%);
     opacity: 0;
@@ -224,9 +227,7 @@
     border-radius: 50px;
   }
 
- 
-
-   @media (max-width: 992px) {
+  @media (max-width: 992px) {
     .nav-links,
     .cta-button {
       display: none;
@@ -236,19 +237,17 @@
       display: flex;
     }
   }
- 
 
-   @media (max-width: 490px) {
-  nav {
-    padding: 1.90rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
+  @media (max-width: 490px) {
+    nav {
+      padding: 1.9rem 2rem;
+    }
+
+    .logo img {
+      height: 70px;
+      margin-right: 16px;
+    }
   }
-
-  .logo img {
-    height: 70px; /* Logo image ka height bada kiya */
-    margin-right: 16px; /* Margin thoda bada kiya for balance */
-  }
-}
-
 </style>
 
 <nav>
@@ -257,67 +256,85 @@
       <img src="DL logo.png" alt="Logo" />
     </a>
 
-<ul class="nav-links">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="about.html">About</a></li>
-  <li><a href="projects.html">Projects</a></li>
-  <li><a href="contact.html" class="active">Contact</a></li>
-  <li><a href="add-property.html" class="active">Add Property</a></li>
-  <li><a href="login.html">Login</a></li>
-  <li><a href="signup.html">Signup</a></li>
-</ul>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="add-property.html" class="active">Add Property</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html">Signup</a></li>
+    </ul>
 
-<a href="contact.html" class="cta-button">Request A Visit →</a>
+    <a href="contact.html" class="cta-button">Request A Visit →</a>
 
-<div
-  class="hamburger"
-  id="hamburger"
-  aria-label="Toggle menu"
-  role="button"
-  tabindex="0"
->
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+    <div
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle menu"
+      role="button"
+      tabindex="0"
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
-<div
-  class="mobile-menu"
-  id="mobileMenu"
-  aria-hidden="true"
-  role="menu"
->
-  <a href="index.html" role="menuitem">Home</a>
-  <a href="about.html" role="menuitem">About</a>
-  <a href="projects.html" role="menuitem">Projects</a>
-  <a href="contact.html" class="active" role="menuitem">Contact</a>
-  <a href="add-property.html" class="active">Add Property</a>
-  <a href="login.html" role="menuitem">Login</a>
-  <a href="signup.html" role="menuitem">Signup</a>
-  <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
-</div>
-
-
-    
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-hidden="true"
+      role="menu"
+    >
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="about.html" role="menuitem">About</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" class="active" role="menuitem">Contact</a>
+      <a href="add-property.html" class="active">Add Property</a>
+      <a href="login.html" role="menuitem">Login</a>
+      <a href="signup.html" role="menuitem">Signup</a>
+      <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
+    </div>
+  </div>
 </nav>
 
+<div id="backdrop" class="backdrop"></div>
 
 <script>
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
   const backdrop = document.getElementById("backdrop");
+  const nav = document.querySelector("nav");
 
-  function toggleMenu() {
-    const isActive = hamburger.classList.toggle("active");
-    mobileMenu.classList.toggle("active", isActive);
-    backdrop.classList.toggle("active", isActive);
-
-    // Set aria-expanded for accessibility
-    hamburger.setAttribute("aria-expanded", isActive);
-    mobileMenu.setAttribute("aria-hidden", !isActive);
+  function openMenu() {
+    hamburger.classList.add("active");
+    mobileMenu.classList.add("active");
+    backdrop.classList.add("active");
+    hamburger.setAttribute("aria-expanded", true);
+    mobileMenu.setAttribute("aria-hidden", false);
   }
 
-  hamburger.addEventListener("click", toggleMenu);
+  function closeMenu() {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    backdrop.classList.remove("active");
+    hamburger.setAttribute("aria-expanded", false);
+    mobileMenu.setAttribute("aria-hidden", true);
+  }
+
+  function toggleMenu() {
+    if (hamburger.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
   hamburger.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -325,41 +342,32 @@
     }
   });
 
-  // Close menu when clicking backdrop
-  backdrop.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-    backdrop.classList.remove("active");
-
-    hamburger.setAttribute("aria-expanded", false);
-    mobileMenu.setAttribute("aria-hidden", true);
+  mobileMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
   });
 
-  // Close menu when clicking a link inside mobile menu
+  backdrop.addEventListener("click", closeMenu);
+
   mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
-
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
-    });
+    link.addEventListener("click", closeMenu);
   });
 
-  // Close menu on tapping outside hamburger or menu (for mobile)
   document.addEventListener("click", (e) => {
     if (
-      !mobileMenu.contains(e.target) &&
       !hamburger.contains(e.target) &&
+      !mobileMenu.contains(e.target) &&
       mobileMenu.classList.contains("active")
     ) {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
+      closeMenu();
+    }
+  });
 
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
+  // Shrink nav on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      nav.classList.add("shrink");
+    } else {
+      nav.classList.remove("shrink");
     }
   });
 </script>

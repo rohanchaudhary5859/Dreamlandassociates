@@ -19,6 +19,8 @@
 
   <!-- Navbar -->
  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;600;700&display=swap');
+
   * {
     font-family: "Roboto Condensed";
   }
@@ -28,10 +30,20 @@
     padding: 1rem 2rem;
     position: sticky;
     top: 0;
-      background: rgba(255, 255, 255, 0.824); /* glass effect */
-
+    background: rgba(255, 255, 255, 0.824);
     z-index: 10000;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  /* Shrink on scroll */
+  nav.shrink {
+    padding: 0.6rem 2rem;
+    background: rgba(255, 255, 255, 0.735);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  nav.shrink .logo img {
+    height: 45px;
   }
 
   .nav-container {
@@ -42,15 +54,11 @@
     margin: 0 auto;
   }
 
-  
-
   .logo img {
     height: 60px;
     margin-right: 12px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, height 0.3s ease;
   }
-
- 
 
   .nav-links {
     list-style: none;
@@ -58,16 +66,16 @@
     gap: 2.5rem;
   }
 
-  .nav-links li a {
-    position: relative;
-    text-decoration: none;
-    color: #1d1d1d;
-    font-size: 1.15rem;
-    font-weight: 600;
-    padding: 6px 0;
-    transition: color 0.3s ease, transform 0.2s ease;
-    border-radius: 4px;
-    user-select: none;
+   .nav-links li a::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 3px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff5722; /* Changed underline color to orange */
+    border-radius: 2px;
+    transition: width 0.3s ease;
   }
 
   .nav-links li a:hover,
@@ -76,7 +84,6 @@
     transform: scale(1.05);
   }
 
-  /* Changed underline color here */
   .nav-links li a::after {
     content: "";
     position: absolute;
@@ -84,7 +91,7 @@
     height: 3px;
     bottom: 0;
     left: 0;
-    background-color: #ff5722; /* Changed underline color to orange */
+    background-color: #000000;
     border-radius: 2px;
     transition: width 0.3s ease;
   }
@@ -113,7 +120,6 @@
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
   }
 
-  /* Hamburger styling */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -134,7 +140,6 @@
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Corrected Hamburger to X animation */
   .hamburger.active div:nth-child(1) {
     transform: rotate(45deg) translate(5px, 5px);
   }
@@ -147,10 +152,9 @@
     transform: rotate(-45deg) translate(5px, -5px);
   }
 
-  /* Backdrop overlay */
   .backdrop {
     position: fixed;
-    top: 70px; /* nav height */
+    top: 70px;
     left: 0;
     width: 100vw;
     height: calc(100vh - 70px);
@@ -166,7 +170,6 @@
     pointer-events: auto;
   }
 
-  /* Mobile menu - reduced width */
   .mobile-menu {
     display: flex;
     flex-direction: column;
@@ -177,7 +180,7 @@
     position: fixed;
     top: 112px;
     right: 0;
-    width: 270px; /* Reduced width */
+    width: 270px;
     height: calc(100vh - 70px);
     transform: translateX(100%);
     opacity: 0;
@@ -222,9 +225,7 @@
     border-radius: 50px;
   }
 
- 
-
-   @media (max-width: 992px) {
+  @media (max-width: 992px) {
     .nav-links,
     .cta-button {
       display: none;
@@ -234,19 +235,17 @@
       display: flex;
     }
   }
- 
 
-   @media (max-width: 490px) {
-  nav {
-    padding: 1.90rem 2rem; /* Navbar ki height thodi badi karne ke liye padding badhaya */
+  @media (max-width: 490px) {
+    nav {
+      padding: 1.9rem 2rem;
+    }
+
+    .logo img {
+      height: 70px;
+      margin-right: 16px;
+    }
   }
-
-  .logo img {
-    height: 70px; /* Logo image ka height bada kiya */
-    margin-right: 16px; /* Margin thoda bada kiya for balance */
-  }
-}
-
 </style>
 
 <nav>
@@ -255,66 +254,85 @@
       <img src="DL logo.png" alt="Logo" />
     </a>
 
-<ul class="nav-links">
-  <li><a href="index.html">Home</a></li>
-  <li><a href="about.html">About</a></li>
-  <li><a href="projects.html">Projects</a></li>
-  <li><a href="contact.html" class="active">Contact</a></li>
-  <li><a href="add-property.html" class="active">Add Property</a></li>
-  <li><a href="login.html">Login</a></li>
-  <li><a href="signup.html">Signup</a></li>
-</ul>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="add-property.html" class="active">Add Property</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="signup.html">Signup</a></li>
+    </ul>
 
-<a href="contact.html" class="cta-button">Request A Visit →</a>
+    <a href="contact.html" class="cta-button">Request A Visit →</a>
 
-<div
-  class="hamburger"
-  id="hamburger"
-  aria-label="Toggle menu"
-  role="button"
-  tabindex="0"
->
-  <div></div>
-  <div></div>
-  <div></div>
-</div>
+    <div
+      class="hamburger"
+      id="hamburger"
+      aria-label="Toggle menu"
+      role="button"
+      tabindex="0"
+    >
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
 
-<div
-  class="mobile-menu"
-  id="mobileMenu"
-  aria-hidden="true"
-  role="menu"
->
-  <a href="index.html" role="menuitem">Home</a>
-  <a href="about.html" role="menuitem">About</a>
-  <a href="projects.html" role="menuitem">Projects</a>
-  <a href="contact.html" class="active" role="menuitem">Contact</a>
-  <a href="add-property.html" class="active">Add Property</a>
-  <a href="login.html" role="menuitem">Login</a>
-  <a href="signup.html" role="menuitem">Signup</a>
-  <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
-</div>
-
-
-    
+    <div
+      class="mobile-menu"
+      id="mobileMenu"
+      aria-hidden="true"
+      role="menu"
+    >
+      <a href="index.html" role="menuitem">Home</a>
+      <a href="about.html" role="menuitem">About</a>
+      <a href="projects.html" role="menuitem">Projects</a>
+      <a href="contact.html" class="active" role="menuitem">Contact</a>
+      <a href="add-property.html" class="active">Add Property</a>
+      <a href="login.html" role="menuitem">Login</a>
+      <a href="signup.html" role="menuitem">Signup</a>
+      <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
+    </div>
+  </div>
 </nav>
+
+<div id="backdrop" class="backdrop"></div>
 
 <script>
   const hamburger = document.getElementById("hamburger");
   const mobileMenu = document.getElementById("mobileMenu");
   const backdrop = document.getElementById("backdrop");
+  const nav = document.querySelector("nav");
 
-  function toggleMenu() {
-    const isActive = hamburger.classList.toggle("active");
-    mobileMenu.classList.toggle("active", isActive);
-    backdrop.classList.toggle("active", isActive);
-
-    // Set aria-expanded for accessibility
-    hamburger.setAttribute("aria-expanded", isActive);
-    mobileMenu.setAttribute("aria-hidden", !isActive);
+  function openMenu() {
+    hamburger.classList.add("active");
+    mobileMenu.classList.add("active");
+    backdrop.classList.add("active");
+    hamburger.setAttribute("aria-expanded", true);
+    mobileMenu.setAttribute("aria-hidden", false);
   }
 
-  hamburger.addEventListener("click", toggleMenu);
+  function closeMenu() {
+    hamburger.classList.remove("active");
+    mobileMenu.classList.remove("active");
+    backdrop.classList.remove("active");
+    hamburger.setAttribute("aria-expanded", false);
+    mobileMenu.setAttribute("aria-hidden", true);
+  }
+
+  function toggleMenu() {
+    if (hamburger.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleMenu();
+  });
+
   hamburger.addEventListener("keydown", (e) => {
     if (e.key === "Enter" || e.key === " ") {
       e.preventDefault();
@@ -322,45 +340,35 @@
     }
   });
 
-  // Close menu when clicking backdrop
-  backdrop.addEventListener("click", () => {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-    backdrop.classList.remove("active");
-
-    hamburger.setAttribute("aria-expanded", false);
-    mobileMenu.setAttribute("aria-hidden", true);
+  mobileMenu.addEventListener("click", (e) => {
+    e.stopPropagation();
   });
 
-  // Close menu when clicking a link inside mobile menu
+  backdrop.addEventListener("click", closeMenu);
+
   mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
-
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
-    });
+    link.addEventListener("click", closeMenu);
   });
 
-  // Close menu on tapping outside hamburger or menu (for mobile)
   document.addEventListener("click", (e) => {
     if (
-      !mobileMenu.contains(e.target) &&
       !hamburger.contains(e.target) &&
+      !mobileMenu.contains(e.target) &&
       mobileMenu.classList.contains("active")
     ) {
-      hamburger.classList.remove("active");
-      mobileMenu.classList.remove("active");
-      backdrop.classList.remove("active");
+      closeMenu();
+    }
+  });
 
-      hamburger.setAttribute("aria-expanded", false);
-      mobileMenu.setAttribute("aria-hidden", true);
+  // Shrink nav on scroll
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 20) {
+      nav.classList.add("shrink");
+    } else {
+      nav.classList.remove("shrink");
     }
   });
 </script>
-
 
 <section class="realty-about">
   <h1 class="realty-title">About Dreamland Associates</h1>
@@ -414,16 +422,20 @@
       <div class="member-info">
         <h3 class="member-name">     Mr. Nitin Katoch </h3>
         <p class="member-role">Senior Executive Director</p>
-        <p class="member-contact"><a href="tel:6397947978">📞 6397947978</a></p>
+        <p class="member-contact"><a href="tel:      9927502248
+">📞   9927502248
+</a></p>
       </div>
     </div>
 
     <!-- Members without photos -->
     <div class="realty-member no-photo">
       <div class="member-info">
-        <h3 class="member-name">Mr. Shivam Walia</h3>
-        <p class="member-role">Team Leader</p>
-        <p class="member-contact"><a href="tel:     9927502248">📞      9927502248</a></p>
+        <h3 class="member-name">     Mr. Sharukh Ahmed
+</h3>
+        <p class="member-role">Digital marketing & Graphics 
+</p>
+        <p class="member-contact"><a href="tel:     6397947978">📞      6397947978</a></p>
       </div>
     </div>
 
@@ -551,10 +563,15 @@
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
 }
 
+.member-image {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
 .member-image img {
   width: 100%;
   height: 380px;
-  aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
   transition: transform 0.3s ease;
@@ -596,7 +613,7 @@
   padding: 1.5rem 1rem;
 }
 
-/* Mobile & Small Screen */
+/* --- Mobile / Small Screen Fixes --- */
 @media (max-width: 490px) {
   .realty-about {
     padding: 2rem 1rem;
@@ -625,21 +642,20 @@
 
   .realty-member {
     width: 100%;
-    height: auto;
     max-width: 100%;
     padding-bottom: 1rem;
     border-radius: 10px;
     box-sizing: border-box;
   }
 
-  /* --- Important fix for no-photo members --- */
+  /* Important fix for no-photo members */
   .realty-member.no-photo {
     padding: .5rem .5rem;
-    min-height: auto !important; /* allow natural height */
-    max-height: 140px; /* restrict max height */
+    min-height: auto !important;
+    max-height: 140px;
   }
 
-  /* Ensure member-info is visible for all members */
+  /* Member Info Visibility */
   .member-info {
     display: block !important;
     text-align: center;
@@ -661,23 +677,38 @@
     margin-top: 0.3rem;
   }
 
-  /* Make phone numbers clickable links with blue color */
   .member-contact a {
-    color: #000000;
+    color: #000;
     text-decoration: none;
   }
+
   .member-contact a:hover {
     text-decoration: underline;
   }
 
-  .member-image img {
-    aspect-ratio: 4 / 3;
+  /* ✅ Mobile Image Fix: Show full image (no crop) */
+  .member-image {
     width: 100%;
+    height: auto !important;
+    max-height: none;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f9f9f9;
+  }
+
+  .member-image img {
+    width: auto;
     height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     border-radius: 10px 10px 0 0;
   }
 }
-/* ✅ Fix only for image-based members on 490px screens */
+
+/* ✅ Extra Fix: Ensure normal image-based members resize well */
 .realty-member:not(.no-photo) {
   height: auto !important;
   max-height: none !important;
@@ -699,7 +730,6 @@
   color: #000;
 }
 
-
 /* Animations */
 @keyframes fadeIn {
   0% { opacity: 0; transform: translateY(20px); }
@@ -715,6 +745,7 @@
   0% { opacity: 0; transform: translateY(-30px); }
   100% { opacity: 1; transform: translateY(0); }
 }
+
 </style>
 
 
