@@ -67,16 +67,16 @@
     gap: 2.5rem;
   }
 
-   .nav-links li a::after {
-    content: "";
-    position: absolute;
-    width: 0%;
-    height: 3px;
-    bottom: 0;
-    left: 0;
-    background-color: #ff5722; /* Changed underline color to orange */
-    border-radius: 2px;
-    transition: width 0.3s ease;
+  .nav-links li a {
+    position: relative;
+    text-decoration: none;
+    color: #1d1d1d;
+    font-size: 1.15rem;
+    font-weight: 600;
+    padding: 6px 0;
+    transition: color 0.3s ease, transform 0.2s ease;
+    border-radius: 4px;
+    user-select: none;
   }
 
   .nav-links li a:hover,
