@@ -20,6 +20,7 @@
   "homepage": "https://github.com/rohanchaudhary5859/Dreamlandassociates#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "sitemap": "^8.0.0"
   }
 }
