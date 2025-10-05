@@ -255,10 +255,10 @@
 
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
-      <li><a href="about.html">About</a></li>
+      <li><a href="about.html" class="active">About</a></li>
       <li><a href="projects.html">Projects</a></li>
-      <li><a href="contact.html" class="active">Contact</a></li>
-      <li><a href="add-property.html" class="active">Add Property</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="add-property.html">Add Property</a></li>
       <li><a href="login.html">Login</a></li>
       <li><a href="signup.html">Signup</a></li>
     </ul>
@@ -284,10 +284,10 @@
       role="menu"
     >
       <a href="index.html" role="menuitem">Home</a>
-      <a href="about.html" role="menuitem">About</a>
+      <a href="about.html" class="active" role="menuitem">About</a>
       <a href="projects.html" role="menuitem">Projects</a>
-      <a href="contact.html" class="active" role="menuitem">Contact</a>
-      <a href="add-property.html" class="active">Add Property</a>
+      <a href="contact.html" role="menuitem">Contact</a>
+      <a href="add-property.html">Add Property</a>
       <a href="login.html" role="menuitem">Login</a>
       <a href="signup.html" role="menuitem">Signup</a>
       <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
@@ -395,6 +395,7 @@
       <div class="member-info">
         <h3 class="member-name">Mr. Sumit Rajput</h3>
         <p class="member-role">CEO (Chief Executive Officer)</p>
+        <p class="member-experience">Experience: 8+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:8057932926">📞 8057932926</a></p>
       </div>
     </div>
@@ -407,6 +408,7 @@
       <div class="member-info">
         <h3 class="member-name">Mr. Suhail</h3>
         <p class="member-role">MD (Managing Director)</p>
+        <p class="member-experience">Experience: 10+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:7906953585">📞 7906953585</a></p>
       </div>
     </div>
@@ -419,6 +421,7 @@
       <div class="member-info">
         <h3 class="member-name">Mr. Sharukh Ahmed</h3>
         <p class="member-role">Digital Marketing & Graphics</p>
+        <p class="member-experience">Experience: 5+ years in Digital Marketing</p>
         <p class="member-contact"><a href="tel:6397947978">📞 6397947978</a></p>
       </div>
     </div>
@@ -428,6 +431,7 @@
       <div class="member-info">
         <h3 class="member-name">Mr. Shivam Walia</h3>
         <p class="member-role">Team Leader</p>
+        <p class="member-experience">Experience: 6+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:7895780147">📞 7895780147</a></p>
       </div>
     </div>
@@ -436,6 +440,7 @@
       <div class="member-info">
         <h3 class="member-name">Tanugya Chaudhary</h3>
         <p class="member-role">Senior Sales Executive</p>
+        <p class="member-experience">Experience: 4+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:9259055789">📞 9259055789</a></p>
       </div>
     </div>
@@ -444,6 +449,7 @@
       <div class="member-info">
         <h3 class="member-name">Vartika Raturi</h3>
         <p class="member-role">Senior Sales Executive</p>
+        <p class="member-experience">Experience: 4+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:9259055789">📞 9259055789</a></p>
       </div>
     </div>
@@ -452,14 +458,16 @@
       <div class="member-info">
         <h3 class="member-name">Sonam Arya</h3>
         <p class="member-role">Sales Executive</p>
+        <p class="member-experience">Experience: 3+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:9557271602">📞 9557271602</a></p>
       </div>
     </div>
 
     <div class="realty-member no-photo">
       <div class="member-info">
-        <h3 class="member-name">Miss. Sapna Devi</h3>
+        <h3 class="member-name">Sapna Devi</h3>
         <p class="member-role">Sales Executive</p>
+        <p class="member-experience">Experience: 2+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:8979091602">📞 8979091602</a></p>
       </div>
     </div>
@@ -468,6 +476,7 @@
       <div class="member-info">
         <h3 class="member-name">Vivek Rawat</h3>
         <p class="member-role">Sales Executive</p>
+        <p class="member-experience">Experience: 3+ years in Real Estate</p>
         <p class="member-contact"><a href="tel:8279759331">📞 8279759331</a></p>
       </div>
     </div>
@@ -585,6 +594,13 @@
 .member-role {
   font-size: 1rem;
   color: #444;
+}
+
+.member-experience {
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  margin: 0.3rem 0;
 }
 
 .member-contact a {

@@ -349,7 +349,15 @@
   const backdrop = document.getElementById("backdrop");
   const nav = document.querySelector("nav");
 
+  function syncOffsets() {
+    const navHeight = nav.offsetHeight;
+    mobileMenu.style.top = navHeight + "px";
+    backdrop.style.top = navHeight + "px";
+    backdrop.style.height = `calc(100vh - ${navHeight}px)`;
+  }
+
   function openMenu() {
+    syncOffsets();
     hamburger.classList.add("active");
     mobileMenu.classList.add("active");
     backdrop.classList.add("active");
@@ -412,7 +420,12 @@
     } else {
       nav.classList.remove("shrink");
     }
+    // keep menu/backdrop aligned to new nav height
+    syncOffsets();
   });
+
+  // adjust on resize too
+  window.addEventListener("resize", syncOffsets);
 </script>
 
 <style>
@@ -704,6 +717,7 @@
           <option value="forest">Forest Enclave</option>
           <option value="shreeram">Shree Ram</option>
           <option value="laxmi">Laxmi Enclave</option>
+          <option value="balaji">Balaji Enclave</option>
         </select>
       </div>
       <button id="searchBtn" class="search-button">
@@ -736,8 +750,9 @@
       bhadraj: "bhadraj.html",
       dev: "devenclave.html",
       forest: "forestenclave.html",
-      shreeram: "shreeramenclave.html",
-      laxmi: "laxmienclave.html"
+      shreeram: "Shreeramenclave.html",
+      laxmi: "laxmienclave.html",
+      balaji: "balajienclave.html"
     };
 
     // Simple validation
@@ -901,6 +916,25 @@
       </div>
     </div>
 
+    <!-- Balaji Enclave -->
+    <div class="property-card" tabindex="0" data-drag="Drag">
+      <div class="image-slider">
+        <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1400&auto=format&fit=crop" alt="Balaji Enclave" />
+      </div>
+      <div class="card-content">
+        <h3>Balaji Enclave</h3>
+        <p class="location">Sabhawala, Shimla Bypass</p>
+        <p class="summary">
+          Premium gated colony plots with RCC roads, boundary wall, electricity & water connections, and healthy green surroundings.
+        </p>
+        <ul class="feature-list">
+          <li>🔐 Secured gated entry</li>
+          <li>🛣 RCC roads & proper drainage</li>
+          <li>🌲 Low AQI forest view</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 
   <div id="drag-tooltip">Drag</div>
@@ -923,10 +957,9 @@ body {
 }
 
 .header-wrapper {
-  text-align: right;
-  max-width: 480px;
-  margin-left: auto;
-  margin-bottom: 50px;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 50px;
 }
 
 .line {
@@ -2768,7 +2801,7 @@ window.addEventListener("scroll", function () {
 
  const botReplies = {
   // Greetings
-  hello: "Hi there! Welcome to RealEstatePro. How can I assist you today?",
+  hello: "Hi there! Welcome to Dreamland Associates. How can I assist you today?",
   hi: "Hello! Looking for a property or need help with something else?",
   hey: "Hey! How can I help you find your dream home today?",
 
@@ -2784,9 +2817,9 @@ window.addEventListener("scroll", function () {
   property_management: "Our property management service helps landlords manage their rentals hassle-free.",
   
   // Contact info
-  contact: "You can reach us at contact@realestatepro.com or call +123456789. We are here Mon-Fri, 9am-6pm.",
-  phone: "Call us anytime at +123456789 or email contact@realestatepro.com",
-  email: "Please email us at contact@realestatepro.com with your queries.",
+  contact: "Call us at +91 7906953585 or email dreamlandassociate7@gmail.com. We're here Mon–Sat, 9am–7pm.",
+  phone: "Call +91 7906953585 for site visits and bookings.",
+  email: "Write to us at dreamlandassociate7@gmail.com.",
   
   // Buying queries
   buy: "Looking to buy? Please specify property type (apartment, house, land) and location.",
@@ -2854,25 +2887,62 @@ window.addEventListener("scroll", function () {
   // FAQs
   faq: "Feel free to ask me any questions about buying, selling, renting, or financing property.",
   
+  // Hindi quick intents
+  zameen: "Zameen/plot ke liye location aur budget batayein. Site visit bhi arrange kar sakte hain.",
+  plot: "Plots available in Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Balaji. Budget batayein.",
+  jameen: "Plots/land ke liye preferred location aur budget share karein.",
+  location: "Aap kis location me property dekh rahe hain? (Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Balaji)",
+  budget: "Aapka budget range kya hai? (e.g., 10–25 lakh)",
+  visit_hindi: "Site visit schedule karna chahte hain? Apna preferred din/time batayein.",
+
   // Default reply
-  default: "Sorry, I didn't understand that. Could you please rephrase or ask something else?",
+  default: "I didn't get that. Ask about plots, locations, budget, or site visits. Try: 'plots in Bhauwala under 20L'.",
 };
 
 
   function getBotReply(message) {
-    message = message.toLowerCase();
-    for (let key in botReplies) {
-      if (message.includes(key)) {
-        return botReplies[key];
+    const normalized = message.toLowerCase().trim();
+    // quick intents
+    if (/balaji/.test(normalized)) {
+      return "Balaji Enclave, Sabhawala: Gated plots with RCC roads, drainage, electricity & water. 100m from Shimla Bypass. Call +91 7906953585 for a site visit.";
+    }
+    // route by known locations
+    const locationPages = {
+      lachiwalla: "Lachiwalla Greens — premium gated colony near airport.",
+      bhauwala: "Bhauwala — family-friendly gated plots near chowk with amenities.",
+      bhadraj: "Bhadraj Colony — peaceful, green residential plots.",
+      dev: "Dev Enclave — ready plots on Ramgadh, Shimla Bypass.",
+      forest: "Forest Enclave — eco-focused community in Dhoomnagar, Bhauwala.",
+      shreeram: "Shree Ram Enclave — ongoing project in Tuntowala, Chandarbani.",
+      laxmi: "Laxmi Enclave — ongoing plots near Ratanpur, Shimla Bypass.",
+      balaji: "Balaji Enclave — Sabhawala plots with RCC roads & utilities."
+    };
+    for (const key of Object.keys(locationPages)) {
+      if (normalized.includes(key)) {
+        return locationPages[key] + " Want to schedule a site visit?";
       }
     }
-    return "Sorry, I didn't understand that. Can you please rephrase?";
+    // detect budget mentions like '20l', '25 lakh', '30 lac'
+    const budgetMatch = normalized.match(/(\d{1,3})\s*(l|lac|lakh|lacs)/);
+    if (budgetMatch) {
+      return `Noted budget ~${budgetMatch[1]} lakh. Please confirm location and plot size preference.`;
+    }
+    // general keyword match
+    for (let key in botReplies) {
+      if (normalized.includes(key)) return botReplies[key];
+    }
+    return botReplies.default;
   }
 
   chatBtn.addEventListener('click', () => {
     chatContainer.style.display = 'flex';
     chatBtn.style.display = 'none';
     chatInput.focus();
+    // greet once when opening
+    if (!chatMessages.dataset.greeted) {
+      addMessage('Hi! I\'m your assistant at Dreamland Associates. Ask about projects like Balaji Enclave or request a site visit.', 'bot');
+      chatMessages.dataset.greeted = 'true';
+    }
   });
 
   chatClose.addEventListener('click', () => {

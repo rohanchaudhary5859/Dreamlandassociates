@@ -269,11 +269,11 @@
     </a>
 
 <ul class="nav-links">
-  <li><a href="index.html">Home</a></li>
+  <li><a href="index.html" class="active">Home</a></li>
   <li><a href="about.html">About</a></li>
   <li><a href="projects.html">Projects</a></li>
-  <li><a href="contact.html" class="active">Contact</a></li>
-  <li><a href="add-property.html" class="active">Add Property</a></li>
+  <li><a href="contact.html">Contact</a></li>
+  <li><a href="add-property.html">Add Property</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="signup.html">Signup</a></li>
 </ul>
@@ -298,11 +298,11 @@
   aria-hidden="true"
   role="menu"
 >
-  <a href="index.html" role="menuitem">Home</a>
+  <a href="index.html" class="active" role="menuitem">Home</a>
   <a href="about.html" role="menuitem">About</a>
   <a href="projects.html" role="menuitem">Projects</a>
-  <a href="contact.html" class="active" role="menuitem">Contact</a>
-  <a href="add-property.html" class="active">Add Property</a>
+  <a href="contact.html" role="menuitem">Contact</a>
+  <a href="add-property.html">Add Property</a>
   <a href="login.html" role="menuitem">Login</a>
   <a href="signup.html" role="menuitem">Signup</a>
   <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
@@ -650,27 +650,32 @@ document.addEventListener("click", (e) => {
       <div class="search-box">
         <div class="field">
           🔍
-          <input type="text" placeholder="What are you looking for?" />
+          <input type="text" id="searchInput" placeholder="What are you looking for?" />
         </div>
         <div class="field">
           🏷️
-          <select>
-            <option>Category</option>
-            <option>Apartment</option>
-            <option>Villa</option>
-            <option>Commercial</option>
+          <select id="categorySelect">
+            <option value="">Category</option>
+            <option value="apartment">Apartment</option>
+            <option value="villa">Villa</option>
+            <option value="house">House</option>
+            <option value="commercial">Commercial</option>
+            <option value="land">Land/Plot</option>
           </select>
         </div>
         <div class="field">
           📍
-          <select>
-            <option>Location</option>
-            <option>New York</option>
-            <option>California</option>
-            <option>Texas</option>
+          <select id="locationSelect">
+            <option value="">Location</option>
+            <option value="dehradun">Dehradun</option>
+            <option value="doiwala">Doiwala</option>
+            <option value="bhauwala">Bhauwala</option>
+            <option value="laxmi-enclave">Laxmi Enclave</option>
+            <option value="shree-ram-enclave">Shree Ram Enclave</option>
+            <option value="balaji-enclave">Balaji Enclave</option>
           </select>
         </div>
-        <button class="search-button">
+        <button class="search-button" id="searchButton">
           🔎 Search Property
         </button>
       </div>
@@ -2340,7 +2345,7 @@ window.addEventListener("scroll", function () {
 
  const botReplies = {
   // Greetings
-  hello: "Hi there! Welcome to RealEstatePro. How can I assist you today?",
+  hello: "Hi there! Welcome to Dreamland Associates. How can I assist you today?",
   hi: "Hello! Looking for a property or need help with something else?",
   hey: "Hey! How can I help you find your dream home today?",
 
@@ -2356,14 +2361,14 @@ window.addEventListener("scroll", function () {
   property_management: "Our property management service helps landlords manage their rentals hassle-free.",
   
   // Contact info
-  contact: "You can reach us at contact@realestatepro.com or call +123456789. We are here Mon-Fri, 9am-6pm.",
-  phone: "Call us anytime at +123456789 or email contact@realestatepro.com",
-  email: "Please email us at contact@realestatepro.com with your queries.",
+  contact: "You can reach us at dreamlandassociate7@gmail.com or call +91 92588 84941. We are here Mon-Fri, 9am-6pm.",
+  phone: "Call us anytime at +91 92588 84941 or email dreamlandassociate7@gmail.com",
+  email: "Please email us at dreamlandassociate7@gmail.com with your queries.",
   
   // Buying queries
   buy: "Looking to buy? Please specify property type (apartment, house, land) and location.",
   buying: "I can help you find the perfect property to buy. Which city or neighborhood interests you?",
-  purchase: "Great! What’s your budget and preferred property type?",
+  purchase: "Great! What's your budget and preferred property type?",
 
   // Selling queries
   sell: "Want to sell your property? I can guide you on listing, pricing, and marketing.",
@@ -2377,7 +2382,7 @@ window.addEventListener("scroll", function () {
   
   // Property types
   apartment: "We have many apartments available in prime locations. Which city or neighborhood?",
-  house: "Looking for houses? What’s your budget and preferred area?",
+  house: "Looking for houses? What's your budget and preferred area?",
   villa: "Our luxury villas are in exclusive neighborhoods. Would you like to see listings?",
   land: "Interested in land or plots? Let me know your preferred location and size.",
   commercial: "We have offices, shops, warehouses for sale and rent. What type do you need?",
@@ -2388,7 +2393,7 @@ window.addEventListener("scroll", function () {
   neighborhood: "Are there any specific neighborhoods you prefer?",
   
   // Budget and price queries
-  budget: "What’s your budget range? This will help me find suitable properties.",
+  budget: "What's your budget range? This will help me find suitable properties.",
   price: "Looking for properties within a specific price range? Please specify.",
   affordable: "I can find affordable properties based on your budget. Please share your limit.",
   
@@ -2445,6 +2450,11 @@ window.addEventListener("scroll", function () {
     chatContainer.style.display = 'flex';
     chatBtn.style.display = 'none';
     chatInput.focus();
+    
+    // Add welcome message if chat is empty
+    if (chatMessages.children.length === 0) {
+      addMessage("Hello! I'm here to help you with your real estate needs. How can I assist you today?", 'bot');
+    }
   });
 
   chatClose.addEventListener('click', () => {
@@ -2475,6 +2485,34 @@ window.addEventListener("scroll", function () {
   chatInput.addEventListener('keydown', e => {
     if (e.key === 'Enter') sendMessage();
   });
+
+  // Search functionality
+  document.getElementById('searchButton').addEventListener('click', function() {
+    const searchInput = document.getElementById('searchInput').value.trim();
+    const category = document.getElementById('categorySelect').value;
+    const location = document.getElementById('locationSelect').value;
+    
+    if (!searchInput && !category && !location) {
+      alert('Please enter search criteria or select category/location.');
+      return;
+    }
+    
+    // Create search parameters
+    const searchParams = new URLSearchParams();
+    if (searchInput) searchParams.append('search', searchInput);
+    if (category) searchParams.append('category', category);
+    if (location) searchParams.append('location', location);
+    
+    // Redirect to projects page with search parameters
+    window.location.href = `projects.html?${searchParams.toString()}`;
+  });
+
+  // Allow Enter key to trigger search
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      document.getElementById('searchButton').click();
+    }
+  });
 </script>
 <section class="testimonial-section">
   <div class="testimonial-container">
@@ -2486,8 +2524,15 @@ window.addEventListener("scroll", function () {
         <div class="testimonial-author-icon">
           <i class="fas fa-user fa-4x"></i>
         </div>
+        <div class="testimonial-rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
         <blockquote class="testimonial-text">
-          <p>&ldquo;Dreamland Associatesd exceeded all my expectations. The customer service was outstanding, and the attention to detail made our experience truly unforgettable.&rdquo;</p>
+          <p>&ldquo;Dreamland Associates exceeded all my expectations. The customer service was outstanding, and the attention to detail made our experience truly unforgettable.&rdquo;</p>
         </blockquote>
         <p class="testimonial-author-name"><em>&mdash; Anjali Mehta</em></p>
       </div>
@@ -2496,8 +2541,15 @@ window.addEventListener("scroll", function () {
         <div class="testimonial-author-icon">
           <i class="fas fa-user fa-4x"></i>
         </div>
+        <div class="testimonial-rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
         <blockquote class="testimonial-text">
-          <p>&ldquo;The professionalism and dedication of Dreamland Associatesd made all the difference. I highly recommend them for anyone seeking quality and trust.&rdquo;</p>
+          <p>&ldquo;The professionalism and dedication of Dreamland Associates made all the difference. I highly recommend them for anyone seeking quality and trust.&rdquo;</p>
         </blockquote>
         <p class="testimonial-author-name"><em>&mdash; Vikram Singh</em></p>
       </div>
@@ -2506,8 +2558,15 @@ window.addEventListener("scroll", function () {
         <div class="testimonial-author-icon">
           <i class="fas fa-user fa-4x"></i>
         </div>
+        <div class="testimonial-rating">
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+          <span class="star">★</span>
+        </div>
         <blockquote class="testimonial-text">
-          <p>&ldquo;I appreciate how Dreamland Associatesd handled everything seamlessly. The team is friendly, efficient, and truly cares about their clients.&rdquo;</p>
+          <p>&ldquo;I appreciate how Dreamland Associates handled everything seamlessly. The team is friendly, efficient, and truly cares about their clients.&rdquo;</p>
         </blockquote>
         <p class="testimonial-author-name"><em>&mdash; Priya Nair</em></p>
       </div>
@@ -2629,8 +2688,26 @@ window.addEventListener("scroll", function () {
 .testimonial-author-icon {
   color: var(--primary-color);
   font-size: 1.75rem;
-  margin-bottom: 22px;
+  margin-bottom: 16px;
   transition: color 0.3s ease;
+}
+
+.testimonial-rating {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.testimonial-rating .star {
+  color: #ffd700;
+  font-size: 1.2rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.testimonial-rating .star:hover {
+  transform: scale(1.1);
 }
 
 .testimonial-card:hover .testimonial-author-icon {

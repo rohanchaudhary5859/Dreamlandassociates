@@ -263,9 +263,9 @@
 <ul class="nav-links">
   <li><a href="index.html">Home</a></li>
   <li><a href="about.html">About</a></li>
-  <li><a href="projects.html">Projects</a></li>
-  <li><a href="contact.html" class="active">Contact</a></li>
-  <li><a href="add-property.html" class="active">Add Property</a></li>
+  <li><a href="projects.html" class="active">Projects</a></li>
+  <li><a href="contact.html">Contact</a></li>
+  <li><a href="add-property.html">Add Property</a></li>
   <li><a href="login.html">Login</a></li>
   <li><a href="signup.html">Signup</a></li>
 </ul>
@@ -292,9 +292,9 @@
 >
   <a href="index.html" role="menuitem">Home</a>
   <a href="about.html" role="menuitem">About</a>
-  <a href="projects.html" role="menuitem">Projects</a>
-  <a href="contact.html" class="active" role="menuitem">Contact</a>
-  <a href="add-property.html" class="active">Add Property</a>
+  <a href="projects.html" class="active" role="menuitem">Projects</a>
+  <a href="contact.html" role="menuitem">Contact</a>
+  <a href="add-property.html">Add Property</a>
   <a href="login.html" role="menuitem">Login</a>
   <a href="signup.html" role="menuitem">Signup</a>
   <a href="contact.html" class="cta-button" role="menuitem">Request A Visit →</a>
@@ -450,6 +450,17 @@
           Laxmi Enclave is a strategically located ongoing gated colony near Ratanpur on Shimla Bypass Highway. This residential project offers well-designed plots with modern infrastructure, paved roads, water and electricity connections, and is ideal for future growth and investment.
         </p>
         <a href="Project_villa.html" class="details-btn" aria-label="View details of Laxmi Enclave">View Details</a>
+      </div>
+    </div>
+
+    <div class="estate-card">
+      <img src="https://cdn.leonardo.ai/users/54cd3f89-0f02-426c-bdc9-348de18d486b/generations/cc8f1f64-f58c-447b-a30a-ae21a5131570/segments/4:4:1/Flux_Dev_Dev_Enclave_a_completed_gated_colony_located_on_Ramga_3.jpg" alt="Balaji Enclave Gated Colony, Dehradun" />
+      <div class="estate-content">
+        <h3 class="estate-name">Balaji Enclave</h3>
+        <p class="estate-desc">
+          Balaji Enclave is a premium ongoing gated colony project in Dehradun offering modern residential plots with excellent connectivity. The project features wide roads, reliable water and electricity supply, security systems, and landscaped green areas, making it an ideal choice for families seeking quality living spaces.
+        </p>
+        <a href="Project_apartment.html" class="details-btn" aria-label="View details of Balaji Enclave">View Details</a>
       </div>
     </div>
   </div>
@@ -948,6 +959,58 @@ Uttarakhand – 248007</p>
 
 </style>
 
-</style>
+<script>
+  // Handle search parameters from URL
+  function handleSearchParams() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const search = urlParams.get('search');
+    const category = urlParams.get('category');
+    const location = urlParams.get('location');
+    
+    if (search || category || location) {
+      // Filter projects based on search criteria
+      const projectCards = document.querySelectorAll('.estate-card');
+      
+      projectCards.forEach(card => {
+        const projectName = card.querySelector('.estate-name').textContent.toLowerCase();
+        const projectDesc = card.querySelector('.estate-desc').textContent.toLowerCase();
+        let showCard = true;
+        
+        // Check search term
+        if (search && !projectName.includes(search.toLowerCase()) && !projectDesc.includes(search.toLowerCase())) {
+          showCard = false;
+        }
+        
+        // Check category (this would need to be implemented based on your project structure)
+        if (category && !projectDesc.includes(category.toLowerCase())) {
+          showCard = false;
+        }
+        
+        // Check location
+        if (location && !projectDesc.includes(location.toLowerCase())) {
+          showCard = false;
+        }
+        
+        if (!showCard) {
+          card.style.display = 'none';
+        } else {
+          card.style.display = 'block';
+        }
+      });
+      
+      // Show search results message
+      const visibleCards = document.querySelectorAll('.estate-card[style*="block"], .estate-card:not([style*="none"])');
+      if (visibleCards.length === 0) {
+        const noResults = document.createElement('div');
+        noResults.innerHTML = '<h3 style="text-align: center; margin: 2rem 0; color: #666;">No properties found matching your search criteria.</h3>';
+        document.querySelector('.estate-grid').appendChild(noResults);
+      }
+    }
+  }
+  
+  // Run search on page load
+  document.addEventListener('DOMContentLoaded', handleSearchParams);
+</script>
+
 </body>
 </html>

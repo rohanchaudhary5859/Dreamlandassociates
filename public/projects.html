@@ -335,7 +335,15 @@
   const backdrop = document.getElementById("backdrop");
   const nav = document.querySelector("nav");
 
+  function syncOffsets() {
+    const navHeight = nav.offsetHeight;
+    mobileMenu.style.top = navHeight + "px";
+    backdrop.style.top = navHeight + "px";
+    backdrop.style.height = `calc(100vh - ${navHeight}px)`;
+  }
+
   function openMenu() {
+    syncOffsets();
     hamburger.classList.add("active");
     mobileMenu.classList.add("active");
     backdrop.classList.add("active");
@@ -398,7 +406,10 @@
     } else {
       nav.classList.remove("shrink");
     }
+    syncOffsets();
   });
+
+  window.addEventListener("resize", syncOffsets);
 </script>
 
 
@@ -458,6 +469,17 @@
           <strong>Forest Enclave</strong> is a nature-inspired gated colony in <strong>Dhoomnagar, Bhauwala</strong> offering ready-to-move residential plots, green surroundings, modern utilities, and excellent road access.
         </p>
         <a href="forestenclave.html" class="details-btn" aria-label="View details of Forest Enclave">View Details</a>
+      </div>
+    </div>
+
+    <div class="estate-card">
+      <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1400&auto=format&fit=crop" alt="Balaji Enclave – Sabhawala, Dehradun" loading="lazy" />
+      <div class="estate-content">
+        <h3 class="estate-name">Balaji Enclave</h3>
+        <p class="estate-desc">
+          Premium residential plots in a gated colony at <strong>Sabhawala (Shimla Bypass)</strong> with boundary wall, RCC roads, proper drainage, electricity and water connections. Peaceful green setting with excellent city connectivity.
+        </p>
+        <a href="balajienclave.html" class="details-btn" aria-label="View details of Balaji Enclave">View Details</a>
       </div>
     </div>
 
