@@ -429,262 +429,281 @@
 </script>
 
 <style>
-    * {
-      box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
-    body {
-      margin: 0;
-         font-family: "Roboto Condensed", sans-serif;
-      background-color: #fff;
-    }
+  body {
+    margin: 0;
+    font-family: "Roboto Condensed", sans-serif;
+    background-color: #fff;
+  }
 
-    .hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      color: #fff;
-    }
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    color: #fff;
+    overflow: hidden;
+  }
 
-    .hero img {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -1;
-    }
+  /* Background image container */
+  .hero-slideshow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    top: 0;
+    left: 0;
+  }
 
-    .hero-overlay {
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.4);
-      position: absolute;
-      top: 0;
-      left: 0;
-      z-index: 0;
-    }
+  .hero-slideshow img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+  }
 
-    .hero-content {
-      z-index: 2;
-      padding: 100px 60px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-      max-width: 700px;
-    }
+  .hero-slideshow img.active {
+    opacity: 1;
+  }
 
-    .hero h4 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-      color: #ffffff;
-    }
+  .hero-overlay {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
 
-    .hero h1 {
-      font-size: 3.5rem;
-      font-weight: 800;
-      margin: 0;
-      line-height: 1.2;
-    }
+  .hero-content {
+    z-index: 2;
+    padding: 100px 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    max-width: 700px;
+  }
 
-    .search-box {
-      display: flex;
-      flex-wrap: wrap;
-      background-color: #ffffff;
-      border-radius: 15px;
-      margin-top: 40px;
-      padding: 15px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      gap: 10px;
-    }
+  .hero h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: #ffffff;
+  }
 
-    .field {
-      flex: 1 1 150px;
-      display: flex;
-      align-items: center;
-      background: #fff;
-      border-radius: 10px;
-      padding: 12px 16px;
-      gap: 8px;
-      box-shadow: inset 0 0 0 1px #ccc;
-    }
+  .hero h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+  }
 
-    .field input,
-    .field select {
-      flex: 1;
-      border: none;
-      background: none;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .field:hover {
-      box-shadow: inset 0 0 0 2px #545454;
-    }
-
-    .search-button {
-      flex: 1 1 180px;
-      background-color: #000000;
-      color: white;
-      padding: 14px 20px;
-      border-radius: 10px;
-      font-weight: 600;
-      cursor: pointer;
-      border: none;
-      transition: background 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-
-    .search-button:hover {
-      background-color: #0b1f2a;
-    }
-
-    .stats {
-      display: flex;
-      gap: 50px;
-      margin-top: 30px;
-      color: #fff;
-    }
-
-    .stat h2 {
-      font-size: 2rem;
-      margin: 0;
-    }
-
-    .stat p {
-      margin: 5px 0 0;
-      font-size: 1rem;
-      color: #ddd;
-    }
-    
-
-    @media (max-width: 900px) {
-      .hero {
-        flex-direction: column;
-        padding: 0;
-        height: auto;
-      }
-
-      .hero-content {
-        padding: 60px 20px;
-        max-width: 100%;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-      }
-
-      .search-box {
-        flex-direction: column;
-        padding: 20px;
-      }
-
-      .search-button {
-        width: 100%;
-      }
-
-      .stats {
-        flex-direction: column;
-        gap: 15px;
-      }
-    }
-    @media (max-width: 490px) {
   .search-box {
-    width: 90%;
-    padding: 12px 15px;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin: 20px auto;
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    background: #fff;
-    height: auto;
+    background-color: #ffffff;
+    border-radius: 15px;
+    margin-top: 40px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    gap: 10px;
   }
 
   .field {
-    flex: 1 1 48%; /* slightly less than half */
+    flex: 1 1 150px;
     display: flex;
     align-items: center;
-    padding: 8px 12px;
-    font-size: 0.9rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
     background: #fff;
+    border-radius: 10px;
+    padding: 12px 16px;
     gap: 8px;
-    box-sizing: border-box;
-    transition: box-shadow 0.3s ease;
+    box-shadow: inset 0 0 0 1px #ccc;
   }
 
   .field input,
   .field select {
-    font-size: 0.9rem;
-    padding: 6px 8px;
-    width: 100%;
+    flex: 1;
     border: none;
+    background: none;
+    font-size: 0.95rem;
     outline: none;
-    background: transparent;
   }
 
   .field:hover {
-    box-shadow: inset 0 0 0 2px #444;
+    box-shadow: inset 0 0 0 2px #545454;
   }
 
   .search-button {
-    flex: 1 1 100%; /* full width */
-    padding: 12px 0;
-    font-size: 1rem;
-    border-radius: 8px;
-    background-color: #000;
-    color: #fff;
-    border: none;
-    cursor: pointer;
+    flex: 1 1 180px;
+    background-color: #000000;
+    color: white;
+    padding: 14px 20px;
+    border-radius: 10px;
     font-weight: 600;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
+    border: none;
+    transition: background 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
   }
 
   .search-button:hover {
-    background-color: #222;
+    background-color: #0b1f2a;
   }
 
-  
   .stats {
     display: flex;
-    justify-content: space-between;
-    margin-top: 25px;
-    padding: 0 5%;
+    gap: 50px;
+    margin-top: 30px;
     color: #fff;
   }
 
-  .stat {
-    flex: 1 1 45%;
-    text-align: left;
-  }
-
-  .stat:nth-child(2) {
-    text-align: right;
-  }
-
   .stat h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
+    margin: 0;
   }
 
   .stat p {
-    font-size: 0.9rem;
+    margin: 5px 0 0;
+    font-size: 1rem;
     color: #ddd;
-   
   }
-}
 
-  </style>
+  @media (max-width: 900px) {
+    .hero {
+      flex-direction: column;
+      padding: 0;
+      height: auto;
+    }
 
+    .hero-content {
+      padding: 60px 20px;
+      max-width: 100%;
+    }
 
-  <section class="hero">
-  <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" alt="Luxury Home" />
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+
+    .search-box {
+      flex-direction: column;
+      padding: 20px;
+    }
+
+    .search-button {
+      width: 100%;
+    }
+
+    .stats {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }
+
+  @media (max-width: 490px) {
+    .search-box {
+      width: 90%;
+      padding: 12px 15px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      margin: 20px auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #fff;
+      height: auto;
+    }
+
+    .field {
+      flex: 1 1 48%;
+      display: flex;
+      align-items: center;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      background: #fff;
+      gap: 8px;
+      box-sizing: border-box;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .field input,
+    .field select {
+      font-size: 0.9rem;
+      padding: 6px 8px;
+      width: 100%;
+      border: none;
+      outline: none;
+      background: transparent;
+    }
+
+    .field:hover {
+      box-shadow: inset 0 0 0 2px #444;
+    }
+
+    .search-button {
+      flex: 1 1 100%;
+      padding: 12px 0;
+      font-size: 1rem;
+      border-radius: 8px;
+      background-color: #000;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-button:hover {
+      background-color: #222;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 25px;
+      padding: 0 5%;
+      color: #fff;
+    }
+
+    .stat {
+      flex: 1 1 45%;
+      text-align: left;
+    }
+
+    .stat:nth-child(2) {
+      text-align: right;
+    }
+
+    .stat h2 {
+      font-size: 1.8rem;
+    }
+
+    .stat p {
+      font-size: 0.9rem;
+      color: #ddd;
+    }
+  }
+</style>
+
+<section class="hero">
+  <!-- Slideshow images -->
+  <div class="hero-slideshow">
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c" class="active" alt="Luxury Home 1" />
+    <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Luxury Home 2" />
+    <img src="https://www.adanirealty.com/-/media/project/realty/blogs/types-of-residential-properties.ashx" alt="Luxury Home 3" />
+    <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6" alt="Luxury Home 4" />
+  </div>
+
   <div class="hero-overlay"></div>
 
   <div class="hero-content">
@@ -692,12 +711,10 @@
     <h1>Find Your <br /> Dream Home</h1>
 
     <div class="search-box">
-      <div class="field">
-        🔍
+      <div class="field">🔍
         <input type="text" placeholder="What are you looking for?" />
       </div>
-      <div class="field">
-        🏷️
+      <div class="field">🏷️
         <select id="category">
           <option value="apartment">Apartment</option>
           <option value="villa">Villa</option>
@@ -706,8 +723,7 @@
           <option value="commercial">Commercial</option>
         </select>
       </div>
-      <div class="field">
-        📍
+      <div class="field">📍
         <select id="location">
           <option value="">Select Location</option>
           <option value="lachiwalla">Lachiwalla</option>
@@ -720,9 +736,7 @@
           <option value="balaji">Balaji Enclave</option>
         </select>
       </div>
-      <button id="searchBtn" class="search-button">
-        🔎 Search Property
-      </button>
+      <button id="searchBtn" class="search-button">🔎 Search Property</button>
     </div>
 
     <div class="stats">
@@ -731,7 +745,7 @@
         <p>Satisfied Customers</p>
       </div>
       <div class="stat">
-        <h2>15K+</h2>
+        <h2>15K+</</h2>
         <p>Verified Properties</p>
       </div>
     </div>
@@ -739,11 +753,21 @@
 </section>
 
 <script>
+  // 🔁 Background Slideshow Script
+  const slides = document.querySelectorAll(".hero-slideshow img");
+  let index = 0;
+
+  setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+  }, 4000); // change every 4 seconds
+
+  // Search button logic
   document.getElementById("searchBtn").addEventListener("click", function () {
     const category = document.getElementById("category").value;
     const location = document.getElementById("location").value;
 
-    // Map location keys to HTML pages
     const locationPages = {
       lachiwalla: "lachiwalla.html",
       bhauwala: "bhauwala.html",
@@ -755,13 +779,11 @@
       balaji: "balajienclave.html"
     };
 
-    // Simple validation
     if (!location) {
       alert("Please select a location.");
       return;
     }
 
-    // Redirect to the correct page with category as a query param
     const page = locationPages[location];
     if (page) {
       window.location.href = page + `?category=${encodeURIComponent(category)}`;
