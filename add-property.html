@@ -772,17 +772,62 @@
     input.dispatchEvent(event);
   });
 
-  // Form submission
-  form.addEventListener('submit', e => {
+  // Google Apps Script Web App URL (replace after deployment)
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwD4cwFwFMFk8-HOeMnULcYrUQwuRh9UDL_x7rMcPMp5fYPqKdI4hJaJ0UdxfvnIsUHZg/exec';
+
+  // Form submission -> send to Google Sheet via Apps Script
+  form.addEventListener('submit', async e => {
     e.preventDefault();
 
-    // Show modal
-    successModal.style.display = 'flex';
-    successModal.querySelector('.modal-box').focus();
+    const payload = {
+      title: document.getElementById('title').value.trim(),
+      price: document.getElementById('price').value.trim(),
+      location: document.getElementById('location').value.trim(),
+      size: document.getElementById('size').value.trim(),
+      bedrooms: document.getElementById('bedrooms').value.trim(),
+      description: document.getElementById('description').value.trim(),
+      // Just send image names (not files) to the sheet for reference
+      images: Array.from(input.files || []).map(f => f.name)
+    };
 
-    // Reset form and image preview
-    form.reset();
-    previewContainer.innerHTML = '';
+    try {
+      if (!GAS_URL) {
+        alert('Google Sheet not connected yet. Please paste your Web App URL in GAS_URL.');
+        return;
+      }
+      // Use FormData to avoid CORS preflight. Do not set custom headers.
+      const formData = new FormData();
+      Object.entries(payload).forEach(([key, value]) => {
+        formData.append(key, typeof value === 'string' ? value : JSON.stringify(value));
+      });
+      // Prefer local proxy if available to bypass browser CORS
+      const res = await fetch('/api/sheet', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(() => fetch(GAS_URL, { method: 'POST', body: formData }));
+
+      // Treat any 2xx as success. Try JSON; fallback to text.
+      if (res.ok) {
+        let data = null;
+        try { data = await res.json(); } catch (_) { /* non-JSON is fine */ }
+        const text = data ? '' : (await res.text().catch(() => ''));
+        const success = (data && (data.ok === true || data.status === 'success' || data.result === 'success')) || (text && text.toLowerCase().includes('success')) || true;
+        if (!success) {
+          console.warn('Unexpected response shape from GAS:', { data, text });
+        }
+        successModal.style.display = 'flex';
+        successModal.querySelector('.modal-box').focus();
+        form.reset();
+        previewContainer.innerHTML = '';
+      } else {
+        const text = await res.text().catch(() => '');
+        alert('Submit failed. Please try again.\n' + (text || ('HTTP ' + res.status)));
+      }
+    } catch (err) {
+      console.error('Submit error:', err);
+      alert('Submit failed (network/CORS). Ensure your Apps Script is deployed as Web App with access: Anyone.');
+    }
   });
 
   // Close modal on Done click

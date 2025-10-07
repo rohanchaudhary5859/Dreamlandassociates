@@ -1,5 +1,6 @@
 const express = require('express');
 const cors = require('cors');
+const fetch = require('node-fetch');
 
 const app = express();
 const PORT = 5000;
@@ -7,6 +8,27 @@ const PORT = 5000;
 // Middleware
 app.use(cors());
 app.use(express.json());
+// Google Apps Script Web App URL (use your /exec URL or set env GAS_URL)
+const GAS_URL = process.env.GAS_URL || 'https://script.google.com/macros/s/AKfycbwD4cwFwFMFk8-HOeMnULcYrUQwuRh9UDL_x7rMcPMp5fYPqKdI4hJaJ0UdxfvnIsUHZg/exec';
+
+// Proxy to GAS to avoid browser CORS
+app.post('/api/sheet', async (req, res) => {
+  try {
+    if (!GAS_URL) {
+      return res.status(500).json({ ok: false, error: 'GAS_URL not configured on server' });
+    }
+    const upstream = await fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(req.body)
+    });
+    const text = await upstream.text();
+    res.status(upstream.status).send(text);
+  } catch (err) {
+    res.status(500).json({ ok: false, error: String(err) });
+  }
+});
+
 
 // Dummy token for demo purpose — replace with your real auth logic
 const VALID_TOKEN = 'your-secret-token';
