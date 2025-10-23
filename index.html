@@ -2824,52 +2824,7 @@ window.addEventListener("scroll", function () {
 
 
   <!-- Footer -->
-  <footer class="footer">
-  <div class="footer-wrapper">
-    <div class="footer-section about">
-      <h3>Dream Land Associates – Trusted Real Estate Developers in Dehradun</h3>
-      <p>Discover premium residential plots and gated community projects in Dehradun with Dream Land Associates. As one of the leading real estate developers in Dehradun, we specialize in offering secure, value-driven property investments with a focus on transparency, trust, and long-term growth. Explore our top-rated gated colonies and residential land for sale in prime locations across Dehradun and nearby areas.</p>
-    </div>
-
-    <div class="footer-section links">
-      <h3>Quick Links</h3>
-      <ul>
-        <li><a href="index.html" title="Dreamland Associates - Home">Home</a></li>
-        <li><a href="projects.html" title="Explore Residential Projects in Dehradun">Properties</a></li>
-        <li><a href="add-property.html" title="Add Your Property with Dreamland">Add Properties</a></li>
-        <li><a href="contact.html" title="Get in Touch with Dreamland Associates">Contact Us</a></li>
-        <li><a href="about.html" title="About Dreamland Associates - Dehradun Real Estate Experts">About Us</a></li>
-      </ul>
-    </div>
-
-    <div class="footer-section contact">
-      <h3>Contact Us</h3>
-       <p>Address: Gorakhpur, Shimla Bypass Road,<br>
-Near Jio Petrol Pump, Dehradun,<br>
-Uttarakhand – 248007</p>
-<p>Email: dreamlandassociate7@gmail.com</p>
-<p>Contact: 
-  <br>9258884941
-</p>
-      <div class="social-icons">
-        <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.675 0h-21.35c-.734 0-1.325.59-1.325 1.325v21.351c0 .734.59 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.672c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.466.099 2.797.142v3.243l-1.92.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.59l-.467 3.622h-3.123V24h6.116c.733 0 1.324-.59 1.324-1.324V1.325C24 .59 23.41 0 22.675 0z"/></svg>
-        </a>
-        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557a9.839 9.839 0 0 1-2.828.775 4.932 4.932 0 0 0 2.165-2.724c-.951.564-2.005.974-3.127 1.195a4.918 4.918 0 0 0-8.38 4.482c-4.083-.2-7.702-2.159-10.126-5.134a4.822 4.822 0 0 0-.664 2.475 4.92 4.92 0 0 0 2.188 4.096 4.903 4.903 0 0 1-2.228-.616v.06a4.917 4.917 0 0 0 3.946 4.817 4.996 4.996 0 0 1-2.224.085 4.926 4.926 0 0 0 4.6 3.42 9.867 9.867 0 0 1-6.102 2.104c-.396 0-.787-.023-1.175-.068a13.945 13.945 0 0 0 7.548 2.212c9.054 0 14.002-7.496 14.002-13.986 0-.213-.005-.425-.014-.636A9.936 9.936 0 0 0 24 4.557z"/></svg>
-        </a>
-        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M7.75 2A5.75 5.75 0 0 0 2 7.75v8.5A5.75 5.75 0 0 0 7.75 22h8.5A5.75 5.75 0 0 0 22 16.25v-8.5A5.75 5.75 0 0 0 16.25 2h-8.5zm8.25 2.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-4.25 2.25a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/></svg>
-        </a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
-  </div>
-</footer>
-
-<style>
+  <style>
   @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 .footer {
@@ -2880,6 +2835,7 @@ Uttarakhand – 248007</p>
   position: relative;
   overflow: hidden;
   border-top: 1px solid #222;
+  z-index: 1;
 }
 
 .footer::before {
@@ -2892,15 +2848,12 @@ Uttarakhand – 248007</p>
   background: radial-gradient(circle at center, #00d5ff33 0%, transparent 70%);
   animation: pulseBg 8s linear infinite;
   z-index: 0;
+  pointer-events: none; /* ✅ Prevents background from blocking clicks */
 }
 
 @keyframes pulseBg {
-  0% {
-    transform: rotate(0deg) scale(1);
-  }
-  100% {
-    transform: rotate(360deg) scale(1.05);
-  }
+  0% { transform: rotate(0deg) scale(1); }
+  100% { transform: rotate(360deg) scale(1.05); }
 }
 
 .footer-wrapper {
@@ -2918,6 +2871,8 @@ Uttarakhand – 248007</p>
   flex: 1 1 280px;
   padding: 25px 30px;
   min-width: 240px;
+  position: relative;
+  z-index: 2;
 }
 
 .footer-section h3 {
@@ -2925,7 +2880,6 @@ Uttarakhand – 248007</p>
   font-size: 1.75rem;
   margin-bottom: 18px;
   color: #00d5ff;
-  position: relative;
 }
 
 .footer-section p {
@@ -2933,13 +2887,10 @@ Uttarakhand – 248007</p>
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.6;
-  transition: color 0.3s ease;
   max-width: 320px;
 }
 
-.footer-section p:hover {
-  color: #fff;
-}
+.footer-section p:hover { color: #fff; }
 
 .footer-section.links ul {
   list-style: none;
@@ -2952,12 +2903,11 @@ Uttarakhand – 248007</p>
 }
 
 .footer-section.links ul li a {
-  font-weight: 300;
-  font-size: 1rem;
   color: #bbb;
   text-decoration: none;
   position: relative;
-  padding: 4px 0;
+  font-weight: 300;
+  font-size: 1rem;
   transition: all 0.3s ease;
 }
 
@@ -2972,19 +2922,10 @@ Uttarakhand – 248007</p>
   transition: width 0.3s ease;
 }
 
-.footer-section.links ul li a:hover::before {
-  width: 100%;
-}
+.footer-section.links ul li a:hover::before { width: 100%; }
+.footer-section.links ul li a:hover { color: #fff; }
 
-.footer-section.links ul li a:hover {
-  color: #fff;
-}
-
-.footer-section.contact p {
-  margin: 10px 0;
-  color: #ccc;
-  font-weight: 300;
-}
+.footer-section.contact p { margin: 10px 0; color: #ccc; }
 
 .social-icons {
   margin-top: 25px;
@@ -3003,7 +2944,6 @@ Uttarakhand – 248007</p>
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid #00d5ff33;
   color: #00d5ff;
-  font-size: 1.2rem;
   transition: all 0.3s ease;
   backdrop-filter: blur(6px);
 }
@@ -3022,80 +2962,39 @@ Uttarakhand – 248007</p>
   text-align: center;
   font-size: 0.9rem;
   color: #888;
-  font-weight: 300;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.footer-bottom .zyntrix a {
+  color: #00d5ff;
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+  position: relative;
+  z-index: 3;
+  pointer-events: auto; /* ✅ Ensures link is clickable */
+}
+
+.footer-bottom .zyntrix a:hover {
+  color: #fff;
+  text-shadow: 0 0 8px #00d5ff;
 }
 
 /* Responsive Styles */
 @media (max-width: 900px) {
-  .footer-wrapper {
-    flex-direction: column;
-    gap: 35px;
-  }
-  .footer-section {
-    padding: 15px 0;
-    max-width: 100%;
-  }
-  .footer-section p,
-  .footer-section.links ul li a {
-    max-width: 100%;
-    font-size: 0.95rem;
-  }
+  .footer-wrapper { flex-direction: column; gap: 35px; }
 }
 
 @media (max-width: 480px) {
-  .footer-wrapper {
-    flex-direction: column;
-    gap: 16px;
-    padding: 0 10px;
-  }
-
-  .footer-section {
-    padding: 12px 0;
-    max-width: 100%;
-    flex: none;
-  }
-
-  .footer-section h3 {
-    font-size: 1.5rem;
-    margin-bottom: 14px;
-    line-height: 1.2;
-  }
-
-  .footer-section p,
-  .footer-section.links ul li a {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    max-width: 100%;
-    margin: 0;
-  }
-
-  .footer-section.links ul li {
-    margin-bottom: 10px;
-  }
-
-  .social-icons {
-    margin-top: 15px;
-    gap: 14px;
-    justify-content: flex-start;
-  }
-
-  .social-icons a {
-    width: 38px;
-    height: 38px;
-    font-size: 1rem;
-  }
-
-  .footer-bottom {
-    margin-top: 28px;
-    padding-top: 14px;
-    font-size: 0.85rem;
-    color: #777;
-  }
+  .footer-wrapper { gap: 16px; padding: 0 10px; }
+  .footer-section h3 { font-size: 1.5rem; margin-bottom: 14px; }
+  .footer-section p, .footer-section.links ul li a { font-size: 0.9rem; }
+  .social-icons a { width: 38px; height: 38px; font-size: 1rem; }
+  .footer-bottom { font-size: 0.85rem; color: #777; }
 }
-
 </style>
+
 
 
 
