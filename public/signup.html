@@ -447,6 +447,18 @@
   </div>
 
   <style>
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes buttonShine {
+      from { left: -100%; }
+      to { left: 100%; }
+    }
     :root {
       --clr-primary: #000;
       --clr-secondary: #fff;
@@ -468,6 +480,7 @@
       width: 90%;
       max-width: 700px;
       margin: 3rem auto;
+      animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .auth {
@@ -476,18 +489,27 @@
       border-radius: var(--radius);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
       text-align: center;
+      animation: fadeInUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
     }
 
     .auth h1 {
       margin-bottom: 2rem;
       font-size: 1.8rem;
       color: var(--clr-primary);
+      animation: slideInLeft 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both;
     }
 
     .form-group {
       margin-bottom: 1.5rem;
       text-align: left;
+      animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     }
+
+    .form-group:nth-child(1) { animation-delay: 0.3s; }
+    .form-group:nth-child(2) { animation-delay: 0.35s; }
+    .form-group:nth-child(3) { animation-delay: 0.4s; }
+    .form-group:nth-child(4) { animation-delay: 0.45s; }
+    .form-group:nth-child(5) { animation-delay: 0.5s; }
 
     .form-group label {
       display: block;
@@ -502,13 +524,15 @@
       font-size: 1rem;
       border: 1px solid #ccc;
       border-radius: var(--radius);
-      transition: border-color var(--transition);
+      transition: border-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
 
     .form-group input:focus {
       outline: none;
       border-color: var(--clr-primary);
-      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.08);
+      transform: translateY(-2px);
     }
 
     .btn-primary {
@@ -518,20 +542,42 @@
       border-radius: var(--radius);
       border: 2px solid var(--clr-primary);
       cursor: pointer;
-      transition: background var(--transition), color var(--transition);
+      transition: background 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       background: var(--clr-primary);
       color: var(--clr-secondary);
+      position: relative;
+      overflow: hidden;
+      animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s both;
+    }
+
+    .btn-primary::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      transition: left 0.4s ease;
+      z-index: 1;
     }
 
     .btn-primary:hover {
       background: var(--clr-secondary);
       color: var(--clr-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-primary:hover::before {
+      left: 100%;
     }
 
     .auth p {
       font-size: 0.9rem;
       color: #666;
       margin-top: 1rem;
+      animation: fadeInUp 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s both;
     }
 
     .auth p a {
