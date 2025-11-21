@@ -857,7 +857,11 @@ Uttarakhand – 248007</p>
   </div>
 
   <div class="footer-bottom">
-    <p>&copy; 2025 Dream Land Associates. All rights reserved. Your trusted partner for residential plots and gated colonies in Dehradun.</p>
+<p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
+<p>Developed & Designed by 
+    <a href="https://www.zyntrixmedia.xyz/" target="_blank" class="zyntrix-link">Zyntrix</a>
+</p>
+
   </div>
 </footer>
 
@@ -958,6 +962,39 @@ body {
   height: 2px;
   background: #fff;
   border-radius: 2px;
+}
+.zyntrix-link {
+    position: relative;
+    font-weight: 700;
+    text-decoration: none;
+    background: linear-gradient(90deg, #00eaff, #0077ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: 0.35s ease;
+}
+
+/* Smooth glow + slight lift */
+.zyntrix-link:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 0 10px rgba(0, 213, 255, 0.6),
+                 0 0 18px rgba(0, 136, 255, 0.6);
+}
+
+/* Elegant underline animation */
+.zyntrix-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #00eaff, #0077ff);
+    transition: width 0.45s ease;
+    border-radius: 2px;
+}
+
+.zyntrix-link:hover::after {
+    width: 100%;
 }
 
 .footer-section p,

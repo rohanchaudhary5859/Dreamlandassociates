@@ -711,18 +711,7 @@
 
     <div class="search-box">
       <div class="field">🔍
-        <input id="searchInput" type="text" placeholder="Type project name (e.g. Nayagaon Laxmi Enclave)" list="projectsList" autocomplete="off" />
-        <datalist id="projectsList">
-          <option value="Lachiwalla Greens"></option>
-          <option value="Bhauwala"></option>
-          <option value="Bhadraj Colony"></option>
-          <option value="Dev Enclave"></option>
-          <option value="Forest Enclave"></option>
-          <option value="Shree Ram Enclave"></option>
-          <option value="Laxmi Enclave"></option>
-          <option value="Nayagaon Laxmi Enclave"></option>
-          <option value="Balaji Enclave"></option>
-        </datalist>
+        <input type="text" placeholder="What are you looking for?" />
       </div>
       <div class="field">🏷️
         <select id="category">
@@ -777,94 +766,41 @@
     slides[index].classList.add("active");
   }, 4000); // change every 4 seconds
 
-  // Search button logic - typed name matching with aliases and Enter key
-  (function () {
-    let searchInProgress = false;
+  // Search button logic - Fixed to prevent opening multiple times
+  let searchInProgress = false;
+  document.getElementById("searchBtn").addEventListener("click", function () {
+    if (searchInProgress) return; // Prevent multiple clicks
+    searchInProgress = true;
+    
+    const category = document.getElementById("category").value;
+    const location = document.getElementById("location").value;
 
-    const aliases = {
-      lachiwalla: { file: 'lachiwalla.html', aliases: ['lachiwalla', 'lachiwalla greens'] },
-      bhauwala: { file: 'bhauwala.html', aliases: ['bhauwala'] },
-      bhadraj: { file: 'bhadraj.html', aliases: ['bhadraj'] },
-      dev: { file: 'devenclave.html', aliases: ['dev', 'dev enclave'] },
-      forest: { file: 'forestenclave.html', aliases: ['forest', 'forest enclave'] },
-      shreeram: { file: 'Shreeramenclave.html', aliases: ['shree ram', 'shreeram', 'shree ram enclave'] },
-      laxmi: { file: 'laxmienclave.html', aliases: ['laxmi', 'laxmi enclave'] },
-      nayagaon: { file: 'nayagaonlaxmienclave.html', aliases: ['nayagaon', 'nayagaon laxmi', 'nayagaon laxmi enclave', 'nayagaonlaxmienclave'] },
-      balaji: { file: 'balajienclave.html', aliases: ['balaji', 'balaji enclave'] }
+    const locationPages = {
+      lachiwalla: "lachiwalla.html",
+      bhauwala: "bhauwala.html",
+      bhadraj: "bhadraj.html",
+      dev: "devenclave.html",
+      forest: "forestenclave.html",
+      shreeram: "Shreeramenclave.html",
+      laxmi: "laxmienclave.html",
+      balaji: "balajienclave.html",
+      nayagaon: "nayagaonlaxmienclave.html"
     };
 
-    function findMatchByText(text) {
-      const normalized = text.toLowerCase().trim();
-      if (!normalized) return null;
-      // Require exact alias match only (case-insensitive). Use datalist suggestions for guidance.
-      for (const key in aliases) {
-        for (const a of aliases[key].aliases) {
-          if (normalized === a) return aliases[key].file;
-        }
-      }
-      return null;
+    if (!location) {
+      alert("Please select a location.");
+      searchInProgress = false;
+      return;
     }
 
-    function doSearch() {
-      if (searchInProgress) return;
-      searchInProgress = true;
-
-      const inputEl = document.getElementById('searchInput');
-      const typed = inputEl ? inputEl.value : '';
-      const location = document.getElementById('location').value;
-      const category = document.getElementById('category').value;
-
-      // Priority: typed text -> location dropdown -> category dropdown
-      if (typed && typed.trim() !== '') {
-        const page = findMatchByText(typed);
-        if (page) {
-          window.location.href = page + `?query=${encodeURIComponent(typed)}&category=${encodeURIComponent(category)}`;
-          return;
-        } else {
-          alert('Project not found. Please type the exact project name (use the suggestions).');
-          searchInProgress = false;
-          return;
-        }
-      }
-
-      // fallback to location dropdown
-      if (location) {
-        const locationPages = {
-          lachiwalla: 'lachiwalla.html',
-          bhauwala: 'bhauwala.html',
-          bhadraj: 'bhadraj.html',
-          dev: 'devenclave.html',
-          forest: 'forestenclave.html',
-          shreeram: 'Shreeramenclave.html',
-          laxmi: 'laxmienclave.html',
-          balaji: 'balajienclave.html',
-          nayagaon: 'nayagaonlaxmienclave.html'
-        };
-        const page = locationPages[location];
-        if (page) {
-          window.location.href = page + `?category=${encodeURIComponent(category)}`;
-          return;
-        }
-      }
-
-      alert('Please type a project name or select a location.');
+    const page = locationPages[location];
+    if (page) {
+      window.location.href = page + `?category=${encodeURIComponent(category)}`;
+    } else {
+      alert("Project not found for the selected location.");
       searchInProgress = false;
     }
-
-    const btn = document.getElementById('searchBtn');
-    if (btn) btn.addEventListener('click', doSearch);
-
-    // Enter key handling on the input
-    const inputEl = document.getElementById('searchInput');
-    if (inputEl) {
-      inputEl.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          doSearch();
-        }
-      });
-    }
-  })();
+  });
 </script>
 
  <section class="featured-section">
@@ -3005,9 +2941,9 @@ window.addEventListener("scroll", function () {
   
   // Hindi quick intents
   zameen: "Zameen/plot ke liye location aur budget batayein. Site visit bhi arrange kar sakte hain.",
-  plot: "Plots available in Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Nayagaon, Balaji. Budget batayein.",
+  plot: "Plots available in Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Balaji. Budget batayein.",
   jameen: "Plots/land ke liye preferred location aur budget share karein.",
-  location: "Aap kis location me property dekh rahe hain? (Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Nayagaon, Balaji)",
+  location: "Aap kis location me property dekh rahe hain? (Lachiwalla, Bhauwala, Bhadraj, Dev, Forest, Shreeram, Laxmi, Balaji)",
   budget: "Aapka budget range kya hai? (e.g., 10–25 lakh)",
   visit_hindi: "Site visit schedule karna chahte hain? Apna preferred din/time batayein.",
 
@@ -3021,9 +2957,6 @@ window.addEventListener("scroll", function () {
     // quick intents
     if (/balaji/.test(normalized)) {
       return "Balaji Enclave, Sabhawala: Gated plots with RCC roads, drainage, electricity & water. 100m from Shimla Bypass. Call +91 7906953585 for a site visit.";
-        if (/nayagaon/.test(normalized)) {
-          return "Nayagaon Laxmi Enclave, Shimla Bypass: Premium ongoing gated plots with paved roads, water/electricity lines, 24/7 security. 100+ Sq Yards plots available. Call +91 7906953585 for site visit.";
-        }
     }
     // route by known locations
     const locationPages = {
@@ -3035,7 +2968,6 @@ window.addEventListener("scroll", function () {
       shreeram: "Shree Ram Enclave — ongoing project in Tuntowala, Chandarbani.",
       laxmi: "Laxmi Enclave — ongoing plots near Ratanpur, Shimla Bypass.",
       balaji: "Balaji Enclave — Sabhawala plots with RCC roads & utilities."
-      nayagaon: "Nayagaon Laxmi Enclave — premium ongoing plots near Nayagaon, Shimla Bypass.",
     };
     for (const key of Object.keys(locationPages)) {
       if (normalized.includes(key)) {
@@ -3060,7 +2992,7 @@ window.addEventListener("scroll", function () {
     chatInput.focus();
     // greet once when opening
     if (!chatMessages.dataset.greeted) {
-      addMessage('Hi! I\'m your assistant at Dreamland Associates. Ask about projects like Nayagaon Laxmi Enclave or Balaji Enclave, or request a site visit.', 'bot');
+      addMessage('Hi! I\'m your assistant at Dreamland Associates. Ask about projects like Balaji Enclave or request a site visit.', 'bot');
       chatMessages.dataset.greeted = 'true';
     }
   });
@@ -3406,8 +3338,11 @@ Uttarakhand – 248007</p>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
-  </div>
+<p>&copy; 2025 Dream Land Associates. All rights reserved. Trusted real estate in Dehradun for residential plots and gated colonies.</p>
+<p>Developed & Designed by 
+    <a href="https://www.zyntrixmedia.xyz/" target="_blank" class="zyntrix-link">Zyntrix Media</a>
+</p>
+ </div>
 </footer>
 
 <style>
@@ -3442,6 +3377,37 @@ Uttarakhand – 248007</p>
   z-index: 0;
   border-radius: 50%;
 }
+.zyntrix-link {
+    position: relative;
+    font-weight: 700;
+    color: #00c3ff; /* Bright & modern */
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+/* Glow + smooth color shift */
+.zyntrix-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px #00c3ff, 0 0 12px #00c3ff;
+}
+
+/* Animated underline */
+.zyntrix-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(90deg, #00c3ff, #0077ff);
+    transition: 0.4s ease;
+    border-radius: 2px;
+}
+
+.zyntrix-link:hover::after {
+    width: 100%;
+}
+
 
 .footer::before {
   top: -100px;
