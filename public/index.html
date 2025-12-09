@@ -985,50 +985,46 @@ window.addEventListener("scroll", () => {
 
 <script>
   // 🔁 Background Slideshow Script
-  const slides = document.querySelectorAll(".hero-slideshow img");
-  let index = 0;
+const slides = document.querySelectorAll(".hero-slideshow img");
+let index = 0;
 
-  setInterval(() => {
-    slides[index].classList.remove("active");
-    index = (index + 1) % slides.length;
-    slides[index].classList.add("active");
-  }, 4000); // change every 4 seconds
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 4000);
 
-  // Search button logic - Fixed to prevent opening multiple times
-  let searchInProgress = false;
-  document.getElementById("searchBtn").addEventListener("click", function () {
-    if (searchInProgress) return; // Prevent multiple clicks
-    searchInProgress = true;
-    
-    const category = document.getElementById("category").value;
-    const location = document.getElementById("location").value;
+// 🔍 Search Logic - Only category decides the page
+document.getElementById("searchBtn").addEventListener("click", function () {
 
-    const locationPages = {
-      lachiwalla: "lachiwalla.html",
-      bhauwala: "bhauwala.html",
-      bhadraj: "bhadraj.html",
-      dev: "devenclave.html",
-      forest: "forestenclave.html",
-      shreeram: "Shreeramenclave.html",
-      laxmi: "laxmienclave.html",
-      balaji: "balajienclave.html",
-      nayagaon: "nayagaonlaxmienclave.html"
-    };
+  const category = document.getElementById("category").value;
 
-    if (!location) {
-      alert("Please select a location.");
-      searchInProgress = false;
-      return;
-    }
+  const projectPages = {
+    lachiwalla: "lachiwalla.html",
+    bhauwala: "bhauwala.html",
+    bhadraj: "bhadraj.html",
+    dev: "devenclave.html",
+    forest: "forestenclave.html",
+    shreeram: "Shreeramenclave.html",
+    laxmi: "laxmienclave.html",
+    balaji: "balajienclave.html",
+    nayagaon: "nayagaonlaxmienclave.html"
+  };
 
-    const page = locationPages[location];
-    if (page) {
-      window.location.href = page + `?category=${encodeURIComponent(category)}`;
-    } else {
-      alert("Project not found for the selected location.");
-      searchInProgress = false;
-    }
-  });
+  if (!category) {
+    alert("Please select a Project Name.");
+    return;
+  }
+
+  const page = projectPages[category];
+
+  if (page) {
+    window.location.href = page;
+  } else {
+    alert("Project page not found.");
+  }
+});
+
 </script>
 
  <section class="featured-section">
