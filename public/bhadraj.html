@@ -271,16 +271,124 @@
     }
   }
 
-  @media (max-width: 490px) {
-    nav {
-      padding: 1.9rem 2rem;
-    }
+  /* -----------------------------------------
+   MODERN + CLEAN 490px MOBILE STYLING
+--------------------------------------------*/
+@media (max-width: 490px) {
 
-    .logo img {
-      height: 70px;
-      margin-right: 16px;
-    }
+  /* Navbar spacing - thoda neeche laane ke liye */
+  nav {
+    padding: 1.4rem 1.5rem;
+    margin-top: 6px;              /* ⭐ UPPER SE MARGIN (as requested) */
+    border-radius: 0 0 14px 14px; /* Rounded feel */
+    backdrop-filter: blur(14px);
   }
+
+  /* Shrink effect also adjusted */
+  nav.shrink {
+    padding: 1rem 1.5rem;
+    margin-top: 0;
+  }
+
+  /* Logo better scale */
+  .logo img {
+    height: 60px;
+    margin-right: 10px;
+  }
+
+  nav.shrink .logo img {
+    height: 42px;
+  }
+
+  /* Modern hamburger */
+  .hamburger {
+    width: 30px;
+    height: 24px;
+    gap: 5px;
+  }
+
+  .hamburger div {
+    height: 3px;
+    border-radius: 50px;
+    transition: all 0.35s ease;
+  }
+
+  .hamburger.active div:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .hamburger.active div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active div:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* BACKDROP with better blur */
+  .backdrop {
+    top: 0;
+    height: 100vh;
+    background: rgba(0,0,0,0.35);
+    backdrop-filter: blur(8px);
+  }
+
+  /* -----------------------------------------
+      BOTTOM-SHEET MOBILE MENU — SUPER MODERN
+  --------------------------------------------*/
+  .mobile-menu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 78vh; /* More modern height */
+    transform: translateY(100%); /* Hidden below */
+    opacity: 0;
+
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(20px);
+
+    padding: 2rem 1.8rem 3rem;
+    border-radius: 24px 24px 0 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+
+    transition: transform 0.35s cubic-bezier(.16,1,.3,1),
+                opacity 0.35s ease;
+  }
+
+  .mobile-menu.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  /* Menu links */
+  .mobile-menu a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    padding: 12px 14px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.04);
+    transition: background 0.25s ease;
+  }
+
+  .mobile-menu a:hover {
+    background: rgba(0,0,0,0.13);
+  }
+
+  /* CTA full width */
+  .mobile-menu .cta-button {
+    margin-top: auto;
+    padding: 1rem 0;
+    font-size: 1.18rem;
+    width: 100%;
+    border-radius: 50px;
+  }
+}
+
 </style>
 
 <nav>
@@ -334,75 +442,89 @@
 <div id="backdrop" class="backdrop"></div>
 
 <script>
-  const hamburger = document.getElementById("hamburger");
-  const mobileMenu = document.getElementById("mobileMenu");
-  const backdrop = document.getElementById("backdrop");
-  const nav = document.querySelector("nav");
+ const hamburger = document.getElementById("hamburger");
+const mobileMenu = document.getElementById("mobileMenu");
+const backdrop = document.getElementById("backdrop");
+const nav = document.querySelector("nav");
 
-  function openMenu() {
-    hamburger.classList.add("active");
-    mobileMenu.classList.add("active");
-    backdrop.classList.add("active");
-    hamburger.setAttribute("aria-expanded", true);
-    mobileMenu.setAttribute("aria-hidden", false);
+// ------------------------
+// Mobile Menu Functions
+// ------------------------
+function openMenu() {
+  hamburger.classList.add("active");
+  mobileMenu.classList.add("active");
+  backdrop.classList.add("active");
+
+  hamburger.setAttribute("aria-expanded", "true");
+  mobileMenu.setAttribute("aria-hidden", "false");
+}
+
+function closeMenu() {
+  hamburger.classList.remove("active");
+  mobileMenu.classList.remove("active");
+  backdrop.classList.remove("active");
+
+  hamburger.setAttribute("aria-expanded", "false");
+  mobileMenu.setAttribute("aria-hidden", "true");
+}
+
+function toggleMenu() {
+  if (hamburger.classList.contains("active")) {
+    closeMenu();
+  } else {
+    openMenu();
   }
+}
 
-  function closeMenu() {
-    hamburger.classList.remove("active");
-    mobileMenu.classList.remove("active");
-    backdrop.classList.remove("active");
-    hamburger.setAttribute("aria-expanded", false);
-    mobileMenu.setAttribute("aria-hidden", true);
-  }
+// ------------------------
+// Listeners
+// ------------------------
+hamburger.addEventListener("click", (e) => {
+  e.stopPropagation();
+  toggleMenu();
+});
 
-  function toggleMenu() {
-    if (hamburger.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  }
-
-  hamburger.addEventListener("click", (e) => {
-    e.stopPropagation();
+hamburger.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
     toggleMenu();
-  });
+  }
+});
 
-  hamburger.addEventListener("keydown", (e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      toggleMenu();
+mobileMenu.addEventListener("click", (e) => e.stopPropagation());
+backdrop.addEventListener("click", closeMenu);
+
+mobileMenu.querySelectorAll("a").forEach((link) =>
+  link.addEventListener("click", closeMenu)
+);
+
+document.addEventListener("click", (e) => {
+  if (
+    !hamburger.contains(e.target) &&
+    !mobileMenu.contains(e.target) &&
+    mobileMenu.classList.contains("active")
+  ) {
+    closeMenu();
+  }
+});
+
+// ------------------------
+// Smooth Shrink on Scroll
+// (with requestAnimationFrame to avoid flicker)
+// ------------------------
+let isShrunk = false;
+
+window.addEventListener("scroll", () => {
+  window.requestAnimationFrame(() => {
+    const shouldShrink = window.scrollY > 20;
+
+    if (shouldShrink !== isShrunk) {
+      nav.classList.toggle("shrink", shouldShrink);
+      isShrunk = shouldShrink;
     }
   });
+});
 
-  mobileMenu.addEventListener("click", (e) => {
-    e.stopPropagation();
-  });
-
-  backdrop.addEventListener("click", closeMenu);
-
-  mobileMenu.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", closeMenu);
-  });
-
-  document.addEventListener("click", (e) => {
-    if (
-      !hamburger.contains(e.target) &&
-      !mobileMenu.contains(e.target) &&
-      mobileMenu.classList.contains("active")
-    ) {
-      closeMenu();
-    }
-  });
-
-  // Shrink nav on scroll
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 20) {
-      nav.classList.add("shrink");
-    } else {
-      nav.classList.remove("shrink");
-    }
-  });
 </script>
 
 <section class="project-modern" id="bhadraj-colony">
