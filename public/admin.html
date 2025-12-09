@@ -365,6 +365,186 @@
     }
   }
 </style>
+<script>
+/*
+  Frontend admin script
+  - Assumes backend at: http://localhost:5000
+  - API endpoints used:
+    GET    /admin/properties
+    DELETE /admin/properties/:id
+    PUT    /admin/properties/:id     (body: { status: 'Published' })
+    GET    /admin/export/csv
+    GET    /admin/export/pdf
+  - Protect admin routes by setting ADMIN_TOKEN in headers: { 'x-admin-token': 'YOUR_TOKEN' }
+*/
+
+const API_BASE = "http://localhost:5000";
+const ADMIN_TOKEN = "replace_with_real_token_if_used"; // set to same token as backend or empty if not using auth
+
+async function fetchProperties() {
+  try {
+    const res = await fetch(`${API_BASE}/admin/properties`, {
+      headers: ADMIN_TOKEN ? { "x-admin-token": ADMIN_TOKEN } : {}
+    });
+    if (!res.ok) throw new Error("Failed to load properties");
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    alert("Could not load properties. Check backend.");
+    return [];
+  }
+}
+
+function createRowHTML(item, index) {
+  // mobile-friendly data-label attributes (matches your CSS)
+  return `
+    <tr data-id="${item._id}">
+      <td data-label="#">${index + 1}</td>
+      <td data-label="Owner">${escapeHtml(item.owner || item.ownerName || "—")}</td>
+      <td data-label="Title">${escapeHtml(item.title || "—")}</td>
+      <td data-label="Price">${escapeHtml(item.price ? formatCurrency(item.price) : "—")}</td>
+      <td data-label="Status">${escapeHtml(item.status || "Draft")}</td>
+      <td class="actions" data-label="Actions">
+        <button class="btn-edit" data-id="${item._id}">Toggle Status</button>
+        <button class="btn-delete" data-id="${item._id}">Delete</button>
+        <button class="btn-view" data-id="${item._id}">View</button>
+      </td>
+    </tr>
+  `;
+}
+
+function escapeHtml(text) {
+  if (!text && text !== 0) return "";
+  return String(text)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function formatCurrency(num) {
+  // simple INR formatting if number, otherwise raw
+  if (typeof num === "number") {
+    return new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR" }).format(num);
+  }
+  return num;
+}
+
+async function loadTable() {
+  const tableBody = document.getElementById("propertyTable");
+  tableBody.innerHTML = "<tr><td colspan='6'>Loading...</td></tr>";
+  const data = await fetchProperties();
+  if (!data.length) {
+    tableBody.innerHTML = "<tr><td colspan='6'>No properties found</td></tr>";
+    return;
+  }
+
+  tableBody.innerHTML = data.map((item, i) => createRowHTML(item, i)).join("");
+  attachRowListeners();
+}
+
+function attachRowListeners() {
+  document.querySelectorAll(".btn-delete").forEach(btn =>
+    btn.addEventListener("click", async (e) => {
+      const id = e.currentTarget.dataset.id;
+      if (!confirm("Delete this property? This cannot be undone.")) return;
+      try {
+        const res = await fetch(`${API_BASE}/admin/properties/${id}`, {
+          method: "DELETE",
+          headers: ADMIN_TOKEN ? { "x-admin-token": ADMIN_TOKEN } : {}
+        });
+        if (!res.ok) throw new Error("Delete failed");
+        alert("Deleted.");
+        loadTable();
+      } catch (err) {
+        console.error(err);
+        alert("Error deleting. Check console.");
+      }
+    })
+  );
+
+  document.querySelectorAll(".btn-edit").forEach(btn =>
+    btn.addEventListener("click", async (e) => {
+      const id = e.currentTarget.dataset.id;
+      // Simple toggle example: Draft -> Published -> Sold -> Draft
+      const row = document.querySelector(`tr[data-id="${id}"]`);
+      const statusCell = row?.querySelector('td[data-label="Status"]');
+      const current = statusCell ? statusCell.innerText.trim() : "Draft";
+      const next = current === "Published" ? "Sold" : current === "Sold" ? "Draft" : "Published";
+
+      if (!confirm(`Change status to "${next}"?`)) return;
+
+      try {
+        const res = await fetch(`${API_BASE}/admin/properties/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            ...(ADMIN_TOKEN && { "x-admin-token": ADMIN_TOKEN })
+          },
+          body: JSON.stringify({ status: next })
+        });
+        if (!res.ok) throw new Error("Update failed");
+        alert("Status updated.");
+        loadTable();
+      } catch (err) {
+        console.error(err);
+        alert("Error updating status.");
+      }
+    })
+  );
+
+  document.querySelectorAll(".btn-view").forEach(btn =>
+    btn.addEventListener("click", (e) => {
+      const id = e.currentTarget.dataset.id;
+      // open a property detail page or modal — simple redirect example:
+      window.open(`${API_BASE}/admin/properties/${id}/view`, "_blank");
+    })
+  );
+}
+
+// Export handlers
+function downloadCSV() {
+  const url = `${API_BASE}/admin/export/csv`;
+  // attach token header by constructing an anchor if token not needed in query
+  if (!ADMIN_TOKEN) return window.location.href = url;
+  // when token required, fetch blob then download
+  fetch(url, { headers: { "x-admin-token": ADMIN_TOKEN } })
+    .then(r => r.blob())
+    .then(blob => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "properties.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    })
+    .catch(err => alert("Export failed"));
+}
+
+function downloadPDF() {
+  const url = `${API_BASE}/admin/export/pdf`;
+  if (!ADMIN_TOKEN) return window.location.href = url;
+  fetch(url, { headers: { "x-admin-token": ADMIN_TOKEN } })
+    .then(r => r.blob())
+    .then(blob => {
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "properties.pdf";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    })
+    .catch(err => alert("Export failed"));
+}
+
+// wire up export buttons (if you used my earlier admin.html example, keep same function names)
+window.downloadCSV = downloadCSV;
+window.downloadPDF = downloadPDF;
+
+// load table on start
+loadTable();
+</script>
+
 
 
   <!-- Footer -->
