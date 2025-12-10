@@ -805,51 +805,58 @@ window.addEventListener("scroll", () => {
 <section class="property-form-section">
   <h1 class="form-heading">Post a New Property</h1>
   <form id="propertyForm" class="property-form">
-    <div class="form-grid">
-      <div class="form-group">
-        <input type="text" id="title" required />
-        <label for="title">Property Title</label>
-      </div>
 
-      <div class="form-group">
-        <input type="number" id="price" required />
-        <label for="price">Price (INR)</label>
-      </div>
+  <input type="hidden" name="access_key" value="2d1b2e53-6f85-4484-8874-457322dce7bd">
 
-      <div class="form-group">
-        <input type="text" id="location" required />
-        <label for="location">Location</label>
-      </div>
+  <div class="form-grid">
 
-      <div class="form-group">
-        <input type="number" id="size" required />
-        <label for="size">Size (sq.ft)</label>
-      </div>
-
-      <div class="form-group">
-        <input type="number" id="bedrooms" required />
-        <label for="bedrooms">Bedrooms</label>
-      </div>
-
-      <div class="form-group full">
-        <textarea id="description" rows="4" required></textarea>
-        <label for="description">Description</label>
-      </div>
-
-      <div class="form-group full">
-        <label class="upload-label">Upload Property Images</label>
-        <div class="upload-box" id="dropZone">
-          <p>Click or drop multiple images here</p>
-          <input type="file" id="images" multiple accept="image/*" />
-        </div>
-        <div id="previewContainer" class="preview-grid"></div>
-      </div>
-
-      <div class="form-group full">
-        <button type="submit" class="submit-btn">Submit Property</button>
-      </div>
+    <div class="form-group">
+      <input type="text" id="title" name="title" required />
+      <label for="title">Property Title</label>
     </div>
-  </form>
+
+    <div class="form-group">
+      <input type="number" id="price" name="price" required />
+      <label for="price">Price (INR)</label>
+    </div>
+
+    <div class="form-group">
+      <input type="text" id="location" name="location" required />
+      <label for="location">Location</label>
+    </div>
+
+    <div class="form-group">
+      <input type="number" id="size" name="size" required />
+      <label for="size">Size (sq.ft)</label>
+    </div>
+
+    <div class="form-group">
+      <input type="number" id="bedrooms" name="bedrooms" required />
+      <label for="bedrooms">Bedrooms</label>
+    </div>
+
+    <div class="form-group full">
+      <textarea id="description" name="description" rows="4" required></textarea>
+      <label for="description">Description</label>
+    </div>
+
+    <div class="form-group full">
+      <label class="upload-label">Upload Property Images</label>
+      <div class="upload-box" id="dropZone">
+        <p>Click or drop multiple images here</p>
+        <input type="file" id="images" multiple accept="image/*" />
+      </div>
+      <div id="previewContainer" class="preview-grid"></div>
+    </div>
+
+    <div class="form-group full">
+      <button type="submit" class="submit-btn" id="submitBtn">Submit Property</button>
+    </div>
+
+  </div>
+
+</form>
+
 
   <!-- Modern Success Modal -->
   <div id="successModal" class="modal-overlay" aria-hidden="true" role="dialog" aria-modal="true">
@@ -859,137 +866,124 @@ window.addEventListener("scroll", () => {
     </div>
   </div>
 </section>
-
 <script>
-  const input = document.getElementById('images');
-  const previewContainer = document.getElementById('previewContainer');
-  const dropZone = document.getElementById('dropZone');
-  const form = document.getElementById('propertyForm');
-  const successModal = document.getElementById('successModal');
-  const doneButton = document.getElementById('doneButton');
+const input = document.getElementById('images');
+const previewContainer = document.getElementById('previewContainer');
+const dropZone = document.getElementById('dropZone');
+const form = document.getElementById('propertyForm');
+const submitBtn = document.getElementById('submitBtn');
+const successModal = document.getElementById('successModal');  // your modal
+const doneButton = document.getElementById('doneButton');      // modal close btn
 
-  // Handle file selection and preview
-  function handleFiles(files) {
-    previewContainer.innerHTML = '';
-    [...files].forEach(file => {
-      if (!file.type.startsWith('image/')) return;
+// ---------------- IMAGE PREVIEW ----------------
+function handleFiles(files) {
+  previewContainer.innerHTML = '';
 
-      const reader = new FileReader();
-      reader.onload = e => {
-        const wrapper = document.createElement('div');
-        wrapper.className = 'preview-img';
+  [...files].forEach(file => {
+    if (!file.type.startsWith('image/')) return;
 
-        const img = document.createElement('img');
-        img.src = e.target.result;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'preview-img';
 
-        const removeBtn = document.createElement('button');
-        removeBtn.className = 'remove-btn';
-        removeBtn.textContent = '×';
-        removeBtn.onclick = () => wrapper.remove();
+      const img = document.createElement('img');
+      img.src = e.target.result;
 
-        wrapper.appendChild(img);
-        wrapper.appendChild(removeBtn);
-        previewContainer.appendChild(wrapper);
-      };
-      reader.readAsDataURL(file);
-    });
+      const removeBtn = document.createElement('button');
+      removeBtn.className = 'remove-btn';
+      removeBtn.textContent = '×';
+      removeBtn.onclick = () => wrapper.remove();
+
+      wrapper.appendChild(img);
+      wrapper.appendChild(removeBtn);
+      previewContainer.appendChild(wrapper);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+input.addEventListener('change', () => handleFiles(input.files));
+
+dropZone.addEventListener('dragover', e => {
+  e.preventDefault();
+  dropZone.style.borderColor = '#00d5ff';
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.style.borderColor = '#000';
+});
+
+dropZone.addEventListener('drop', e => {
+  e.preventDefault();
+  dropZone.style.borderColor = '#000';
+  input.files = e.dataTransfer.files;
+
+  const event = new Event('change', { bubbles: true });
+  input.dispatchEvent(event);
+});
+
+// -------------- FORM SUBMIT (WEB3FORMS ONLY) ----------------
+form.addEventListener('submit', async e => {
+  e.preventDefault();
+
+  submitBtn.innerHTML = "Submitting...";
+
+  let formData = new FormData(form);
+
+  // Convert images → Base64 and append
+  let files = input.files;
+  for (let i = 0; i < files.length; i++) {
+    let base64 = await toBase64(files[i]);
+    formData.append("images[]", base64);
   }
 
-  // When user selects files
-  input.addEventListener('change', () => {
-    handleFiles(input.files);
+  // Send to Web3Forms
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: formData
   });
 
-  // Drag & Drop support
-  dropZone.addEventListener('dragover', e => {
-    e.preventDefault();
-    dropZone.style.borderColor = '#00d5ff';
-  });
+  const json = await res.json();
 
-  dropZone.addEventListener('dragleave', () => {
-    dropZone.style.borderColor = '#000';
-  });
+  if (res.ok) {
+    submitBtn.innerHTML = "Submitted 🎉";
+    form.reset();
+    previewContainer.innerHTML = "";
 
-  dropZone.addEventListener('drop', e => {
-    e.preventDefault();
-    dropZone.style.borderColor = '#000';
-    const files = e.dataTransfer.files;
-    input.files = files;
-
-    // Dispatch a change event manually
-    const event = new Event('change', { bubbles: true });
-    input.dispatchEvent(event);
-  });
-
-  // Google Apps Script Web App URL (replace after deployment)
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbwD4cwFwFMFk8-HOeMnULcYrUQwuRh9UDL_x7rMcPMp5fYPqKdI4hJaJ0UdxfvnIsUHZg/exec';
-
-  // Form submission -> send to Google Sheet via Apps Script
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-
-    const payload = {
-      title: document.getElementById('title').value.trim(),
-      price: document.getElementById('price').value.trim(),
-      location: document.getElementById('location').value.trim(),
-      size: document.getElementById('size').value.trim(),
-      bedrooms: document.getElementById('bedrooms').value.trim(),
-      description: document.getElementById('description').value.trim(),
-      images: Array.from(input.files || []).map(f => f.name)
-    };
-
-    try {
-      if (!GAS_URL) {
-        alert('Google Sheet not connected yet. Please paste your Web App URL in GAS_URL.');
-        return;
-      }
-      // Use FormData to avoid CORS preflight. Do not set custom headers.
-      const formData = new FormData();
-      Object.entries(payload).forEach(([key, value]) => {
-        formData.append(key, typeof value === 'string' ? value : JSON.stringify(value));
-      });
-      // Prefer local proxy if available to bypass browser CORS
-      const res = await fetch('/api/sheet', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      }).catch(() => fetch(GAS_URL, { method: 'POST', body: formData }));
-
-      // Treat any 2xx as success. Try JSON; fallback to text.
-      if (res.ok) {
-        let data = null;
-        try { data = await res.json(); } catch (_) { /* non-JSON is fine */ }
-        const text = data ? '' : (await res.text().catch(() => ''));
-        const success = (data && (data.ok === true || data.status === 'success' || data.result === 'success')) || (text && text.toLowerCase().includes('success')) || true;
-        if (!success) {
-          console.warn('Unexpected response shape from GAS:', { data, text });
-        }
-        successModal.style.display = 'flex';
-        successModal.querySelector('.modal-box').focus();
-        form.reset();
-        previewContainer.innerHTML = '';
-      } else {
-        const text = await res.text().catch(() => '');
-        alert('Submit failed. Please try again.\n' + (text || ('HTTP ' + res.status)));
-      }
-    } catch (err) {
-      console.error('Submit error:', err);
-      alert('Submit failed (network/CORS). Ensure your Apps Script is deployed as Web App with access: Anyone.');
+    // Show modal
+    if (successModal) {
+      successModal.style.display = "flex";
     }
-  });
 
-  // Close modal on Done click
+    // Reset button after 3 sec
+    setTimeout(() => {
+      submitBtn.innerHTML = "Submit Property";
+    }, 3000);
+  } else {
+    alert(json.message || "Failed to submit form.");
+    submitBtn.innerHTML = "Submit Property";
+  }
+});
+
+// ----------- Convert file → Base64 ---------------
+function toBase64(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = err => reject(err);
+  });
+}
+
+// Modal close
+if (doneButton) {
   doneButton.addEventListener('click', () => {
     successModal.style.display = 'none';
   });
-
-  // ESC key to close modal
-  document.addEventListener('keydown', e => {
-    if (e.key === "Escape" && successModal.style.display === 'flex') {
-      successModal.style.display = 'none';
-    }
-  });
+}
 </script>
+
 
 
   <!-- Footer -->
