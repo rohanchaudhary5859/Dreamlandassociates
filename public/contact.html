@@ -544,7 +544,7 @@ window.addEventListener("scroll", () => {
 
   <div class="form-group">
     <label>Name</label>
-    <input type="text" name="name" required placeholder="Your full name">
+    <input type="text" name="name" required placeholder="Your name">
   </div>
 
   <div class="form-group">
@@ -554,18 +554,14 @@ window.addEventListener("scroll", () => {
 
   <div class="form-group">
     <label>Message</label>
-    <textarea name="message" required placeholder="Write your message..." rows="5"></textarea>
+    <textarea name="message" required placeholder="Write something..." rows="5"></textarea>
   </div>
 
-  <button type="submit" class="form-btn">
+  <button type="submit" class="form-btn" id="submitBtn">
     <i class="fa-solid fa-paper-plane"></i> Send Message
   </button>
 
 </form>
-
-<div id="form-status" style="display:none; margin-top:10px; color:green; font-weight:600;">
-  Message Sent Successfully! 🎉
-</div>
 
 
 
@@ -594,25 +590,38 @@ window.addEventListener("scroll", () => {
     </div>
   </div>
 </section>
-
 <script>
-document.getElementById("contactForm").addEventListener("submit", async function (e) {
-  e.preventDefault();
+document.getElementById("contactForm").addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  let form = e.target;
-  let formData = new FormData(form);
+    let form = this;
+    let btn = document.getElementById("submitBtn");
+    btn.innerHTML = "Sending...";
 
-  let response = await fetch("https://api.web3forms.com/submit", {
-    method: "POST",
-    body: formData
-  });
+    let formData = new FormData(form);
 
-  if (response.ok) {
-    document.getElementById("form-status").style.display = "block";
-    form.reset();
-  } else {
-    alert("Error sending message!");
-  }
+    fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+    })
+    .then(async (response) => {
+        let json = await response.json();
+
+        if (response.status == 200) {
+            btn.innerHTML = "Message Sent 🎉";
+            form.reset();
+
+            // 3 sec baad wapas normal button text
+            setTimeout(() => {
+                btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message';
+            }, 3000);
+        } else {
+            btn.innerHTML = "Failed! Try Again";
+        }
+    })
+    .catch(error => {
+        btn.innerHTML = "Error!";
+    });
 });
 </script>
 
